@@ -1,0 +1,18 @@
+appId: dev.purama.vidaaide
+name: 04 — Tab navigation (dashboard → scanner → chat → wallet → profil)
+---
+- launchApp
+# Pre-condition: user must be signed in. Skipped in CI without seed.
+- runFlow:
+    when:
+      visible: "Accueil"
+    commands:
+      - tapOn: "Scanner"
+      - assertVisible: "SCANNER FINANCIER"
+      - tapOn: "AideIA"
+      - assertVisible: "Expert finance, aides & droits"
+      - tapOn: "Wallet"
+      - assertVisible: "WALLET"
+      - tapOn: "Profil"
+      - assertVisible: "PROFIL"
+      - takeScreenshot: 04-profil

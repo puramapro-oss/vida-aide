@@ -1,0 +1,9 @@
+appId: dev.purama.vidaaide
+name: 01 — Onboarding (cold launch → login screen)
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+- assertVisible: "PURAMA AIDE"
+- assertVisible: "Bon retour 👋"
+- takeScreenshot: 01-onboarding

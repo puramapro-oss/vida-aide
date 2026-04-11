@@ -1,0 +1,17 @@
+appId: dev.purama.vidaaide
+name: 05 — Chat with AideIA (finance expert)
+---
+- launchApp
+- runFlow:
+    when:
+      visible: "AideIA"
+    commands:
+      - tapOn: "AideIA"
+      - assertVisible: "Expert finance, aides & droits"
+      - tapOn:
+          id: "chat-input"
+      - inputText: "Je suis frontalier au Luxembourg, quelles aides je peux toucher ?"
+      - takeScreenshot: 05-chat-typed
+      - tapOn:
+          id: "chat-send"
+      - waitForAnimationToEnd

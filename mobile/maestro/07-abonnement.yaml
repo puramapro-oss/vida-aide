@@ -1,0 +1,19 @@
+appId: dev.purama.vidaaide
+name: 07 — Pricing / Premium abonnement
+---
+- launchApp
+- runFlow:
+    when:
+      visible: "Accueil"
+    commands:
+      - tapOn:
+          id: "dashboard-upgrade-card"
+      - assertVisible: "Débloque tout."
+      - assertVisible: "PURAMA Aide Premium"
+      - assertVisible: "POPULAIRE"
+      - tapOn:
+          id: "abo-monthly"
+      - assertVisible: "9,99"
+      - tapOn:
+          id: "abo-yearly"
+      - takeScreenshot: 07-pricing

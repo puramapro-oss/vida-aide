@@ -1,0 +1,90 @@
+{
+  "expo": {
+    "name": "PURAMA Aide",
+    "slug": "vidaaide",
+    "scheme": "vidaaide",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "primaryColor": "#10B981",
+    "backgroundColor": "#0A0A0F",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A0F"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "dev.purama.vidaaide",
+      "buildNumber": "1",
+      "associatedDomains": ["applinks:vida-aide.purama.dev"],
+      "infoPlist": {
+        "NSCameraUsageDescription": "PURAMA Aide utilise l'appareil photo pour scanner un avis d'imposition, un bulletin de salaire ou un justificatif et en extraire les montants automatiquement.",
+        "NSPhotoLibraryUsageDescription": "PURAMA Aide accède à tes photos pour importer un avis d'imposition ou un justificatif à analyser.",
+        "NSFaceIDUsageDescription": "PURAMA Aide utilise Face ID pour sécuriser l'accès à ton wallet et tes informations financières.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "dev.purama.vidaaide",
+      "versionCode": 1,
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0A0F"
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [{ "scheme": "https", "host": "vida-aide.purama.dev" }],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ],
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      "expo-web-browser",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0A0A0F",
+          "image": "./assets/splash.png",
+          "imageWidth": 200
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "owner": "puramapro-oss",
+    "extra": {
+      "router": {
+        "origin": "https://vida-aide.purama.dev"
+      },
+      "eas": {
+        "projectId": "PLACEHOLDER_EAS_PROJECT_ID"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/PLACEHOLDER_EAS_PROJECT_ID"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+appId: dev.purama.vidaaide
+name: 02 — Auth login flow (form validation + submit)
+---
+- launchApp
+- assertVisible: "Bon retour 👋"
+- tapOn:
+    id: "login-email"
+- inputText: "matiss.frasne@gmail.com"
+- tapOn:
+    id: "login-password"
+- inputText: "MaestroTest123"
+- takeScreenshot: 02-login-filled
+- tapOn:
+    id: "login-submit"
+- waitForAnimationToEnd

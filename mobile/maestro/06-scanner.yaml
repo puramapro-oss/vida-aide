@@ -1,0 +1,25 @@
+appId: dev.purama.vidaaide
+name: 06 — Scanner financier (form → submit → results)
+---
+- launchApp
+- tapOn:
+    id: "scanner"
+- assertVisible: "SCANNER FINANCIER"
+- takeScreenshot: 06-scanner-empty
+- tapOn:
+    id: "scanner-emploi-salarie"
+- tapOn:
+    id: "scanner-revenus"
+- inputText: "2100"
+- hideKeyboard
+- tapOn:
+    id: "scanner-logement-locataire"
+- tapOn:
+    id: "scanner-loyer"
+- inputText: "650"
+- hideKeyboard
+- tapOn:
+    id: "scanner-famille-celibataire"
+- takeScreenshot: 06-scanner-filled
+- tapOn:
+    id: "scanner-submit"
