@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Mentions Légales — PURAMA Association',
-  description: 'Mentions légales de PURAMA Association par SASU PURAMA.',
+  title: 'Mentions Légales — PURAMA Aide',
+  description: 'Mentions légales de PURAMA Aide par SASU PURAMA.',
 }
 
 export default function MentionsLegales() {
@@ -25,7 +25,7 @@ export default function MentionsLegales() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               1. Éditeur du site
             </h2>
-            <p>Le site <strong className="text-[var(--text-primary)]">vida-assoc.purama.dev</strong> est édité par :</p>
+            <p>Le site <strong className="text-[var(--text-primary)]">vida-aide.purama.dev</strong> est édité par :</p>
             <ul className="mt-3 space-y-1.5 ml-4">
               <li><strong className="text-[var(--text-primary)]">Dénomination sociale :</strong> SASU PURAMA</li>
               <li><strong className="text-[var(--text-primary)]">Forme juridique :</strong> Société par Actions Simplifiée Unipersonnelle (SASU)</li>
@@ -71,7 +71,7 @@ export default function MentionsLegales() {
               4. Propriété intellectuelle
             </h2>
             <p>
-              L&apos;ensemble du contenu présent sur le site vida-assoc.purama.dev (textes, images, graphismes, logo, icônes, code source, architecture) est la propriété exclusive de SASU PURAMA, sauf mention contraire.
+              L&apos;ensemble du contenu présent sur le site vida-aide.purama.dev (textes, images, graphismes, logo, icônes, code source, architecture) est la propriété exclusive de SASU PURAMA, sauf mention contraire.
             </p>
             <p className="mt-2">
               Toute reproduction, distribution, modification ou utilisation commerciale, totale ou partielle, est strictement interdite sans autorisation écrite préalable de SASU PURAMA.

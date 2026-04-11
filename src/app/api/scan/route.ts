@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase'
 import { scanFinancialJSON } from '@/lib/claude'
+import { SCAN_DAILY_LIMIT_FREE } from '@/lib/constants'
 import type { Plan } from '@/types'
 
 export const runtime = 'nodejs'
@@ -51,6 +52,26 @@ export async function POST(req: Request) {
   if (!profile) return NextResponse.json({ error: 'Profil introuvable.' }, { status: 404 })
 
   const plan: Plan = profile.role === 'super_admin' ? 'premium' : (profile.subscription_plan as Plan)
+
+  // Anti-fraude : free = max 5 scans / 24h. Premium / super_admin = illimité.
+  if (plan === 'free') {
+    const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+    const { count } = await admin
+      .from('scans')
+      .select('id', { head: true, count: 'exact' })
+      .eq('user_id', profile.id)
+      .gte('created_at', since)
+    if ((count ?? 0) >= SCAN_DAILY_LIMIT_FREE) {
+      return NextResponse.json(
+        {
+          error: `Limite atteinte : ${SCAN_DAILY_LIMIT_FREE} scans par 24h en gratuit. Passe en Premium pour scanner sans limite (essai 14 jours).`,
+          code: 'scan_daily_limit',
+          upgrade_url: '/pricing',
+        },
+        { status: 429 },
+      )
+    }
+  }
 
   let result
   try {

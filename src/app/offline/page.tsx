@@ -3,7 +3,7 @@ import { WifiOff } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Hors ligne — PURAMA Association',
+  title: 'Hors ligne — PURAMA Aide',
 }
 
 export default function OfflinePage() {

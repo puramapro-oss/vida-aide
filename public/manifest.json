@@ -1,7 +1,7 @@
 {
-  "name": "VIDA Association",
-  "short_name": "VIDA",
-  "description": "Agis pour le vivant. Missions, dons, rituels, impact réel.",
+  "name": "PURAMA Aide",
+  "short_name": "Aide",
+  "description": "Dis-moi ta situation. En 2 minutes, AideIA trouve tout l'argent que tu laisses sur la table — aides, remboursements, droits oubliés.",
   "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#0A0A0F",
@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "scope": "/",
   "lang": "fr",
-  "categories": ["lifestyle", "social", "health"],
+  "categories": ["finance", "lifestyle", "productivity"],
   "icons": [
     {
       "src": "/icon.svg",

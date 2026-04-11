@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "वर्तमान योजना",
     "pricingTrial": "14 दिन की मुफ़्त परीक्षा",
     "faqTitle": "अक्सर पूछे जाने वाले प्रश्न",
-    "faqSubtitle": "PURAMA Association के बारे में जानने के लिए आपको जो कुछ चाहिए।",
+    "faqSubtitle": "PURAMA Aide के बारे में जानने के लिए आपको जो कुछ चाहिए।",
     "apiTitle": "डेवलपर्स के लिए शक्तिशाली API",
     "apiSubtitle": "हमारे सरल और प्रलेखित REST API के साथ PURAMA को अपने ऐप्स में एकीकृत करें।",
     "apiDoc": "API दस्तावेज़",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "आपसे फिर से मिलकर खुशी है",
     "loginSubtitle": "अपने AI उपकरणों तक पहुंचने के लिए लॉगिन करें।",
-    "signupTitle": "PURAMA Association में शामिल हों",
+    "signupTitle": "PURAMA Aide में शामिल हों",
     "signupSubtitle": "30 सेकंड में खाता बनाएं। 47+ AI उपकरण आपकी प्रतीक्षा कर रहे हैं।",
     "email": "ईमेल",
     "password": "पासवर्ड",

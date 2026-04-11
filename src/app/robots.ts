@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/dashboard/', '/api/', '/auth/', '/(auth)/'],
     },
-    sitemap: 'https://vida-assoc.purama.dev/sitemap.xml',
+    sitemap: 'https://vida-aide.purama.dev/sitemap.xml',
   }
 }

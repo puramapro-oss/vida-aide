@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "Mevcut plan",
     "pricingTrial": "14 günlük ücretsiz deneme",
     "faqTitle": "Sık sorulan sorular",
-    "faqSubtitle": "PURAMA Association hakkında bilmen gereken her şey.",
+    "faqSubtitle": "PURAMA Aide hakkında bilmen gereken her şey.",
     "apiTitle": "Geliştiriciler için güçlü API",
     "apiSubtitle": "PURAMA'yı uygulamalarına entegre et basit ve belgelenen REST API'miz ile.",
     "apiDoc": "API Dokümantasyonu",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "Seni geri görmekten mutlu",
     "loginSubtitle": "AI araçlarına erişmek için giriş yap.",
-    "signupTitle": "PURAMA Association'a katıl",
+    "signupTitle": "PURAMA Aide'a katıl",
     "signupSubtitle": "30 saniyede hesabını oluştur. 47+ AI aracı seni bekliyor.",
     "email": "E-posta",
     "password": "Şifre",

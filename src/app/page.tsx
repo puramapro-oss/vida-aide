@@ -347,7 +347,7 @@ function Footer() {
   return (
     <footer className="border-t border-white/[0.06] py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-5">
           <div>
             <Link href="/" className="flex items-center gap-2">
               <span className="text-2xl">💰</span>
@@ -363,6 +363,14 @@ function Footer() {
               <li><Link href="/pricing" className="hover:text-[var(--text-primary)]">Tarif</Link></li>
               <li><Link href="/signup" className="hover:text-[var(--text-primary)]">Inscription</Link></li>
               <li><Link href="/login" className="hover:text-[var(--text-primary)]">Connexion</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)]">Support</p>
+            <ul className="space-y-1.5 text-sm text-[var(--text-muted)]">
+              <li><Link href="/aide" className="hover:text-[var(--text-primary)]">Centre d&apos;aide</Link></li>
+              <li><Link href="/contact" className="hover:text-[var(--text-primary)]">Nous contacter</Link></li>
+              <li><a href="mailto:contact@purama.dev" className="hover:text-[var(--text-primary)]">contact@purama.dev</a></li>
             </ul>
           </div>
           <div>

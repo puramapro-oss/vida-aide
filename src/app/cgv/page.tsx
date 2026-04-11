@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales de Vente — PURAMA Association',
-  description: 'CGV de PURAMA Association par SASU PURAMA.',
+  title: 'Conditions Générales de Vente — PURAMA Aide',
+  description: 'CGV de PURAMA Aide par SASU PURAMA.',
 }
 
 export default function CGV() {
@@ -26,7 +26,7 @@ export default function CGV() {
               1. Objet
             </h2>
             <p>
-              Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre SASU PURAMA (ci-après &quot;le Prestataire&quot;) et tout utilisateur souscrivant à un abonnement payant sur la plateforme PURAMA Association (ci-après &quot;le Client&quot;).
+              Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre SASU PURAMA (ci-après &quot;le Prestataire&quot;) et tout utilisateur souscrivant à un abonnement payant sur la plateforme PURAMA Aide (ci-après &quot;le Client&quot;).
             </p>
           </section>
 
@@ -39,16 +39,12 @@ export default function CGV() {
             </p>
             <p className="mt-2">Les abonnements disponibles sont :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
-              <li>Plan Gratuit : 0 €/mois (10 requêtes par jour)</li>
-              <li>Plans AUTOMATE, CREATE, BUILD Essentiel : à partir de 7,00 €/mois</li>
-              <li>Plans AUTOMATE, CREATE, BUILD Pro : à partir de 11,00 €/mois</li>
-              <li>Plans AUTOMATE, CREATE, BUILD Max : à partir de 16,00 €/mois</li>
-              <li>Plan COMPLET Essentiel : 22,00 €/mois</li>
-              <li>Plan COMPLET Pro : 33,00 €/mois</li>
-              <li>Plan COMPLET Max : 44,00 €/mois</li>
+              <li>Plan Gratuit : 0 €/mois (consultation des aides détectées en lecture seule, scans limités)</li>
+              <li>Plan Premium mensuel : 9,99 €/mois (scans illimités, démarches automatiques, wallet, missions, concours)</li>
+              <li>Plan Premium annuel : 83,90 €/an (-30 % vs mensuel)</li>
             </ul>
             <p className="mt-3">
-              Une remise de 33% est appliquée pour les abonnements annuels par rapport au tarif mensuel.
+              Tout abonnement payant bénéficie d&apos;une période d&apos;essai gratuite de 14 jours avec accès complet aux fonctionnalités Premium.
             </p>
             <p className="mt-2">
               Les factures sont émises au format PDF et disponibles dans votre espace client. Elles mentionnent obligatoirement la mention &quot;TVA non applicable, art. 293 B du CGI&quot;.
@@ -74,7 +70,7 @@ export default function CGV() {
               4. Abonnements et reconduction
             </h2>
             <p>
-              Les abonnements PURAMA Association sont souscrits pour une durée mensuelle ou annuelle et se renouvellent automatiquement à l&apos;échéance, sauf résiliation préalable.
+              Les abonnements PURAMA Aide sont souscrits pour une durée mensuelle ou annuelle et se renouvellent automatiquement à l&apos;échéance, sauf résiliation préalable.
             </p>
             <p className="mt-2">
               Vous recevrez un email de rappel 7 jours avant chaque renouvellement annuel. Vous pouvez modifier ou annuler votre abonnement à tout moment depuis <strong className="text-[var(--text-primary)]">Paramètres → Abonnement</strong>.

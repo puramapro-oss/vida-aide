@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "現在のプラン",
     "pricingTrial": "14日間の無料トライアル",
     "faqTitle": "よくある質問",
-    "faqSubtitle": "PURAMA Association について知っておくべきすべてのこと。",
+    "faqSubtitle": "PURAMA Aide について知っておくべきすべてのこと。",
     "apiTitle": "開発者向けの強力なAPI",
     "apiSubtitle": "シンプルでドキュメント化されたREST APIでPURAMAをアプリケーションに統合します。",
     "apiDoc": "API ドキュメント",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "お帰りなさい",
     "loginSubtitle": "ログインしてAIツールにアクセスしてください。",
-    "signupTitle": "PURAMA Associationに参加",
+    "signupTitle": "PURAMA Aideに参加",
     "signupSubtitle": "30秒でアカウントを作成。47以上のAIツールがあなたを待っています。",
     "email": "メール",
     "password": "パスワード",

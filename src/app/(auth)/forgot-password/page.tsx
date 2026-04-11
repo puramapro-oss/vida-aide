@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
         {/* Logo */}
         <div className="mb-8 text-center">
           <h1 className="gradient-text font-[family-name:var(--font-display)] text-3xl font-bold">
-            PURAMA Association
+            PURAMA Aide
           </h1>
           <p className="mt-2 text-sm text-[var(--text-secondary)]">
             Reinitialisation du mot de passe

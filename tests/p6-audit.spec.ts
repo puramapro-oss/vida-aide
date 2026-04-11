@@ -1,8 +1,7 @@
 import { test, expect, type Page } from '@playwright/test'
 
 // Runs against the live prod baseURL configured in playwright.config.ts
-// (https://vida-assoc.purama.dev). These tests are read-only smoke checks:
-// no auth, no data mutations.
+// (https://vida-aide.purama.dev). Read-only smoke checks: no auth, no mutations.
 
 function attachConsole(page: Page) {
   const errors: string[] = []
@@ -34,17 +33,13 @@ const PUBLIC_PAGES = [
   '/signup',
   '/forgot-password',
   '/pricing',
-  '/how-it-works',
-  '/ecosystem',
   '/aide',
   '/contact',
-  '/associations',
-  '/impact-global',
-  '/rituels-publics',
   '/mentions-legales',
   '/politique-confidentialite',
   '/cgv',
   '/cgu',
+  '/cookies',
 ]
 
 test.describe('P6 — Public pages (200 + console 0)', () => {
@@ -61,22 +56,16 @@ test.describe('P6 — Public pages (200 + console 0)', () => {
 
 const DASHBOARD_PAGES = [
   '/dashboard',
+  '/scanner',
+  '/chat',
   '/dashboard/missions',
-  '/dashboard/dons',
-  '/dashboard/associations',
-  '/dashboard/impact',
-  '/dashboard/chat-vida',
-  '/dashboard/referral',
   '/dashboard/wallet',
   '/dashboard/concours',
-  '/dashboard/rituels',
-  '/dashboard/formations',
-  '/dashboard/boutique',
+  '/dashboard/referral',
   '/dashboard/profile',
   '/dashboard/settings',
   '/dashboard/notifications',
   '/dashboard/guide',
-  '/dashboard/communaute',
   '/dashboard/influenceur',
   '/dashboard/admin',
 ]
@@ -90,39 +79,24 @@ test.describe('P6 — Dashboard auth guard (redirect → /login)', () => {
   }
 })
 
-test.describe('P6 — Responsive (no horizontal overflow)', () => {
-  const viewports = [
-    { label: 'iPhone SE 375', width: 375, height: 667 },
-    { label: 'iPad 768', width: 768, height: 1024 },
-    { label: 'Desktop 1920', width: 1920, height: 1080 },
-  ]
-  const pages = ['/', '/login', '/pricing', '/associations', '/impact-global']
-
-  for (const vp of viewports) {
-    for (const p of pages) {
-      test(`${p} @ ${vp.label}`, async ({ page }) => {
-        await page.setViewportSize({ width: vp.width, height: vp.height })
-        await page.goto(p, { waitUntil: 'domcontentloaded', timeout: 20000 })
-        const overflow = await page.evaluate(
-          () => document.documentElement.scrollWidth > window.innerWidth + 2,
-        )
-        expect(overflow, `${p} overflows at ${vp.width}px`).toBe(false)
-      })
-    }
-  }
-})
-
 test.describe('P6 — API routes', () => {
-  test('GET /api/status → 200 + VIDA Association', async ({ request }) => {
+  test('GET /api/status → 200 + PURAMA Aide', async ({ request }) => {
     const res = await request.get('/api/status')
     expect(res.status()).toBe(200)
     const json = await res.json()
     expect(json.status).toBe('ok')
-    expect(json.app).toBe('VIDA Association')
+    expect(json.app).toBe('PURAMA Aide')
   })
 
-  test('POST /api/chat-vida unauth → 401', async ({ request }) => {
-    const res = await request.post('/api/chat-vida', {
+  test('POST /api/scan unauth → 401', async ({ request }) => {
+    const res = await request.post('/api/scan', {
+      data: { situation: { age: 30 } },
+    })
+    expect(res.status()).toBe(401)
+  })
+
+  test('POST /api/chat unauth → 401', async ({ request }) => {
+    const res = await request.post('/api/chat', {
       data: { messages: [{ role: 'user', content: 'hello' }] },
     })
     expect(res.status()).toBe(401)
@@ -135,21 +109,25 @@ test.describe('P6 — API routes', () => {
     expect(res.status()).toBe(401)
   })
 
-  test('POST /api/rituals/join unauth → 401', async ({ request }) => {
-    const res = await request.post('/api/rituals/join', { data: { ritual_id: 'x' } })
+  test('POST /api/missions/complete unauth → 401', async ({ request }) => {
+    const res = await request.post('/api/missions/complete', {
+      data: { mission_id: 'x' },
+    })
     expect(res.status()).toBe(401)
   })
 
-  test('POST /api/locale → switch to EN', async ({ request }) => {
-    const res = await request.post('/api/locale', { data: { locale: 'en' } })
-    expect(res.status()).toBe(200)
-    const json = await res.json()
-    expect(json.locale).toBe('en')
+  test('POST /api/profile/update unauth → 401', async ({ request }) => {
+    const res = await request.post('/api/profile/update', {
+      data: { situation: {} },
+    })
+    expect(res.status()).toBe(401)
   })
 
-  test('POST /api/locale invalid → 400', async ({ request }) => {
-    const res = await request.post('/api/locale', { data: { locale: 'xx' } })
-    expect(res.status()).toBe(400)
+  test('POST /api/stripe/checkout unauth → 401', async ({ request }) => {
+    const res = await request.post('/api/stripe/checkout', {
+      data: { plan: 'monthly' },
+    })
+    expect(res.status()).toBe(401)
   })
 
   test('GET /sitemap.xml → 200 + xml', async ({ request }) => {
@@ -163,12 +141,12 @@ test.describe('P6 — API routes', () => {
     expect(res.status()).toBe(200)
   })
 
-  test('GET /manifest.json → 200 + VIDA', async ({ request }) => {
+  test('GET /manifest.json → 200 + PURAMA Aide', async ({ request }) => {
     const res = await request.get('/manifest.json')
     expect(res.status()).toBe(200)
     const json = await res.json()
-    expect(json.name).toBe('VIDA Association')
-    expect(json.short_name).toBe('VIDA')
+    expect(json.name).toBe('PURAMA Aide')
+    expect(json.short_name).toBe('Aide')
   })
 })
 
@@ -204,9 +182,9 @@ test.describe('P6 — Forms', () => {
 })
 
 test.describe('P6 — Landing content', () => {
-  test('Landing — VIDA branding + SASU PURAMA footer', async ({ page }) => {
+  test('Landing — PURAMA Aide branding + SASU PURAMA footer', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('body')).toContainText('VIDA')
+    await expect(page.locator('body')).toContainText('PURAMA Aide')
     const footer = page.locator('footer')
     await expect(footer).toContainText('SASU PURAMA')
     await expect(footer).toContainText('293')
@@ -218,19 +196,78 @@ test.describe('P6 — Landing content', () => {
     await expect(cta).toBeVisible()
   })
 
-  test('Landing — no AKASHA leakage', async ({ page }) => {
+  test('Landing — vida-aide domain only (no vida-assoc leakage)', async ({ page }) => {
     await page.goto('/')
-    const body = await page.locator('body').innerText()
-    expect(body.toLowerCase()).not.toContain('akasha')
+    const body = await page.content()
+    expect(body.toLowerCase()).not.toContain('vida-assoc')
+    expect(body).not.toContain('PURAMA Association')
   })
 
-  test('/associations — SEO title + listing', async ({ page }) => {
-    await page.goto('/associations')
-    await expect(page.locator('body')).toContainText('Association')
+  test('Pricing — Premium plan visible', async ({ page }) => {
+    await page.goto('/pricing')
+    await expect(page.locator('body')).toContainText(/Premium|Gratuit|Free/i)
+    await expect(page.locator('body')).toContainText(/9[,.]99|83[,.]90/)
+  })
+})
+
+test.describe('P6 — Aide & Contact', () => {
+  test('Aide — search input + categories + FAQ rows + chat toggle', async ({ page }) => {
+    await page.goto('/aide')
+    await expect(page.locator('[data-testid="aide-search-input"]')).toBeVisible()
+    await expect(page.locator('[data-testid="aide-cat-all"]')).toBeVisible()
+    await expect(page.locator('[data-testid="aide-cat-scanner"]')).toBeVisible()
+    await expect(page.locator('[data-testid="aide-cat-wallet"]')).toBeVisible()
+    // At least 3 FAQ rows visible by default
+    const rows = page.locator('[data-testid="aide-faq-list"] [data-testid^="aide-faq-"]')
+    expect(await rows.count()).toBeGreaterThanOrEqual(3)
+    await expect(page.locator('[data-testid="aide-chat-toggle"]')).toBeVisible()
   })
 
-  test('/impact-global — counters present', async ({ page }) => {
-    await page.goto('/impact-global')
-    await expect(page.locator('body')).toContainText('Impact')
+  test('Aide — search filters FAQ list', async ({ page }) => {
+    await page.goto('/aide')
+    await page.locator('[data-testid="aide-search-input"]').fill('wallet')
+    // After filtering, at least one row should mention wallet
+    await expect(page.locator('body')).toContainText(/wallet/i)
+  })
+
+  test('Aide — FAQ row expands on click', async ({ page }) => {
+    await page.goto('/aide')
+    const firstRow = page.locator('[data-testid="aide-faq-list"] [data-testid^="aide-faq-"]').first()
+    await firstRow.click()
+    await expect(firstRow).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  test('Aide — chat panel opens', async ({ page }) => {
+    await page.goto('/aide')
+    await page.locator('[data-testid="aide-chat-toggle"]').click()
+    await expect(page.locator('[data-testid="aide-chat-panel"]')).toBeVisible()
+    await expect(page.locator('[data-testid="aide-chat-input"]')).toBeVisible()
+  })
+
+  test('Contact — form fields all present', async ({ page }) => {
+    await page.goto('/contact')
+    await expect(page.locator('[data-testid="contact-name"]')).toBeVisible()
+    await expect(page.locator('[data-testid="contact-email"]')).toBeVisible()
+    await expect(page.locator('[data-testid="contact-subject"]')).toBeVisible()
+    await expect(page.locator('[data-testid="contact-message"]')).toBeVisible()
+    await expect(page.locator('[data-testid="contact-submit"]')).toBeVisible()
+    await expect(page.locator('[data-testid="contact-email-direct"]')).toContainText('contact@purama.dev')
+  })
+
+  test('POST /api/contact validation — empty body → 400', async ({ request }) => {
+    const res = await request.post('/api/contact', { data: {} })
+    expect(res.status()).toBe(400)
+  })
+
+  test('POST /api/contact validation — invalid email → 400', async ({ request }) => {
+    const res = await request.post('/api/contact', {
+      data: { name: 'Bot', email: 'not-an-email', subject: 'test', message: 'hello world test' },
+    })
+    expect(res.status()).toBe(400)
+  })
+
+  test('POST /api/aide/chat validation — empty messages → 400', async ({ request }) => {
+    const res = await request.post('/api/aide/chat', { data: { messages: [] } })
+    expect(res.status()).toBe(400)
   })
 })

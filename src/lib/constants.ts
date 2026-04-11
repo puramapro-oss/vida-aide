@@ -65,6 +65,9 @@ export const WALLET_MIN_WITHDRAWAL = 5 // euros
 export const ASSO_PERCENTAGE = 10
 export const REDISTRIBUTION_PERCENTAGE = 50
 
+// Anti-fraude scans : free = 5 par 24h, premium = illimité
+export const SCAN_DAILY_LIMIT_FREE = 5
+
 // Niveaux d'utilisateur — récupérateur d'argent
 export const LEVELS = [
   { id: 1, name: 'Éveillé', min: 0, max: 99, emoji: '👁️', color: '#86efac' },

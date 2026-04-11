@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "当前计划",
     "pricingTrial": "14 天免费试用",
     "faqTitle": "常见问题",
-    "faqSubtitle": "关于 PURAMA Association 你需要了解的一切。",
+    "faqSubtitle": "关于 PURAMA Aide 你需要了解的一切。",
     "apiTitle": "为开发者提供强大的 API",
     "apiSubtitle": "使用我们简洁、完整的 REST API 将 PURAMA 集成到你的应用中。",
     "apiDoc": "API 文档",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "欢迎回来",
     "loginSubtitle": "登录以访问你的 AI 工具。",
-    "signupTitle": "加入 PURAMA Association",
+    "signupTitle": "加入 PURAMA Aide",
     "signupSubtitle": "30 秒内创建账户。47+ AI 工具在等你。",
     "email": "邮箱",
     "password": "密码",

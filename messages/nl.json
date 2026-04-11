@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "Huidige plan",
     "pricingTrial": "14 dagen gratis proberen",
     "faqTitle": "Veelgestelde vragen",
-    "faqSubtitle": "Alles wat je moet weten over PURAMA Association.",
+    "faqSubtitle": "Alles wat je moet weten over PURAMA Aide.",
     "apiTitle": "Krachtige API voor developers",
     "apiSubtitle": "Integreer PURAMA in je apps met onze eenvoudige en gedocumenteerde REST API.",
     "apiDoc": "API-documentatie",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "Blij je terug te zien",
     "loginSubtitle": "Log in om toegang te krijgen tot je AI tools.",
-    "signupTitle": "Sluit je aan bij PURAMA Association",
+    "signupTitle": "Sluit je aan bij PURAMA Aide",
     "signupSubtitle": "Maak je account in 30 seconden. 47+ AI tools wachten op je.",
     "email": "E-mailadres",
     "password": "Wachtwoord",

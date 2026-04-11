@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales d\'Utilisation — PURAMA Association',
-  description: 'CGU de PURAMA Association par SASU PURAMA.',
+  title: 'Conditions Générales d\'Utilisation — PURAMA Aide',
+  description: 'CGU de PURAMA Aide par SASU PURAMA.',
 }
 
 export default function CGU() {
@@ -26,7 +26,7 @@ export default function CGU() {
               1. Acceptation des CGU
             </h2>
             <p>
-              En accédant et en utilisant la plateforme PURAMA Association (accessible à <strong className="text-[var(--text-primary)]">vida-assoc.purama.dev</strong>), vous acceptez sans réserve les présentes Conditions Générales d&apos;Utilisation.
+              En accédant et en utilisant la plateforme PURAMA Aide (accessible à <strong className="text-[var(--text-primary)]">vida-aide.purama.dev</strong>), vous acceptez sans réserve les présentes Conditions Générales d&apos;Utilisation.
               Si vous n&apos;acceptez pas ces conditions, vous ne devez pas utiliser le service.
             </p>
             <p className="mt-2">
@@ -39,18 +39,18 @@ export default function CGU() {
               2. Description du service
             </h2>
             <p>
-              PURAMA Association est une plateforme SaaS (Software as a Service) proposant un écosystème d&apos;outils d&apos;intelligence artificielle, incluant notamment :
+              PURAMA Aide est une plateforme SaaS d&apos;assistance financière et juridique propulsée par AideIA. Elle permet notamment :
             </p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
-              <li>Chat avec des modèles d&apos;IA multiples (Claude, GPT-4o, Gemini, Mistral, etc.)</li>
-              <li>Génération de contenus créatifs (images, vidéos, musique, voix)</li>
-              <li>Création et déploiement d&apos;agents autonomes</li>
-              <li>Automatisation de workflows via des intégrations tierces</li>
-              <li>Marketplace d&apos;agents IA</li>
-              <li>Outils de développement et d&apos;analyse</li>
+              <li>Scanner financier IA : détection des aides sociales, crédits d&apos;impôt et droits oubliés (CAF, CPAM, MDPH, Pôle Emploi, retraite, énergie, transport)</li>
+              <li>Optimisation fiscale et conventions frontalières (Suisse, Luxembourg, Allemagne, Belgique, Italie, Espagne, Monaco, Andorre)</li>
+              <li>Récupération d&apos;argent oublié : comptes dormants Ciclade, assurances vie, trop-perçus, frais bancaires abusifs</li>
+              <li>Assistant juridique : courriers de réclamation, mises en demeure, calcul d&apos;indemnités</li>
+              <li>Suivi des démarches en temps réel et exécution automatisée</li>
+              <li>Wallet, parrainage, missions et concours</li>
             </ul>
             <p className="mt-3">
-              Le service est fourni en mode SaaS accessible via navigateur web et application mobile progressive (PWA). SASU PURAMA s&apos;efforce d&apos;assurer une disponibilité maximale du service (objectif SLA 99,5%) mais ne peut garantir une disponibilité ininterrompue.
+              Les résultats fournis par AideIA sont indicatifs et ne se substituent pas à une consultation professionnelle officielle. SASU PURAMA s&apos;efforce d&apos;assurer une disponibilité maximale (objectif SLA 99,5%) mais ne garantit pas une disponibilité ininterrompue.
             </p>
           </section>
 
@@ -58,7 +58,7 @@ export default function CGU() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               3. Création et gestion du compte
             </h2>
-            <p>Pour utiliser PURAMA Association, vous devez créer un compte en fournissant une adresse e-mail valide. Vous pouvez également vous connecter via votre compte Google.</p>
+            <p>Pour utiliser PURAMA Aide, vous devez créer un compte en fournissant une adresse e-mail valide. Vous pouvez également vous connecter via votre compte Google.</p>
             <p className="mt-2">Vous êtes responsable :</p>
             <ul className="mt-2 space-y-1.5 ml-4 list-disc">
               <li>De la confidentialité de vos identifiants de connexion</li>
@@ -74,7 +74,7 @@ export default function CGU() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               4. Utilisation acceptable
             </h2>
-            <p>En utilisant PURAMA Association, vous vous engagez à ne pas :</p>
+            <p>En utilisant PURAMA Aide, vous vous engagez à ne pas :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
               <li>Générer, diffuser ou promouvoir du contenu illégal, haineux, violent, pornographique ou discriminatoire</li>
               <li>Utiliser le service pour du spam, du phishing ou toute activité frauduleuse</li>
@@ -95,13 +95,10 @@ export default function CGU() {
               5. Propriété intellectuelle
             </h2>
             <p>
-              <strong className="text-[var(--text-primary)]">Contenu de la plateforme :</strong> L&apos;ensemble du code, des interfaces, des marques, des logos et contenus de PURAMA Association restent la propriété exclusive de SASU PURAMA.
+              <strong className="text-[var(--text-primary)]">Contenu de la plateforme :</strong> L&apos;ensemble du code, des interfaces, des marques, des logos et contenus de PURAMA Aide restent la propriété exclusive de SASU PURAMA.
             </p>
             <p className="mt-3">
-              <strong className="text-[var(--text-primary)]">Contenu généré :</strong> Les contenus que vous créez via PURAMA Association vous appartiennent, sous réserve des licences des modèles IA utilisés. Vous accordez à SASU PURAMA une licence limitée pour afficher ces contenus dans le cadre du service.
-            </p>
-            <p className="mt-3">
-              <strong className="text-[var(--text-primary)]">Contenu posté sur la Marketplace :</strong> En publiant un agent ou un workflow sur la Marketplace, vous accordez à SASU PURAMA une licence non-exclusive pour le distribuer aux utilisateurs de la plateforme.
+              <strong className="text-[var(--text-primary)]">Contenu généré :</strong> Les courriers, scans et démarches générés via PURAMA Aide à partir de votre situation vous appartiennent. Vous accordez à SASU PURAMA une licence limitée et strictement nécessaire pour exécuter le service (stockage, affichage, traitement par AideIA).
             </p>
           </section>
 
@@ -110,7 +107,7 @@ export default function CGU() {
               6. Responsabilité limitée
             </h2>
             <p>
-              PURAMA Association fournit des outils d&apos;intelligence artificielle à titre d&apos;assistance. Les résultats générés par l&apos;IA sont fournis à titre indicatif et ne constituent pas un conseil professionnel (juridique, médical, financier, etc.).
+              PURAMA Aide fournit des outils d&apos;assistance financière et juridique à titre informatif. Les calculs, montants estimés et démarches générés par AideIA sont fournis à titre indicatif et ne constituent pas un avis juridique, fiscal ou financier professionnel. L&apos;utilisateur reste seul responsable de la vérification de ses droits auprès des organismes compétents.
             </p>
             <p className="mt-2">
               SASU PURAMA ne saurait être tenue responsable des décisions prises sur la base des résultats générés par l&apos;IA. La responsabilité de SASU PURAMA est limitée au montant total des sommes versées par l&apos;utilisateur au cours des 12 derniers mois.

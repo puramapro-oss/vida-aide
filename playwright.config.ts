@@ -7,7 +7,7 @@ export default defineConfig({
   workers: 2,
   reporter: [['list']],
   use: {
-    baseURL: 'https://vida-assoc.purama.dev',
+    baseURL: 'https://vida-aide.purama.dev',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },

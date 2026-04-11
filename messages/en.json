@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "Current plan",
     "pricingTrial": "14-day free trial",
     "faqTitle": "Frequently asked questions",
-    "faqSubtitle": "Everything you need to know about PURAMA Association.",
+    "faqSubtitle": "Everything you need to know about PURAMA Aide.",
     "apiTitle": "Powerful API for developers",
     "apiSubtitle": "Integrate PURAMA into your applications with our simple, documented REST API.",
     "apiDoc": "API Documentation",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "Happy to see you again",
     "loginSubtitle": "Log in to access your AI tools.",
-    "signupTitle": "Join PURAMA Association",
+    "signupTitle": "Join PURAMA Aide",
     "signupSubtitle": "Create your account in 30 seconds. 47+ AI tools await you.",
     "email": "Email",
     "password": "Password",

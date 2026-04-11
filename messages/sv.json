@@ -116,7 +116,7 @@
     "pricingCurrentPlan": "Aktuell plan",
     "pricingTrial": "14 dagars kostnadsfri provperiod",
     "faqTitle": "Vanliga frågor",
-    "faqSubtitle": "Allt du behöver veta om PURAMA Association.",
+    "faqSubtitle": "Allt du behöver veta om PURAMA Aide.",
     "apiTitle": "Kraftfullt API för utvecklare",
     "apiSubtitle": "Integrera PURAMA i dina appar med vårt enkla och dokumenterade REST API.",
     "apiDoc": "API-dokumentation",
@@ -139,7 +139,7 @@
   "auth": {
     "loginTitle": "Glada att se dig",
     "loginSubtitle": "Logga in för att få åtkomst till dina AI-verktyg.",
-    "signupTitle": "Gå med PURAMA Association",
+    "signupTitle": "Gå med PURAMA Aide",
     "signupSubtitle": "Skapa ditt konto på 30 sekunder. 47+ AI-verktyg väntar på dig.",
     "email": "E-post",
     "password": "Lösenord",

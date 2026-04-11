@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Politique de Confidentialité — PURAMA Association',
-  description: 'Politique de confidentialité et protection des données personnelles de PURAMA Association.',
+  title: 'Politique de Confidentialité — PURAMA Aide',
+  description: 'Politique de confidentialité et protection des données personnelles de PURAMA Aide.',
 }
 
 export default function PolitiqueConfidentialite() {
@@ -26,7 +26,7 @@ export default function PolitiqueConfidentialite() {
               1. Qui sommes-nous ?
             </h2>
             <p>
-              SASU PURAMA (ci-après &quot;nous&quot;) exploite la plateforme PURAMA Association accessible à l&apos;adresse <strong className="text-[var(--text-primary)]">vida-assoc.purama.dev</strong>.
+              SASU PURAMA (ci-après &quot;nous&quot;) exploite la plateforme PURAMA Aide accessible à l&apos;adresse <strong className="text-[var(--text-primary)]">vida-aide.purama.dev</strong>.
               SASU PURAMA est responsable du traitement de vos données personnelles au sens du Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679).
             </p>
             <p className="mt-2">
@@ -38,10 +38,12 @@ export default function PolitiqueConfidentialite() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               2. Données collectées
             </h2>
-            <p>Nous collectons les données suivantes lors de votre utilisation de PURAMA Association :</p>
+            <p>Nous collectons les données suivantes lors de votre utilisation de PURAMA Aide :</p>
             <ul className="mt-3 space-y-2 ml-4 list-disc">
               <li><strong className="text-[var(--text-primary)]">Données d&apos;identification :</strong> adresse e-mail, nom complet (optionnel), photo de profil (via Google OAuth si utilisé)</li>
-              <li><strong className="text-[var(--text-primary)]">Données d&apos;usage :</strong> conversations avec l&apos;IA, historique des générations, agents créés, workflows configurés</li>
+              <li><strong className="text-[var(--text-primary)]">Données de situation :</strong> âge, situation familiale, emploi, revenus, logement, handicap, statut frontalier — uniquement renseignées volontairement pour le scanner d&apos;aides</li>
+              <li><strong className="text-[var(--text-primary)]">Données d&apos;usage :</strong> historique des scans d&apos;aides, conversations avec AideIA, démarches générées, missions complétées</li>
+              <li><strong className="text-[var(--text-primary)]">Données bancaires de retrait :</strong> IBAN renseigné par l&apos;utilisateur pour les retraits du wallet (chiffré au repos)</li>
               <li><strong className="text-[var(--text-primary)]">Données de paiement :</strong> gérées exclusivement par Stripe (nous ne stockons jamais les numéros de carte)</li>
               <li><strong className="text-[var(--text-primary)]">Données techniques :</strong> adresse IP (anonymisée), type de navigateur, préférences d&apos;interface (thème, langue)</li>
               <li><strong className="text-[var(--text-primary)]">Données d&apos;analytique :</strong> données agrégées et anonymisées sur l&apos;utilisation des fonctionnalités (via PostHog hébergé en Europe)</li>
@@ -55,7 +57,7 @@ export default function PolitiqueConfidentialite() {
             <p>Vos données sont traitées pour les finalités suivantes :</p>
             <ul className="mt-3 space-y-2 ml-4 list-disc">
               <li>Création et gestion de votre compte utilisateur</li>
-              <li>Fourniture des services PURAMA Association (chat IA, génération de contenus, agents)</li>
+              <li>Fourniture des services PURAMA Aide (scanner financier, chat AideIA, génération et suivi de démarches)</li>
               <li>Traitement des paiements et émission des factures</li>
               <li>Envoi d&apos;emails transactionnels (confirmation de compte, factures, notifications)</li>
               <li>Amélioration continue de nos services (analytique agrégée)</li>
@@ -94,7 +96,7 @@ export default function PolitiqueConfidentialite() {
               <li><strong className="text-[var(--text-primary)]">Droit à la limitation :</strong> restreindre le traitement dans certaines circonstances</li>
             </ul>
             <p className="mt-3">
-              Pour exercer ces droits, rendez-vous dans <strong className="text-[var(--text-primary)]">Paramètres → Compte → Données personnelles</strong> de votre espace PURAMA Association, ou contactez notre DPO à : <a href="mailto:matiss.frasne@gmail.com" className="text-[var(--cyan)] hover:underline">matiss.frasne@gmail.com</a>.
+              Pour exercer ces droits, rendez-vous dans <strong className="text-[var(--text-primary)]">Paramètres → Compte → Données personnelles</strong> de votre espace PURAMA Aide, ou contactez notre DPO à : <a href="mailto:matiss.frasne@gmail.com" className="text-[var(--cyan)] hover:underline">matiss.frasne@gmail.com</a>.
             </p>
             <p className="mt-2">
               Vous disposez également du droit d&apos;introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-[var(--cyan)] hover:underline">cnil.fr</a>).
