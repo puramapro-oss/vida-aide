@@ -95,7 +95,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <CursorGlow />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ErrorBoundary>
-            {children}
+            <div id="main-content" tabIndex={-1} className="outline-none">
+              {children}
+            </div>
           </ErrorBoundary>
           <CookieBanner />
         </NextIntlClientProvider>

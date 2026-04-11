@@ -133,11 +133,11 @@ export default function AideClient() {
       <button
         type="button"
         onClick={() => setChatOpen((o) => !o)}
-        aria-label="Ouvrir le chat AideIA"
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[var(--cyan)] px-5 py-3 text-sm font-semibold text-black shadow-2xl hover:scale-105 transition-transform"
         data-testid="aide-chat-toggle"
       >
-        💬 {chatOpen ? 'Fermer' : 'Demander à AideIA'}
+        <span aria-hidden="true">💬</span>
+        {chatOpen ? 'Fermer le chat AideIA' : 'Demander à AideIA'}
       </button>
 
       {chatOpen && (

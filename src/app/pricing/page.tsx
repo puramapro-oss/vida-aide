@@ -80,7 +80,7 @@ export default function PricingPage() {
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {/* Free */}
           <div className="glass rounded-3xl border border-[var(--border)] p-8">
-            <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--text-primary)]">Découverte</h3>
+            <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--text-primary)]">Découverte</h2>
             <p className="mt-1 text-sm text-[var(--text-muted)]">Pour découvrir ce que tu peux récupérer</p>
             <p className="mt-6 font-[family-name:var(--font-display)] text-5xl font-bold text-[var(--text-primary)]">
               0 €
@@ -107,7 +107,7 @@ export default function PricingPage() {
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-3 py-1 text-xs font-bold text-white">
               ⭐ POPULAIRE
             </div>
-            <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--text-primary)]">{premium.label}</h3>
+            <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--text-primary)]">{premium.label}</h2>
             <p className="mt-1 text-sm text-[var(--text-muted)]">Récupère tout, lance les démarches en 1 clic</p>
             <div className="mt-6 flex items-baseline gap-2">
               <span className="font-[family-name:var(--font-display)] text-5xl font-bold text-[var(--text-primary)]">

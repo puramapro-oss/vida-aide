@@ -361,32 +361,32 @@ function Footer() {
           </div>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)]">Produit</p>
-            <ul className="space-y-1.5 text-sm text-[var(--text-muted)]">
-              <li><Link href="/pricing" className="hover:text-[var(--text-primary)]">Tarif</Link></li>
-              <li><Link href="/signup" className="hover:text-[var(--text-primary)]">Inscription</Link></li>
-              <li><Link href="/login" className="hover:text-[var(--text-primary)]">Connexion</Link></li>
+            <ul className="space-y-2 text-sm text-[var(--text-muted)]">
+              <li><Link href="/pricing" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Tarif</Link></li>
+              <li><Link href="/signup" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Inscription</Link></li>
+              <li><Link href="/login" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Connexion</Link></li>
             </ul>
           </div>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)]">Support</p>
-            <ul className="space-y-1.5 text-sm text-[var(--text-muted)]">
-              <li><Link href="/aide" className="hover:text-[var(--text-primary)]">Centre d&apos;aide</Link></li>
-              <li><Link href="/contact" className="hover:text-[var(--text-primary)]">Nous contacter</Link></li>
-              <li><a href="mailto:contact@purama.dev" className="hover:text-[var(--text-primary)]">contact@purama.dev</a></li>
+            <ul className="space-y-2 text-sm text-[var(--text-muted)]">
+              <li><Link href="/aide" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Centre d&apos;aide</Link></li>
+              <li><Link href="/contact" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Nous contacter</Link></li>
+              <li><a href="mailto:contact@purama.dev" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">contact@purama.dev</a></li>
             </ul>
           </div>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)]">Légal</p>
-            <ul className="space-y-1.5 text-sm text-[var(--text-muted)]">
-              <li><Link href="/mentions-legales" className="hover:text-[var(--text-primary)]">Mentions légales</Link></li>
-              <li><Link href="/politique-confidentialite" className="hover:text-[var(--text-primary)]">Confidentialité</Link></li>
-              <li><Link href="/cgv" className="hover:text-[var(--text-primary)]">CGV</Link></li>
-              <li><Link href="/cgu" className="hover:text-[var(--text-primary)]">CGU</Link></li>
+            <ul className="space-y-2 text-sm text-[var(--text-muted)]">
+              <li><Link href="/mentions-legales" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Mentions légales</Link></li>
+              <li><Link href="/politique-confidentialite" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">Confidentialité</Link></li>
+              <li><Link href="/cgv" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">CGV</Link></li>
+              <li><Link href="/cgu" className="flex min-h-[28px] items-center hover:text-[var(--text-primary)]">CGU</Link></li>
             </ul>
           </div>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)]">PURAMA</p>
-            <ul className="space-y-1.5 text-sm text-[var(--text-muted)]">
+            <ul className="space-y-2 text-sm text-[var(--text-muted)]">
               <li>SASU PURAMA</li>
               <li>Frasne, France</li>
               <li>art. 293 B CGI</li>

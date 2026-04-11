@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Nous contacter — PURAMA Aide',
   description:
     'Une question, un bug, une suggestion ? Écris-nous : on répond sous 24h ouvrées. Support PURAMA Aide par email contact@purama.dev.',
+  alternates: { canonical: 'https://vida-aide.purama.dev/contact' },
 }
 
 export default function ContactPage() {

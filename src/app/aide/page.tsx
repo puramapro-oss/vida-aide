@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Centre d\'aide — PURAMA Aide',
   description:
     'Réponses aux questions sur PURAMA Aide : scanner financier, démarches automatiques, wallet IBAN, parrainage, sécurité, premium. Assistance AideIA 24/7.',
+  alternates: { canonical: 'https://vida-aide.purama.dev/aide' },
 }
 
 export default function AidePage() {
