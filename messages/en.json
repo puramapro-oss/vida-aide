@@ -450,5 +450,19 @@
     "unauthorized": "Access denied",
     "networkError": "Network error. Check your connection.",
     "rateLimited": "Too many requests. Wait a moment."
+  },
+  "vidaaide": {
+    "tagline": "Claim back every euro you’re leaving on the table.",
+    "heroBadge": "French AI trained on every social benefit and tax right",
+    "heroSubtitle": "Welfare aid, tax optimisation, forgotten rights, dormant money. Scanned in 2 minutes.",
+    "ctaPrimary": "Start my free scan",
+    "ctaSecondary": "See pricing",
+    "navHow": "How it works",
+    "navAides": "Covered benefits",
+    "navFrontaliers": "Cross-border",
+    "navPricing": "Pricing",
+    "loginCta": "Sign in",
+    "trialCta": "Free 14-day trial",
+    "trialNote": "14-day trial · €9.99/month · No commitment · French AI"
   }
 }

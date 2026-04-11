@@ -3,13 +3,16 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import {
   Menu, X, Search, MessageSquare, Wallet, Trophy, Sparkles,
   Check, ArrowRight, Coins, Building2, Scale, Zap, Shield, Globe,
 } from 'lucide-react'
 import { AIDE_CATEGORIES, CORRIDORS_FRONTALIERS } from '@/lib/constants'
+import LocaleSwitcher from '@/components/shared/LocaleSwitcher'
 
 function Nav() {
+  const t = useTranslations('vidaaide')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -32,16 +35,17 @@ function Nav() {
             <span className="font-[family-name:var(--font-display)] text-xl font-bold gradient-text">PURAMA Aide</span>
           </Link>
           <div className="hidden items-center gap-8 lg:flex">
-            <Link href="#features" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Comment ça marche</Link>
-            <Link href="#aides" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Aides couvertes</Link>
-            <Link href="#frontaliers" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Frontaliers</Link>
-            <Link href="/pricing" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Tarif</Link>
-            <Link href="/login" className="text-sm font-medium text-[var(--text-primary)]">Connexion</Link>
+            <Link href="#features" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">{t('navHow')}</Link>
+            <Link href="#aides" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">{t('navAides')}</Link>
+            <Link href="#frontaliers" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">{t('navFrontaliers')}</Link>
+            <Link href="/pricing" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">{t('navPricing')}</Link>
+            <LocaleSwitcher compact />
+            <Link href="/login" className="text-sm font-medium text-[var(--text-primary)]">{t('loginCta')}</Link>
             <Link
               href="/signup"
               className="rounded-xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-5 py-2 text-sm font-semibold text-white shadow-lg"
             >
-              Essai gratuit 14j
+              {t('trialCta')}
             </Link>
           </div>
           <button
@@ -56,16 +60,17 @@ function Nav() {
         {menuOpen && (
           <div className="border-t border-white/[0.06] py-4 lg:hidden">
             <div className="flex flex-col gap-3">
-              <Link href="#features" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-secondary)]">Comment ça marche</Link>
-              <Link href="#aides" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-secondary)]">Aides couvertes</Link>
-              <Link href="/pricing" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-secondary)]">Tarif</Link>
-              <Link href="/login" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-primary)]">Connexion</Link>
+              <Link href="#features" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-secondary)]">{t('navHow')}</Link>
+              <Link href="#aides" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-secondary)]">{t('navAides')}</Link>
+              <Link href="/pricing" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-secondary)]">{t('navPricing')}</Link>
+              <div className="py-1"><LocaleSwitcher /></div>
+              <Link href="/login" onClick={() => setMenuOpen(false)} className="text-sm text-[var(--text-primary)]">{t('loginCta')}</Link>
               <Link
                 href="/signup"
                 onClick={() => setMenuOpen(false)}
                 className="rounded-xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-5 py-2.5 text-center text-sm font-semibold text-white"
               >
-                Essai gratuit 14j
+                {t('trialCta')}
               </Link>
             </div>
           </div>
@@ -76,6 +81,7 @@ function Nav() {
 }
 
 function Hero() {
+  const t = useTranslations('vidaaide')
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32">
       <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
@@ -85,7 +91,7 @@ function Hero() {
           transition={{ duration: 0.6 }}
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/5 px-4 py-1.5 text-xs font-medium text-emerald-300"
         >
-          <Sparkles className="h-3 w-3" /> AideIA — IA française entraînée sur tous les droits sociaux et fiscaux
+          <Sparkles className="h-3 w-3" /> {t('heroBadge')}
         </motion.div>
 
         <motion.h1
@@ -94,10 +100,7 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-[family-name:var(--font-display)] text-4xl font-bold leading-[1.05] tracking-tight text-[var(--text-primary)] sm:text-6xl lg:text-7xl"
         >
-          Récupère{' '}
-          <span className="gradient-text">tout l&apos;argent</span>
-          <br />
-          que tu laisses sur la table.
+          <span className="gradient-text">{t('tagline')}</span>
         </motion.h1>
 
         <motion.p
@@ -106,8 +109,7 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-base text-[var(--text-secondary)] sm:text-lg"
         >
-          Aides sociales, optimisation fiscale, droits oubliés, argent dormant.
-          AideIA scanne ta situation en <strong className="text-[var(--text-primary)]">2 minutes</strong> et lance les démarches pour toi.
+          {t('heroSubtitle')}
         </motion.p>
 
         <motion.div
@@ -122,14 +124,14 @@ function Hero() {
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-[var(--cyan)]/30 transition-all hover:scale-[1.03]"
           >
             <Search className="h-5 w-5" />
-            Lancer mon scan gratuit
+            {t('ctaPrimary')}
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/pricing"
             className="inline-flex items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/5 px-8 py-4 text-base font-medium text-[var(--text-primary)] hover:bg-white/10"
           >
-            Voir les tarifs
+            {t('ctaSecondary')}
           </Link>
         </motion.div>
 
@@ -139,7 +141,7 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4 text-xs text-[var(--text-muted)]"
         >
-          Essai 14 jours · 9,99 €/mois · Sans engagement · IA française
+          {t('trialNote')}
         </motion.p>
 
         {/* Trust badges */}

@@ -450,5 +450,19 @@
     "unauthorized": "Zugriff nicht autorisiert",
     "networkError": "Netzwerkfehler. Überprüfe deine Verbindung.",
     "rateLimited": "Zu viele Anfragen. Warte einen Moment."
+  },
+  "vidaaide": {
+    "tagline": "Hol dir jeden Euro zurück, den du liegen lässt.",
+    "heroBadge": "Französische KI, trainiert auf allen Sozial- und Steuerrechten",
+    "heroSubtitle": "Sozialhilfe, Steueroptimierung, vergessene Rechte, ruhendes Geld. Scan in 2 Minuten.",
+    "ctaPrimary": "Kostenlosen Scan starten",
+    "ctaSecondary": "Preise ansehen",
+    "navHow": "So funktioniert’s",
+    "navAides": "Abgedeckte Hilfen",
+    "navFrontaliers": "Grenzgänger",
+    "navPricing": "Preis",
+    "loginCta": "Anmelden",
+    "trialCta": "14 Tage gratis testen",
+    "trialNote": "14 Tage Test · 9,99 €/Monat · Ohne Verpflichtung · Französische KI"
   }
 }

@@ -450,5 +450,19 @@
     "unauthorized": "Accesso non autorizzato",
     "networkError": "Errore di rete. Controlla la tua connessione.",
     "rateLimited": "Troppe richieste. Attendi un momento."
+  },
+  "vidaaide": {
+    "tagline": "Recupera ogni euro che lasci sul tavolo.",
+    "heroBadge": "IA francese addestrata su tutti i diritti sociali e fiscali",
+    "heroSubtitle": "Aiuti sociali, ottimizzazione fiscale, diritti dimenticati, denaro dormiente. Scansione in 2 minuti.",
+    "ctaPrimary": "Avvia la mia scansione gratuita",
+    "ctaSecondary": "Vedi i prezzi",
+    "navHow": "Come funziona",
+    "navAides": "Aiuti coperti",
+    "navFrontaliers": "Frontalieri",
+    "navPricing": "Prezzo",
+    "loginCta": "Accedi",
+    "trialCta": "Prova gratis 14 giorni",
+    "trialNote": "Prova 14 giorni · 9,99 €/mese · Senza impegno · IA francese"
   }
 }

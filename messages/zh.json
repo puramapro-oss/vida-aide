@@ -450,5 +450,19 @@
     "unauthorized": "访问被拒绝",
     "networkError": "网络错误。请检查你的连接。",
     "rateLimited": "请求过于频繁。请稍候。"
+  },
+  "vidaaide": {
+    "tagline": "把你留在桌上的每一欧元都拿回来。",
+    "heroBadge": "在所有社会与税务权利上训练的法国 AI",
+    "heroSubtitle": "社会补助、税务优化、被遗忘的权利、休眠资金。2 分钟扫描。",
+    "ctaPrimary": "开始我的免费扫描",
+    "ctaSecondary": "查看价格",
+    "navHow": "如何运作",
+    "navAides": "涵盖的补助",
+    "navFrontaliers": "跨境工作者",
+    "navPricing": "价格",
+    "loginCta": "登录",
+    "trialCta": "14 天免费试用",
+    "trialNote": "14 天试用 · 9.99 €/月 · 无承诺 · 法国 AI"
   }
 }

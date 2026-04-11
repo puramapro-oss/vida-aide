@@ -450,5 +450,19 @@
     "unauthorized": "Åtkomst nekad",
     "networkError": "Nätverksfel. Kontrollera din anslutning.",
     "rateLimited": "För många förfrågningar. Vänta lite."
+  },
+  "vidaaide": {
+    "tagline": "Ta tillbaka varje euro du lämnar på bordet.",
+    "heroBadge": "Fransk AI tränad på alla sociala och skattemässiga rättigheter",
+    "heroSubtitle": "Bidrag, skatteoptimering, glömda rättigheter, vilande pengar. Scanning på 2 minuter.",
+    "ctaPrimary": "Starta min gratis scanning",
+    "ctaSecondary": "Se priser",
+    "navHow": "Så funkar det",
+    "navAides": "Täckta bidrag",
+    "navFrontaliers": "Gränsarbetare",
+    "navPricing": "Pris",
+    "loginCta": "Logga in",
+    "trialCta": "14 dagars gratis",
+    "trialNote": "14 dagars prov · 9,99 €/månad · Ingen bindning · Fransk AI"
   }
 }

@@ -450,5 +450,19 @@
     "unauthorized": "승인되지 않은 액세스",
     "networkError": "네트워크 오류. 연결을 확인하세요.",
     "rateLimited": "요청이 너무 많습니다. 잠시 기다리세요."
+  },
+  "vidaaide": {
+    "tagline": "테이블 위에 두고 있는 모든 유로를 되찾으세요.",
+    "heroBadge": "모든 사회 및 세금 권리에 대해 훈련된 프랑스 AI",
+    "heroSubtitle": "사회 보조금, 세금 최적화, 잊혀진 권리, 휴면 자금. 2분 스캔.",
+    "ctaPrimary": "무료 스캔 시작",
+    "ctaSecondary": "요금 보기",
+    "navHow": "작동 방식",
+    "navAides": "대상 보조금",
+    "navFrontaliers": "국경 근로자",
+    "navPricing": "요금",
+    "loginCta": "로그인",
+    "trialCta": "14일 무료",
+    "trialNote": "14일 평가판 · 9.99 €/월 · 약정 없음 · 프랑스 AI"
   }
 }

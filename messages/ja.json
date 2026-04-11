@@ -450,5 +450,19 @@
     "unauthorized": "アクセスが許可されていません",
     "networkError": "ネットワークエラー。接続を確認してください。",
     "rateLimited": "リクエストが多すぎます。少しお待ちください。"
+  },
+  "vidaaide": {
+    "tagline": "テーブルに置き忘れている全てのユーロを取り戻そう。",
+    "heroBadge": "社会・税務の全権利で訓練されたフランスのAI",
+    "heroSubtitle": "社会給付、税務最適化、忘れられた権利、休眠資金。2分でスキャン。",
+    "ctaPrimary": "無料スキャンを開始",
+    "ctaSecondary": "料金を見る",
+    "navHow": "使い方",
+    "navAides": "対象の給付",
+    "navFrontaliers": "ボーダーワーカー",
+    "navPricing": "料金",
+    "loginCta": "ログイン",
+    "trialCta": "14日間無料",
+    "trialNote": "14日間お試し · 9.99 €/月 · 契約不要 · フランスのAI"
   }
 }

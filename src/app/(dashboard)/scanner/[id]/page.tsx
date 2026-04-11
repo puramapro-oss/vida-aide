@@ -10,6 +10,7 @@ import { useAuth } from '@/hooks/useAuth'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import AnimatedCounter from '@/components/ui/AnimatedCounter'
+import ShareStoryButton from '@/components/shared/ShareStoryButton'
 import { formatEuros } from '@/lib/utils'
 import { AIDE_CATEGORIES } from '@/lib/constants'
 import type { Scan, ScanResultItem } from '@/types'
@@ -103,6 +104,15 @@ export default function ScanDetailPage({ params }: { params: Promise<{ id: strin
               💡 {scan.ai_summary}
             </p>
           )}
+          <div className="mt-6">
+            <ShareStoryButton
+              type="scan"
+              headline="Voilà ce que je laissais sur la table"
+              value={`+${formatEuros(Number(scan.total_recoverable))}`}
+              sub={`${scan.results.length} aides détectées en 30 secondes`}
+              variant="primary"
+            />
+          </div>
         </div>
       </motion.section>
 

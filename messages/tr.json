@@ -450,5 +450,19 @@
     "unauthorized": "Erişim reddedildi",
     "networkError": "Ağ hatası. Bağlantını kontrol et.",
     "rateLimited": "Çok fazla istek. Lütfen biraz bekle."
+  },
+  "vidaaide": {
+    "tagline": "Masada bıraktığın her euroyu geri al.",
+    "heroBadge": "Tüm sosyal ve vergi haklarında eğitilmiş Fransız AI",
+    "heroSubtitle": "Sosyal yardımlar, vergi optimizasyonu, unutulmuş haklar, uyuyan para. 2 dakikada tarama.",
+    "ctaPrimary": "Ücretsiz taramamı başlat",
+    "ctaSecondary": "Fiyatları gör",
+    "navHow": "Nasıl çalışır",
+    "navAides": "Kapsanan yardımlar",
+    "navFrontaliers": "Sınır işçileri",
+    "navPricing": "Fiyat",
+    "loginCta": "Giriş yap",
+    "trialCta": "14 gün ücretsiz",
+    "trialNote": "14 gün deneme · 9,99 €/ay · Taahhütsüz · Fransız AI"
   }
 }

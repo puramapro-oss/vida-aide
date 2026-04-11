@@ -450,5 +450,19 @@
     "unauthorized": "Acces non autorise",
     "networkError": "Erreur reseau. Verifie ta connexion.",
     "rateLimited": "Trop de requetes. Attends un moment."
+  },
+  "vidaaide": {
+    "tagline": "Récupère tout l’argent que tu laisses sur la table.",
+    "heroBadge": "IA française entraînée sur tous les droits sociaux",
+    "heroSubtitle": "Aides sociales, optimisation fiscale, droits oubliés, argent dormant. Scan en 2 minutes.",
+    "ctaPrimary": "Lancer mon scan gratuit",
+    "ctaSecondary": "Voir les tarifs",
+    "navHow": "Comment ça marche",
+    "navAides": "Aides couvertes",
+    "navFrontaliers": "Frontaliers",
+    "navPricing": "Tarif",
+    "loginCta": "Connexion",
+    "trialCta": "Essai gratuit 14j",
+    "trialNote": "Essai 14 jours · 9,99 €/mois · Sans engagement · IA française"
   }
 }

@@ -450,5 +450,19 @@
     "unauthorized": "Toegang geweigerd",
     "networkError": "Netwerkfout. Controleer je verbinding.",
     "rateLimited": "Te veel verzoeken. Wacht even."
+  },
+  "vidaaide": {
+    "tagline": "Haal elke euro terug die je op tafel laat liggen.",
+    "heroBadge": "Franse AI getraind op alle sociale en fiscale rechten",
+    "heroSubtitle": "Sociale toelagen, fiscale optimalisatie, vergeten rechten, slapend geld. Scan in 2 minuten.",
+    "ctaPrimary": "Start mijn gratis scan",
+    "ctaSecondary": "Bekijk tarieven",
+    "navHow": "Hoe het werkt",
+    "navAides": "Gedekte hulp",
+    "navFrontaliers": "Grensarbeiders",
+    "navPricing": "Tarief",
+    "loginCta": "Inloggen",
+    "trialCta": "14 dagen gratis",
+    "trialNote": "14 dagen proef · €9,99/maand · Geen verplichting · Franse AI"
   }
 }

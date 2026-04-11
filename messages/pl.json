@@ -450,5 +450,19 @@
     "unauthorized": "Dostęp zabroniony",
     "networkError": "Błąd sieci. Sprawdź swoje połączenie.",
     "rateLimited": "Zbyt wiele żądań. Czekaj chwilę."
+  },
+  "vidaaide": {
+    "tagline": "Odzyskaj każde euro, które zostawiasz na stole.",
+    "heroBadge": "Francuska AI wyszkolona na wszystkich prawach socjalnych i podatkowych",
+    "heroSubtitle": "Zasiłki, optymalizacja podatkowa, zapomniane prawa, uśpione pieniądze. Skan w 2 minuty.",
+    "ctaPrimary": "Rozpocznij darmowy skan",
+    "ctaSecondary": "Zobacz cennik",
+    "navHow": "Jak to działa",
+    "navAides": "Objęte zasiłki",
+    "navFrontaliers": "Pracownicy przygraniczni",
+    "navPricing": "Cena",
+    "loginCta": "Zaloguj się",
+    "trialCta": "14 dni gratis",
+    "trialNote": "14 dni próbne · 9,99 €/mies. · Bez zobowiązań · Francuska AI"
   }
 }

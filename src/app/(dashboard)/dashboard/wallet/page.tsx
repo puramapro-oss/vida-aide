@@ -10,6 +10,7 @@ import { WALLET_MIN_WITHDRAWAL } from '@/lib/constants'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import ShareStoryButton from '@/components/shared/ShareStoryButton'
 import type { WalletTransaction } from '@/types'
 
 export default function WalletPage() {
@@ -65,9 +66,17 @@ export default function WalletPage() {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6" data-testid="wallet-page">
-      <header>
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--text-primary)]">Wallet</h1>
-        <p className="mt-1 text-sm text-[var(--text-secondary)]">Tes gains, points et retraits IBAN.</p>
+      <header className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--text-primary)]">Wallet</h1>
+          <p className="mt-1 text-sm text-[var(--text-secondary)]">Tes gains, points et retraits IBAN.</p>
+        </div>
+        <ShareStoryButton
+          type="gains"
+          headline="Récupère ce qui te revient"
+          value={`+${formatEurosFraction(Number(profile.wallet_balance ?? 0))}`}
+          sub="récupérés via PURAMA Aide"
+        />
       </header>
 
       <div className="grid gap-4 md:grid-cols-2">
