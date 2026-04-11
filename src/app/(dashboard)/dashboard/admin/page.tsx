@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Users, Search, MessageSquare, Coins, TrendingUp } from 'lucide-react'
+import Link from 'next/link'
+import { Users, Search, MessageSquare, Coins, TrendingUp, Wallet, ArrowRight } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { createClient } from '@/lib/supabase'
 import Card from '@/components/ui/Card'
@@ -71,6 +72,27 @@ export default function AdminPage() {
           <StatCard icon={TrendingUp} label="€ récupérés" value={formatEurosFraction(stats.total_recovered)} />
         </div>
       )}
+
+      <Link
+        href="/dashboard/admin/financement"
+        data-testid="admin-link-financement"
+        className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-emerald-400/40 hover:bg-emerald-500/[0.04]"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
+            <Wallet className="h-5 w-5 text-emerald-400" />
+          </div>
+          <div>
+            <p className="text-base font-semibold text-[var(--text-primary)]">
+              Financement pools
+            </p>
+            <p className="text-xs text-[var(--text-muted)]">
+              Reward · Asso · Partner — aides, subventions, dépôts
+            </p>
+          </div>
+        </div>
+        <ArrowRight className="h-4 w-4 text-[var(--text-muted)] transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-400" />
+      </Link>
     </div>
   )
 }
