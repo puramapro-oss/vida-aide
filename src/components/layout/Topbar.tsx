@@ -1,18 +1,21 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { Bell, Search } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { getGreeting, getInitials } from '@/lib/utils'
 
 export default function Topbar() {
   const { profile } = useAuth()
+  const [greeting, setGreeting] = useState('Bonjour')
+  useEffect(() => { setGreeting(getGreeting()) }, [])
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[var(--border)] bg-[var(--bg-nebula)]/80 px-4 backdrop-blur-xl lg:px-8">
       {/* Left: greeting */}
       <div>
         <p className="text-sm text-[var(--text-secondary)]">
-          {getGreeting()},{' '}
+          {greeting},{' '}
           <span className="font-medium text-[var(--text-primary)]">
             {profile?.full_name ?? profile?.email?.split('@')[0] ?? 'Bienvenue'}
           </span>{' '}

@@ -365,11 +365,22 @@ ALTER TABLE vida_aide.withdrawals ENABLE ROW LEVEL SECURITY;
 ALTER TABLE vida_aide.payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE vida_aide.notifications ENABLE ROW LEVEL SECURITY;
 
+-- Helper function to check super_admin role without triggering RLS recursion
+CREATE OR REPLACE FUNCTION vida_aide.is_super_admin()
+RETURNS BOOLEAN LANGUAGE SQL SECURITY DEFINER STABLE AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM vida_aide.profiles
+    WHERE auth_user_id = auth.uid() AND role = 'super_admin'
+  );
+$$;
+REVOKE ALL ON FUNCTION vida_aide.is_super_admin() FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION vida_aide.is_super_admin() TO anon, authenticated;
+
 DO $$ BEGIN
   -- profiles : user voit le sien, super_admin voit tout
   IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE schemaname='vida_aide' AND tablename='profiles' AND policyname='profiles_select_own') THEN
     CREATE POLICY profiles_select_own ON vida_aide.profiles FOR SELECT
-      USING (auth.uid() = auth_user_id OR EXISTS (SELECT 1 FROM vida_aide.profiles p WHERE p.auth_user_id = auth.uid() AND p.role = 'super_admin'));
+      USING (auth.uid() = auth_user_id OR vida_aide.is_super_admin());
   END IF;
   IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE schemaname='vida_aide' AND tablename='profiles' AND policyname='profiles_update_own') THEN
     CREATE POLICY profiles_update_own ON vida_aide.profiles FOR UPDATE
