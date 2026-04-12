@@ -19,7 +19,9 @@
       "supportsTablet": true,
       "bundleIdentifier": "dev.purama.vidaaide",
       "buildNumber": "1",
-      "associatedDomains": ["applinks:vida-aide.purama.dev"],
+      "associatedDomains": [
+        "applinks:vida-aide.purama.dev"
+      ],
       "infoPlist": {
         "NSCameraUsageDescription": "PURAMA Aide utilise l'appareil photo pour scanner un avis d'imposition, un bulletin de salaire ou un justificatif et en extraire les montants automatiquement.",
         "NSPhotoLibraryUsageDescription": "PURAMA Aide accède à tes photos pour importer un avis d'imposition ou un justificatif à analyser.",
@@ -40,8 +42,16 @@
         {
           "action": "VIEW",
           "autoVerify": true,
-          "data": [{ "scheme": "https", "host": "vida-aide.purama.dev" }],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "data": [
+            {
+              "scheme": "https",
+              "host": "vida-aide.purama.dev"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ],
       "permissions": [
@@ -71,17 +81,17 @@
     "experiments": {
       "typedRoutes": true
     },
-    "owner": "puramapro-oss",
+    "owner": "purama",
     "extra": {
       "router": {
         "origin": "https://vida-aide.purama.dev"
       },
       "eas": {
-        "projectId": "PLACEHOLDER_EAS_PROJECT_ID"
+        "projectId": "f000bff7-e9bf-45c9-8e41-8b6533766d25"
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/PLACEHOLDER_EAS_PROJECT_ID"
+      "url": "https://u.expo.dev/f000bff7-e9bf-45c9-8e41-8b6533766d25"
     },
     "runtimeVersion": {
       "policy": "appVersion"
