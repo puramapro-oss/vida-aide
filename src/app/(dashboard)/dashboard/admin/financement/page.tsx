@@ -118,7 +118,7 @@ export default function FinancementPage() {
       return
     }
     loadData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [authLoading, isSuperAdmin, router])
 
   async function loadData() {

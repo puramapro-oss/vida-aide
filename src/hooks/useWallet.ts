@@ -36,17 +36,21 @@ export function useWallet() {
   }, [user, supabase])
 
   useEffect(() => {
-    fetchWallet()
+    queueMicrotask(() => {
+      fetchWallet()
+    })
   }, [fetchWallet])
 
   // Use profile updates as trigger
   useEffect(() => {
     if (profile) {
-      setState({
-        balance: Number(profile.wallet_balance ?? 0),
-        points: Number(profile.purama_points ?? 0),
-        totalRecovered: Number(profile.total_money_recovered ?? 0),
-        loading: false,
+      queueMicrotask(() => {
+        setState({
+          balance: Number(profile.wallet_balance ?? 0),
+          points: Number(profile.purama_points ?? 0),
+          totalRecovered: Number(profile.total_money_recovered ?? 0),
+          loading: false,
+        })
       })
     }
   }, [profile])
