@@ -60,12 +60,14 @@ export async function createCheckoutSession(params: {
     subscription_data: {
       trial_period_days: params.trialDays ?? planCfg.trial_days,
       metadata: {
+        app_slug: 'vida-aide',
         plan: params.plan,
         interval: params.interval,
         ...(params.referralCode ? { referral_code: params.referralCode } : {}),
       },
     },
     metadata: {
+      app_slug: 'vida-aide',
       plan: params.plan,
       interval: params.interval,
       ...(params.referralCode ? { referral_code: params.referralCode } : {}),

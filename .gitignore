@@ -16,3 +16,4 @@ tests/.auth/
 docs/
 AKASHA-BRIEF.md
 AGENT-EMAIL-BRIEF.md
+.claude/
