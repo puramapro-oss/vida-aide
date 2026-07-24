@@ -1,4 +1,4 @@
-import { test, expect, type APIRequestContext, type BrowserContext, type Page } from '@playwright/test'
+import { test, expect, type APIRequestContext, type BrowserContext } from '@playwright/test'
 import { mkdirSync, existsSync } from 'node:fs'
 import path from 'node:path'
 

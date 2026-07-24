@@ -15,26 +15,32 @@ interface Particle {
   color: string
   delay: number
   size: number
+  borderRadius: string
+  duration: number
 }
 
 export default function Confetti({ active, duration = 3000 }: ConfettiProps) {
   const [particles, setParticles] = useState<Particle[]>([])
 
   useEffect(() => {
-    if (!active) {
-      setParticles([])
-      return
-    }
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      delay: Math.random() * 500,
-      size: 4 + Math.random() * 8,
-    }))
-    setParticles(newParticles)
+    queueMicrotask(() => {
+      if (!active) {
+        setParticles([])
+        return
+      }
+      const newParticles = Array.from({ length: 50 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        delay: Math.random() * 500,
+        size: 4 + Math.random() * 8,
+        borderRadius: Math.random() > 0.5 ? '50%' : '2px',
+        duration: 1500 + Math.random() * 1500,
+      }))
+      setParticles(newParticles)
+    })
 
-    const timer = setTimeout(() => setParticles([]), duration)
+    const timer = setTimeout(() => queueMicrotask(() => setParticles([])), duration)
     return () => clearTimeout(timer)
   }, [active, duration])
 
@@ -52,9 +58,9 @@ export default function Confetti({ active, duration = 3000 }: ConfettiProps) {
             width: `${p.size}px`,
             height: `${p.size}px`,
             backgroundColor: p.color,
-            borderRadius: Math.random() > 0.5 ? '50%' : '2px',
+            borderRadius: p.borderRadius,
             animationDelay: `${p.delay}ms`,
-            animationDuration: `${1500 + Math.random() * 1500}ms`,
+            animationDuration: `${p.duration}ms`,
           }}
         />
       ))}

@@ -128,7 +128,7 @@ export default function SignupScreen() {
             onPress={onSubmit}
             loading={loading}
           >
-            Démarrer l'essai gratuit
+            Démarrer l&apos;essai gratuit
           </Button>
         </View>
 

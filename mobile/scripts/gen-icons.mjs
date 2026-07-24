@@ -2,7 +2,7 @@
 // Run: node scripts/gen-icons.mjs
 // Requires sharp (resolved from parent vidaaide/node_modules).
 import { createRequire } from "node:module";
-import { writeFile, mkdir } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import {
   Menu, X, Search, MessageSquare, Wallet, Trophy, Sparkles,
-  Check, ArrowRight, Coins, Building2, Scale, Zap, Shield, Globe,
+  ArrowRight, Coins, Building2, Scale, Zap, Shield, Globe,
 } from 'lucide-react'
 import { AIDE_CATEGORIES, CORRIDORS_FRONTALIERS } from '@/lib/constants'
 import LocaleSwitcher from '@/components/shared/LocaleSwitcher'

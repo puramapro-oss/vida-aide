@@ -16,14 +16,18 @@ if (!SUPABASE_ANON_KEY) {
 const ExpoSecureStoreAdapter = {
   getItem: async (key: string) => {
     if (Platform.OS === "web") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof globalThis === "undefined" || !(globalThis as any).localStorage) return null;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return (globalThis as any).localStorage.getItem(key);
     }
     return SecureStore.getItemAsync(key);
   },
   setItem: async (key: string, value: string) => {
     if (Platform.OS === "web") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof globalThis === "undefined" || !(globalThis as any).localStorage) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (globalThis as any).localStorage.setItem(key, value);
       return;
     }
@@ -31,7 +35,9 @@ const ExpoSecureStoreAdapter = {
   },
   removeItem: async (key: string) => {
     if (Platform.OS === "web") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof globalThis === "undefined" || !(globalThis as any).localStorage) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (globalThis as any).localStorage.removeItem(key);
       return;
     }

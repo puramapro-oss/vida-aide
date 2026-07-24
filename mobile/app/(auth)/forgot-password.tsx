@@ -52,7 +52,7 @@ export default function ForgotPasswordScreen() {
           Mot de passe oublié ?
         </Text>
         <Text style={{ color: "#9CA3AF", fontSize: 15 }}>
-          Indique ton email, on t'envoie un lien de réinitialisation.
+          Indique ton email, on t&apos;envoie un lien de réinitialisation.
         </Text>
       </View>
 

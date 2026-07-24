@@ -6,7 +6,6 @@ import { Button } from "@/components/Button";
 import { useAuth } from "@/store/auth";
 import { API_BASE } from "@/lib/api";
 import {
-  LogOut,
   Mail,
   ShieldCheck,
   ExternalLink,

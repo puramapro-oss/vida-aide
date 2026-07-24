@@ -6,7 +6,7 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { api, ApiError } from "@/lib/api";
 import { theme } from "@/lib/theme";
-import { Search, CheckCircle2, Sparkles, TrendingUp } from "lucide-react-native";
+import { Search, CheckCircle2, TrendingUp } from "lucide-react-native";
 import * as Haptics from "expo-haptics";
 
 type Emploi =
