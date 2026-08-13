@@ -54,6 +54,15 @@ CREATE INDEX IF NOT EXISTS profiles_referral_code_idx ON vida_aide.profiles(refe
 CREATE INDEX IF NOT EXISTS profiles_stripe_customer_id_idx ON vida_aide.profiles(stripe_customer_id);
 
 -- ============================================================================
+-- STRIPE EVENTS — idempotence webhook (event_id = clé unique, 1 traitement max)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS vida_aide.stripe_events (
+  event_id TEXT PRIMARY KEY,
+  type TEXT,
+  processed_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================================
 -- SCANS — résultats de l'IA AideIA
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS vida_aide.scans (
