@@ -2,11 +2,10 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase'
+import { isValidIban } from '@/lib/iban'
 
 export const runtime = 'nodejs'
 export const maxDuration = 15
-
-const IBAN_REGEX = /^[A-Z]{2}\d{2}[A-Z0-9]{10,30}$/
 
 const BodySchema = z.object({
   amount: z.number().min(5, 'Montant minimum : 5 €.').max(1000, 'Montant maximum : 1 000 €.'),
@@ -14,7 +13,7 @@ const BodySchema = z.object({
     .string()
     .trim()
     .transform((s) => s.replace(/\s+/g, '').toUpperCase())
-    .refine((s) => IBAN_REGEX.test(s), 'IBAN invalide. Format attendu : FR76…'),
+    .refine(isValidIban, 'IBAN invalide. Vérifie le format et la clé de contrôle.'),
 })
 
 export async function POST(req: Request) {
