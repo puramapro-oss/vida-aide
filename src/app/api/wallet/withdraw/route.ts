@@ -67,7 +67,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Impossible d'enregistrer la demande de retrait." }, { status: 500 })
   }
 
-  await admin.from('profiles').update({ wallet_balance: newBalance, iban }).eq('id', profile.id)
+  // Verrou optimiste anti-course (2 retraits quasi-simultanés, cf task_plan.md P3) :
+  // n'écrit QUE si wallet_balance n'a pas bougé depuis la lecture. Sinon la demande
+  // de retrait déjà créée ci-dessus est annulée (pas de retrait fantôme non débité).
+  const { data: debited } = await admin
+    .from('profiles')
+    .update({ wallet_balance: newBalance, iban })
+    .eq('id', profile.id)
+    .eq('wallet_balance', balance)
+    .select('id')
+    .maybeSingle()
+
+  if (!debited) {
+    await admin.from('withdrawals').delete().eq('id', withdrawal.id)
+    return NextResponse.json({ error: 'Le solde a changé entre-temps. Réessaie.' }, { status: 409 })
+  }
+
   await admin.from('wallet_transactions').insert({
     user_id: profile.id,
     amount: -amount,
