@@ -191,3 +191,66 @@ acceptation CGU cassée pour OAuth §3) sur les 7 points de la checklist NIYAMA 
 d'infrastructure (§8 migration non tracée dans le repo, §9 gate non monté).
 
 VERDICT:vida-aide:ROUGE:8
+
+---
+
+## Remédiation 2026-08-23 — 3 gaps priorisés (missions rémunérées, OAuth CGU, gate)
+
+Périmètre de cette passe : uniquement les 3 gaps les plus graves (§6 violation active NIYAMA §2
+Famille 1, §3 preuve CGU cassée sur le chemin d'inscription le plus visible, §9 gate jamais monté).
+Les gaps §1 (générateurs socle non branchés), §2 (sync cookie_consents), §4/§5 (déjà ✅), §7 (split
+KARMA non vérifiable) et §8 (migration absente de `migrations/`) restent **NON TRAITÉS**, hors
+périmètre de cette remédiation.
+
+- **CORRIGÉ le 2026-08-23 (§6 — priorité absolue, violation active)** : les 2 missions rémunérant
+  un avis/note public ou un témoignage vidéo sont **retirées intégralement**, pas juste rendues
+  mortes :
+  - `schema.sql` : lignes de seed `('Noter PURAMA Aide', ..., 'note_app', ...)` et
+    `('Vidéo témoignage', ..., 'video_temoignage', ...)` supprimées de l'`INSERT INTO
+    vida_aide.missions`.
+  - `src/lib/constants.ts` : entrées `note_app` et `video_temoignage` retirées de
+    `MISSION_CATEGORIES` et de `MISSION_REWARDS`.
+  - **Vérifié en prod par SSH** (`docker exec supabase-db psql`) : les 2 lignes correspondantes
+    existaient bien en base avec `active = true` (`c4c96821…` note_app 200pts/3 tickets,
+    `44f288b5…` video_temoignage 5€+1000pts/10 tickets) et **0 `mission_completions`** liée — donc
+    aucun utilisateur n'avait encore été payé. `DELETE FROM vida_aide.missions WHERE category IN
+    ('note_app','video_temoignage')` exécuté directement en prod (suppression sûre, sans FK
+    orpheline). Les deux missions n'existent plus ni dans le code ni en base — 7ème app corrigée
+    du même piège écosystème (après akasha-ai/sarva/mukti/purama-origin/yana/sutra).
+  - `feedback` (`src/lib/constants.ts:117`, feedback produit interne) conservée telle quelle,
+    hors périmètre demandé.
+
+- **CORRIGÉ le 2026-08-23 (§3 — preuve CGU cassée pour Google OAuth)** : `src/app/auth/
+  callback/route.ts` — juste après un `exchangeCodeForSession(code)` réussi, upsert de
+  `legal_acceptances` (`cgu`/`cgv`/`confidentialite`, version = `CURRENT_LEGAL_VERSIONS`) pour
+  `data.user`, avec `{ onConflict: 'user_id,doc_type', ignoreDuplicates: true }` — pattern déjà
+  utilisé ailleurs dans l'écosystème (ex. `sutra/src/app/auth/callback/route.ts`). Couvre
+  `handleGoogleSignup()`/`signInWithGoogle()` (seul chemin qui ne posait aucune preuve) ET
+  la confirmation email par lien (`emailRedirectTo` pointe vers la même route) — idempotent,
+  n'écrit qu'une fois par doc/utilisateur, ne réécrit jamais une acceptation déjà enregistrée
+  (laisse `LegalReacceptanceGate` gérer les changements de version pour les utilisateurs déjà
+  connus). Le trigger DB `handle_new_user()` n'a pas été touché : il ne crée que la ligne
+  `profiles` et n'est pas le bon endroit pour poser un consentement (aucune UI n'y est présentée
+  à l'utilisateur) — la preuve doit rester liée à l'action d'auth elle-même, ce que fait le
+  callback.
+
+- **CORRIGÉ le 2026-08-23 (§9 — `LegalReacceptanceGate` jamais monté)** : nouveau composant
+  `src/components/shared/LegalGate.tsx` (pont client `onAccept` → `POST /api/legal/accept`)
+  monté dans `src/app/(dashboard)/layout.tsx`, qui calcule désormais `docsEnAttente` côté serveur
+  (lecture `legal_acceptances` de l'utilisateur courant via RLS + `computeDocsEnAttente` contre
+  `CURRENT_LEGAL_VERSIONS`) et le passe en prop. `mentions` exclu volontairement (aucune
+  mécanique de consentement explicite ne la couvre dans l'app — même convention que le reste de
+  l'écosystème, ex. purama-origin). Le gate est un no-op tant que personne n'a de version
+  antérieure (cf §9 original : toutes les versions sont fraîches à `1.0`), mais il bloquera
+  désormais réellement l'usage de l'app le jour où une version de CGU/CGV/confidentialité change.
+
+**Vérification** : `npx tsc --noEmit` 0 erreur et `npm run build` (Next.js 16, Turbopack) exit 0
+sur l'état isolé de ces 5 fichiers (`schema.sql`, `src/app/(dashboard)/layout.tsx`,
+`src/app/auth/callback/route.ts`, `src/lib/constants.ts`, `src/components/shared/LegalGate.tsx`)
+appliqués sur HEAD — le dépôt contenait en parallèle des modifications non liées et en cours
+(refactor ESLint d'une autre session sur `src/app/page.tsx`, `admin/financement/page.tsx`,
+`mobile/app/(tabs)/scanner.tsx`, `tests/p6-sim21.spec.ts`…) volontairement laissées intactes et
+hors du commit de cette remédiation.
+
+VERDICT-REMEDIATION:vida-aide:3/8 gaps corrigés (dont les 2 sévères §3 et §6):tsc 0 erreur sur le
+périmètre traité:build exit 0
