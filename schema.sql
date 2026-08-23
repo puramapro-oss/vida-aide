@@ -488,11 +488,9 @@ END $$;
 INSERT INTO vida_aide.missions (title, description, category, type, reward_euros, reward_points, reward_contest_places, difficulty, proof_type) VALUES
   ('Premier scan financier', 'Lance ton premier scan pour découvrir tout l''argent récupérable', 'premier_scan', 'one_shot', 0, 300, 1, 'facile', 'auto'),
   ('Compléter ton profil', 'Remplis ta situation pour des résultats précis', 'completer_profil', 'one_shot', 0, 50, 0, 'facile', 'auto'),
-  ('Noter PURAMA Aide', 'Donne 5 étoiles sur les stores', 'note_app', 'one_shot', 0, 200, 3, 'facile', 'screenshot'),
   ('Partager en story', 'Partage l''app sur Instagram/TikTok story', 'story_share', 'daily', 0, 100, 1, 'facile', 'screenshot'),
   ('Inviter un ami', 'Invite un ami avec ton code parrainage', 'parrainage', 'one_shot', 0, 500, 2, 'facile', 'auto'),
   ('Inviter 3 amis', 'Inviter 3 personnes qui s''inscrivent', 'inviter_3_amis', 'one_shot', 0, 800, 5, 'moyen', 'auto'),
-  ('Vidéo témoignage', 'Crée une vidéo sur ton expérience PURAMA Aide', 'video_temoignage', 'one_shot', 5, 1000, 10, 'difficile', 'screenshot'),
   ('Lancer une démarche', 'Active ta première demande d''aide', 'lancer_demarche', 'one_shot', 0, 200, 1, 'facile', 'auto'),
   ('Partager un résultat', 'Partage ton montant récupérable', 'partager_resultat', 'weekly', 0, 250, 1, 'facile', 'screenshot'),
   ('Feedback détaillé', 'Donne ton avis sur l''app', 'feedback', 'one_shot', 0, 150, 0, 'facile', 'auto')

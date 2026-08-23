@@ -111,11 +111,9 @@ export const CORRIDORS_FRONTALIERS = [
 
 // Catégories de missions PURAMA Aide (gamification)
 export const MISSION_CATEGORIES = [
-  { id: 'note_app', name: 'Noter l\'app', icon: '⭐', color: '#fbbf24', reward: 200, description: 'Noter PURAMA Aide sur App Store' },
   { id: 'story_share', name: 'Partager en story', icon: '📱', color: '#ec4899', reward: 100, description: 'Partager l\'app sur les réseaux' },
   { id: 'parrainage', name: 'Parrainer un ami', icon: '🤝', color: '#10b981', reward: 500, description: 'Inviter un ami qui s\'inscrit' },
   { id: 'feedback', name: 'Feedback détaillé', icon: '💬', color: '#3b82f6', reward: 150, description: 'Donner un avis constructif' },
-  { id: 'video_temoignage', name: 'Vidéo témoignage', icon: '🎬', color: '#f43f5e', reward: 1000, description: 'Témoignage vidéo sur les gains récupérés' },
   { id: 'completer_profil', name: 'Compléter profil', icon: '✏️', color: '#8b5cf6', reward: 50, description: 'Remplir toutes les infos' },
   { id: 'premier_scan', name: 'Premier scan', icon: '🔍', color: '#10B981', reward: 300, description: 'Lancer ton premier scan financier' },
   { id: 'lancer_demarche', name: 'Lancer une démarche', icon: '🚀', color: '#F59E0B', reward: 200, description: 'Activer une demande d\'aide' },
@@ -129,11 +127,9 @@ export type MissionCategoryId = typeof MISSION_CATEGORIES[number]['id']
 export const MISSION_REWARDS = {
   min_credits: 50,
   max_credits: 1000,
-  note_app: 200,
   story_share: 100,
   parrainage: 500,
   feedback: 150,
-  video_temoignage: 1000,
   completer_profil: 50,
   premier_scan: 300,
   lancer_demarche: 200,
