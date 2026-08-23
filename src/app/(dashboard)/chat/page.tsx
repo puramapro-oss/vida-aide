@@ -7,6 +7,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useAuth } from '@/hooks/useAuth'
 import Card from '@/components/ui/Card'
+import AIDisclosure from '@/lib/legal/components/AIDisclosure'
+import { APP_NAME } from '@/lib/constants'
 
 interface ChatMessage {
   id: string
@@ -90,10 +92,11 @@ export default function ChatPage() {
 
   return (
     <div className="mx-auto flex h-[calc(100vh-9rem)] max-w-4xl flex-col" data-testid="chat-page">
-      <header className="mb-4">
+      <header className="mb-4 space-y-1">
         <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--text-primary)]">
           AideIA <span className="text-base font-normal text-[var(--text-muted)]">— ton assistant juridique &amp; fiscal</span>
         </h1>
+        <AIDisclosure appName={APP_NAME} extra="Les réponses sont informatives et ne remplacent pas l'avis d'un professionnel qualifié." />
       </header>
 
       <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto pr-2 scrollbar-thin">

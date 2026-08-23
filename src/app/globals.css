@@ -23,6 +23,24 @@
   --radius-xl: 28px;
 }
 
+/* Socle légal @purama/legal (src/lib/legal) : les composants (LegalPage, MaMemoirePage,
+   AccountDeletionButton, LegalAcceptanceNotice...) utilisent des classes Tailwind
+   sémantiques style shadcn (bg-background, text-muted-foreground, border-border,
+   rounded-pill, text-destructive) qui n'existent pas dans le dialecte CSS vars brutes de
+   cette app — sans ce mapping, Tailwind v4 ne génère aucune règle pour ces classes
+   (0 erreur build, rendu silencieusement cassé, piège documenté PIEGES.md §16). */
+@theme inline {
+  --color-background: var(--bg-void);
+  --color-background-soft: var(--bg-deep);
+  --color-foreground: var(--text-primary);
+  --color-muted-foreground: var(--text-muted);
+  --color-border: var(--border);
+  --color-primary: var(--cyan);
+  --color-primary-on-dark: var(--cyan);
+  --color-destructive: #ef4444;
+  --radius-pill: 9999rem;
+}
+
 [data-theme='light'] {
   --bg-void: #f8fafc;
   --bg-deep: #ffffff;

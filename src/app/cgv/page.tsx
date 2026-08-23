@@ -82,13 +82,10 @@ export default function CGV() {
               5. Droit de rétractation
             </h2>
             <p>
-              Conformément à l&apos;article L. 221-18 du Code de la consommation, vous disposez d&apos;un délai de <strong className="text-[var(--text-primary)]">14 jours calendaires</strong> à compter de la souscription de votre abonnement payant pour exercer votre droit de rétractation, sans avoir à justifier votre décision.
+              Conformément à l&apos;article L. 221-28 3° du Code de la consommation, le Client renonce expressément à son droit de rétractation de 14 jours en validant sa commande et son paiement, dès lors que l&apos;exécution du service (accès aux fonctionnalités Premium) commence avant la fin du délai de rétractation. Cette renonciation est implicite et ne nécessite aucune case à cocher.
             </p>
             <p className="mt-2">
-              Pour exercer ce droit, envoyez un email à <a href="mailto:matiss.frasne@gmail.com" className="text-[var(--cyan)] hover:underline">matiss.frasne@gmail.com</a> avec votre identifiant de commande. Le remboursement sera effectué sous 14 jours ouvrés par le même moyen de paiement utilisé.
-            </p>
-            <p className="mt-2">
-              <strong className="text-[var(--text-primary)]">Exception :</strong> Si vous avez explicitement demandé à commencer à utiliser le service pendant le délai de rétractation (en cochant la case correspondante lors de l&apos;inscription), le remboursement sera calculé au prorata des jours non utilisés.
+              Tout abonnement bénéficie néanmoins d&apos;une période d&apos;essai gratuite de 14 jours (article 2) pendant laquelle vous pouvez annuler sans frais depuis <strong className="text-[var(--text-primary)]">Paramètres → Abonnement</strong>. Pour toute question relative à un paiement, contactez <a href="mailto:matiss.frasne@gmail.com" className="text-[var(--cyan)] hover:underline">matiss.frasne@gmail.com</a>.
             </p>
           </section>
 
@@ -111,7 +108,7 @@ export default function CGV() {
             </h2>
             <p>Les remboursements sont accordés dans les cas suivants :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
-              <li>Exercice du droit de rétractation dans les 14 jours (article 5)</li>
+              <li>Annulation pendant la période d&apos;essai gratuite de 14 jours (article 2), avant tout prélèvement</li>
               <li>Double facturation par erreur technique</li>
               <li>Indisponibilité majeure du service (plus de 72h consécutives) imputable à SASU PURAMA</li>
             </ul>

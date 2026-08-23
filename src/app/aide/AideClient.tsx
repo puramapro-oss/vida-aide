@@ -2,6 +2,8 @@
 
 import { useMemo, useRef, useState } from 'react'
 import { FAQ_ITEMS, FAQ_CATEGORIES, type FaqItem } from './faq-data'
+import AIDisclosure from '@/lib/legal/components/AIDisclosure'
+import { APP_NAME } from '@/lib/constants'
 
 type ChatMsg = { role: 'user' | 'assistant'; content: string }
 
@@ -148,7 +150,7 @@ export default function AideClient() {
           <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-[var(--text-primary)]">AideIA</p>
-              <p className="text-xs text-[var(--text-muted)]">Réponse instantanée · 24/7</p>
+              <AIDisclosure appName={APP_NAME} className="text-xs text-[var(--text-muted)]" />
             </div>
             <button
               type="button"
