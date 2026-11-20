@@ -50,17 +50,8 @@ test.describe('P5 — i18n 16 langues bascule réelle', () => {
 
   for (const l of LOCALES) {
     test(`Landing rendered in ${l.code} (cookie locale=${l.code})`, async ({ context, page }) => {
-      await context.addCookies([
-        {
-          name: 'locale',
-          value: l.code,
-          domain: 'vida-aide.purama.dev',
-          path: '/',
-          httpOnly: false,
-          secure: true,
-          sameSite: 'Lax',
-        },
-      ])
+      const selection = await context.request.post('/api/locale', { data: { locale: l.code } })
+      expect(selection.status()).toBe(200)
 
       const res = await page.goto('/', { waitUntil: 'domcontentloaded' })
       expect(res?.status()).toBeLessThan(400)
