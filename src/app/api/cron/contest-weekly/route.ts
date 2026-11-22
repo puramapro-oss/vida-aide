@@ -18,10 +18,7 @@ function authorize(request: Request): boolean {
   const secret = process.env.CRON_SECRET
   if (!secret) return false
   const header = request.headers.get('authorization') ?? ''
-  if (header === `Bearer ${secret}`) return true
-  const vercelHeader = request.headers.get('x-vercel-cron')
-  if (vercelHeader) return true
-  return false
+  return header === `Bearer ${secret}`
 }
 
 export async function POST(request: Request) {
@@ -90,6 +87,7 @@ export async function POST(request: Request) {
       supabase
         .from('scans')
         .select('user_id')
+        .eq('status', 'completed')
         .in('user_id', userIds)
         .gte('created_at', sevenDaysAgo),
     ])

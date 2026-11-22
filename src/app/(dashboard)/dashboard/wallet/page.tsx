@@ -71,12 +71,12 @@ export default function WalletPage() {
           <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--text-primary)]">Wallet</h1>
           <p className="mt-1 text-sm text-[var(--text-secondary)]">Tes gains, points et retraits IBAN.</p>
         </div>
-        <ShareStoryButton
+        {typeof profile.wallet_balance === 'number' && Number.isFinite(profile.wallet_balance) && profile.wallet_balance >= 0 && <ShareStoryButton
           type="gains"
-          headline="Récupère ce qui te revient"
-          value={`+${formatEurosFraction(Number(profile.wallet_balance ?? 0))}`}
-          sub="récupérés via PURAMA Aide"
-        />
+          headline="Mon solde de portefeuille PURAMA Aide"
+          value={formatEurosFraction(profile.wallet_balance)}
+          sub="solde interne affiché, aucun versement bancaire attesté par ce partage"
+        />}
       </header>
 
       <div className="grid gap-4 md:grid-cols-2">

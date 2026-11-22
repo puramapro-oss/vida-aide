@@ -46,47 +46,62 @@ export default function WalletScreen() {
   const [transactions, setTransactions] = useState<WalletTx[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [owner, setOwner] = useState<string | null>(null);
+  const [historyLoaded, setHistoryLoaded] = useState(false);
+  const userId = user?.id;
 
   useEffect(() => {
     let cancelled = false;
+    setProfile(null);
+    setTransactions([]);
+    setOwner(null);
+    setHistoryLoaded(false);
+    setError(null);
+    setLoading(true);
     (async () => {
-      if (!user) {
-        setLoading(false);
-        return;
-      }
-      const { data: pData, error: pErr } = await supabase
+      try {
+        if (!userId) throw new Error('Sign-in required');
+        const { data: pData, error: pErr } = await supabase
         .from("profiles")
         .select("id, wallet_balance, purama_points, total_money_recovered")
-        .eq("auth_user_id", user.id)
+        .eq("auth_user_id", userId)
         .maybeSingle();
       if (cancelled) return;
-      if (pErr) {
-        setError(pErr.message);
-        setLoading(false);
-        return;
-      }
-      setProfile(pData as ProfileSlim | null);
-      if (pData) {
-        const { data: txs } = await supabase
+      if (pErr || !pData || typeof pData.id !== 'string') throw new Error('Profile unavailable');
+      setProfile(pData as ProfileSlim);
+      setOwner(userId);
+        const { data: txs, error: txError } = await supabase
           .from("wallet_transactions")
           .select("id, type, amount, description, created_at")
           .eq("user_id", (pData as ProfileSlim).id)
           .order("created_at", { ascending: false })
           .limit(20);
-        if (!cancelled) setTransactions((txs as WalletTx[]) ?? []);
+        if (cancelled) return;
+        if (txError || !Array.isArray(txs)) {
+          setError('Impossible de charger l’historique des transactions.');
+        } else {
+          setTransactions(txs as WalletTx[]);
+          setHistoryLoaded(true);
+        }
+      } catch {
+        if (!cancelled) setError('Impossible de charger le portefeuille. Les données sont indisponibles.');
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-      if (!cancelled) setLoading(false);
     })();
     return () => {
       cancelled = true;
     };
-  }, [user]);
+  }, [userId]);
 
-  const balanceEuro = Number(profile?.wallet_balance ?? 0);
-  const points = profile?.purama_points ?? 0;
-  const lifetime = Number(profile?.total_money_recovered ?? 0);
+  const currentProfile = owner === userId ? profile : null;
+  const balanceEuro = finiteAmount(currentProfile?.wallet_balance);
+  const points = finiteAmount(currentProfile?.purama_points);
+  const lifetime = finiteAmount(currentProfile?.total_money_recovered);
+  const currentTransactions = owner === userId ? transactions : [];
 
   function openWithdraw() {
+    if (balanceEuro === null) return;
     if (balanceEuro < MIN_WITHDRAW) {
       Alert.alert(
         "Seuil non atteint",
@@ -104,12 +119,7 @@ export default function WalletScreen() {
     <Screen>
       <View style={{ marginBottom: 20, marginTop: 8 }}>
         <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 6,
-            marginBottom: 4,
-          }}
+          style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 4, }}
         >
           <Wallet color={theme.gold} size={18} />
           <Text
@@ -119,14 +129,9 @@ export default function WalletScreen() {
           </Text>
         </View>
         <Text
-          style={{
-            color: theme.text,
-            fontSize: 26,
-            fontWeight: "700",
-            marginTop: 4,
-          }}
+          style={{ color: theme.text, fontSize: 26, fontWeight: "700", marginTop: 4, }}
         >
-          Tes gains réels.
+          Ton portefeuille.
         </Text>
       </View>
 
@@ -139,15 +144,9 @@ export default function WalletScreen() {
         ) : (
           <Text
             testID="wallet-balance-euro"
-            style={{
-              color: theme.text,
-              fontSize: 40,
-              fontWeight: "800",
-              letterSpacing: -1,
-              marginTop: 4,
-            }}
+            style={{ color: theme.text, fontSize: 40, fontWeight: "800", letterSpacing: -1, marginTop: 4, }}
           >
-            {balanceEuro.toFixed(2)} €
+            {balanceEuro === null ? 'Indisponible' : `${balanceEuro.toFixed(2)} €`}
           </Text>
         )}
         <Text style={{ color: theme.dim, fontSize: 11, marginTop: 4 }}>
@@ -157,14 +156,10 @@ export default function WalletScreen() {
           <Button
             testID="wallet-withdraw-cta"
             onPress={openWithdraw}
-            disabled={balanceEuro < MIN_WITHDRAW}
+            disabled={balanceEuro === null || balanceEuro < MIN_WITHDRAW}
           >
             <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 8,
-              }}
+              style={{ flexDirection: "row", alignItems: "center", gap: 8, }}
             >
               <ArrowDownToLine color="#fff" size={16} />
               <Text style={{ color: "#fff", fontWeight: "600", fontSize: 16 }}>
@@ -179,12 +174,7 @@ export default function WalletScreen() {
         <View style={{ flex: 1 }}>
           <Card testID="wallet-points-card">
             <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 6,
-                marginBottom: 6,
-              }}
+              style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 6, }}
             >
               <Sparkles color={theme.cyan} size={14} />
               <Text style={{ color: theme.muted, fontSize: 11 }}>Points</Text>
@@ -192,49 +182,37 @@ export default function WalletScreen() {
             <Text
               style={{ color: theme.text, fontSize: 22, fontWeight: "700" }}
             >
-              {points.toLocaleString("fr-FR")}
+              {points === null ? 'Indisponible' : points.toLocaleString("fr-FR")}
             </Text>
             <Text style={{ color: theme.dim, fontSize: 10, marginTop: 2 }}>
-              ≈ {(points / 100).toFixed(2)} €
+              {points === null ? 'Conversion indisponible' : `≈ ${(points / 100).toFixed(2)} €`}
             </Text>
           </Card>
         </View>
         <View style={{ flex: 1 }}>
           <Card testID="wallet-lifetime-card">
             <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 6,
-                marginBottom: 6,
-              }}
+              style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 6, }}
             >
               <Coins color={theme.primary} size={14} />
               <Text style={{ color: theme.muted, fontSize: 11 }}>
-                Cumulé
+                Historique non vérifié
               </Text>
             </View>
             <Text
               style={{ color: theme.text, fontSize: 22, fontWeight: "700" }}
             >
-              {lifetime.toFixed(0)} €
+              {lifetime === null ? 'Indisponible' : `${lifetime.toFixed(0)} €`}
             </Text>
             <Text style={{ color: theme.dim, fontSize: 10, marginTop: 2 }}>
-              Depuis l&apos;inscription
+              Ancien compteur conservé, sans preuve de versement.
             </Text>
           </Card>
         </View>
       </View>
 
       <Text
-        style={{
-          color: theme.muted,
-          fontSize: 11,
-          letterSpacing: 1.5,
-          marginTop: 24,
-          marginBottom: 10,
-          textTransform: "uppercase",
-        }}
+        style={{ color: theme.muted, fontSize: 11, letterSpacing: 1.5, marginTop: 24, marginBottom: 10, textTransform: "uppercase", }}
       >
         Historique
       </Text>
@@ -243,7 +221,7 @@ export default function WalletScreen() {
         <Card testID="wallet-error-card">
           <Text style={{ color: theme.danger, fontSize: 13 }}>{error}</Text>
         </Card>
-      ) : !loading && transactions.length === 0 ? (
+      ) : !loading && owner === userId && historyLoaded && currentTransactions.length === 0 ? (
         <Card testID="wallet-empty-card">
           <Text style={{ color: theme.muted, fontSize: 13 }}>
             Aucune transaction pour l&apos;instant. Parraine un ami ou remporte un
@@ -252,43 +230,27 @@ export default function WalletScreen() {
         </Card>
       ) : (
         <View style={{ gap: 8 }}>
-          {transactions.map((tx) => (
+          {currentTransactions.map((tx) => (
             <Card key={tx.id} testID={`wallet-tx-${tx.id}`}>
               <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
+                style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}
               >
                 <View style={{ flex: 1 }}>
                   <Text
-                    style={{
-                      color: theme.text,
-                      fontSize: 14,
-                      fontWeight: "600",
-                    }}
+                    style={{ color: theme.text, fontSize: 14, fontWeight: "600", }}
                   >
                     {labelForType(tx.type)}
                   </Text>
                   {tx.description ? (
                     <Text
-                      style={{
-                        color: theme.muted,
-                        fontSize: 11,
-                        marginTop: 2,
-                      }}
+                      style={{ color: theme.muted, fontSize: 11, marginTop: 2, }}
                     >
                       {tx.description}
                     </Text>
                   ) : null}
                 </View>
                 <Text
-                  style={{
-                    color: Number(tx.amount) >= 0 ? theme.primary : theme.danger,
-                    fontSize: 15,
-                    fontWeight: "700",
-                  }}
+                  style={{ color: Number(tx.amount) >= 0 ? theme.primary : theme.danger, fontSize: 15, fontWeight: "700", }}
                 >
                   {Number(tx.amount) >= 0 ? "+" : ""}
                   {Number(tx.amount).toFixed(2)} €
@@ -300,4 +262,8 @@ export default function WalletScreen() {
       )}
     </Screen>
   );
+}
+
+function finiteAmount(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
 }

@@ -1,0 +1,113 @@
+name: Estimates and durable receipts
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: estimates-and-receipts-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      VIDA_AIDE_VERIFICATION_NODE_MODULES: ${{ github.workspace }}/verification/node_modules
+      VIDA_PRESENTATION_TOOLS: ${{ github.workspace }}/verification
+    steps:
+      - name: Check out the exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.3'
+          cache: npm
+          cache-dependency-path: verification/package-lock.json
+
+      - name: Install the locked verification dependencies
+        run: npm ci --prefix verification --ignore-scripts --no-audit --no-fund
+
+      - name: Record the source under test
+        run: node verification/record-sources.cjs write "$RUNNER_TEMP/vida-aide-evidence/source.json"
+
+      - name: Exercise the real routes and presentation components
+        run: |
+          node --test --test-concurrency=1 --test-reporter=tap \
+            verification/scan/*.test.cjs \
+            verification/profiles-permissions/*.test.cjs \
+            verification/stripe-fulfillment/*.test.cjs \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/routes-and-components.tap"
+
+      - name: Type-check the real backend sources
+        run: |
+          node --max-old-space-size=512 verification/check-backend.cjs \
+            src/app/api/scan/route.ts src/lib/scan-result.ts \
+            src/app/api/stripe/webhook/route.ts \
+            src/app/api/internal/stripe-fulfillment/route.ts \
+            src/app/api/stripe/checkout/route.ts \
+            src/app/api/profile/update/route.ts \
+            src/app/api/cron/contest-weekly/route.ts \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/backend-typecheck.log"
+
+      - name: Locate the native PostgreSQL test runtime
+        run: |
+          if ! test -x /usr/lib/postgresql/16/bin/postgres; then
+            sudo apt-get update
+            sudo apt-get install --yes postgresql-16
+          fi
+          /usr/lib/postgresql/16/bin/postgres --version
+
+      - name: Verify profile privileges in a fresh local cluster
+        run: |
+          python3 verification/profiles-permissions/run-postgres.py \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/profiles" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/profiles-postgres.log"
+
+      - name: Verify durable fulfillment in a fresh local cluster
+        run: |
+          python3 verification/stripe-fulfillment/run-postgres.py \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/stripe" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/stripe-postgres.log"
+
+      - name: Verify fulfillment across independent database sessions
+        run: |
+          node verification/stripe-fulfillment/concurrency.cjs \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/stripe-concurrency" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/stripe-concurrency.log"
+
+      - name: Verify scan reservation values and rollback
+        run: |
+          python3 verification/scan-quota/run-postgres.py \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/scan" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/scan-postgres.log"
+
+      - name: Verify scan quota across independent database sessions
+        run: |
+          node verification/scan-quota/concurrency.cjs \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/scan-concurrency" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/scan-concurrency.log"
+
+      - name: Verify the source did not change during the checks
+        if: always()
+        run: node verification/record-sources.cjs check "$RUNNER_TEMP/vida-aide-evidence/source.json"
+
+      - name: Keep the candidate receipts and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vida-aide-receipts-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/vida-aide-evidence
+          if-no-files-found: error
+          retention-days: 14

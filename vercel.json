@@ -1,6 +1,11 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
+  "git": {
+    "deploymentEnabled": {
+      "fix/scan-estimate-provenance-20261122-dcfb": false
+    }
+  },
   "functions": {
     "src/app/api/**/*.ts": {
       "maxDuration": 120

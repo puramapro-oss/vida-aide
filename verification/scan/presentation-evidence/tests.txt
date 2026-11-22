@@ -1,0 +1,196 @@
+TAP version 13
+# Subtest: native scan: real POST accepts financial type, verified Bearer and exact zero income
+ok 1 - native scan: real POST accepts financial type, verified Bearer and exact zero income
+  ---
+  duration_ms: 488.661656
+  type: 'test'
+  ...
+# Subtest: native scan: decimal comma is parsed, all existing units render without invented fields
+ok 2 - native scan: decimal comma is parsed, all existing units render without invented fields
+  ---
+  duration_ms: 137.887288
+  type: 'test'
+  ...
+# Subtest: native scan: invalid numbers do not trigger the provider or silently disappear
+ok 3 - native scan: invalid numbers do not trigger the provider or silently disappear
+  ---
+  duration_ms: 522.175597
+  type: 'test'
+  ...
+# Subtest: native scan: rejected session never submits old account inputs
+ok 4 - native scan: rejected session never submits old account inputs
+  ---
+  duration_ms: 226.940086
+  type: 'test'
+  ...
+# Subtest: native scan: HTTP success without exact response shape is not a completed scan
+ok 5 - native scan: HTTP success without exact response shape is not a completed scan
+  ---
+  duration_ms: 917.719866
+  type: 'test'
+  ...
+# Subtest: native scan: persistence receipt failure retains draft and has no numerical success
+ok 6 - native scan: persistence receipt failure retains draft and has no numerical success
+  ---
+  duration_ms: 83.718882
+  type: 'test'
+  ...
+# Subtest: native scan: network loss keeps the draft without claiming a saved result or retrying
+ok 7 - native scan: network loss keeps the draft without claiming a saved result or retrying
+  ---
+  duration_ms: 72.312642
+  type: 'test'
+  ...
+# Subtest: native scan: saved scan survives secondary warning without duplicate provider call
+ok 8 - native scan: saved scan survives secondary warning without duplicate provider call
+  ---
+  duration_ms: 103.068903
+  type: 'test'
+  ...
+# Subtest: native scan: same tick double submit makes one request and permits explicit new scan
+ok 9 - native scan: same tick double submit makes one request and permits explicit new scan
+  ---
+  duration_ms: 109.44814
+  type: 'test'
+  ...
+# Subtest: native scan: late response after unmount or blur/refocus has no stale success
+ok 10 - native scan: late response after unmount or blur/refocus has no stale success
+  ---
+  duration_ms: 201.067435
+  type: 'test'
+  ...
+# Subtest: native scan: account switch clears the old form and rejects an outstanding result
+ok 11 - native scan: account switch clears the old form and rejects an outstanding result
+  ---
+  duration_ms: 68.806848
+  type: 'test'
+  ...
+# Subtest: native and server validation agree on cent rounding without rewriting estimates
+ok 12 - native and server validation agree on cent rounding without rewriting estimates
+  ---
+  duration_ms: 20.462997
+  type: 'test'
+  ...
+# Subtest: dashboard: current estimate and historical amount remain distinct
+ok 13 - dashboard: current estimate and historical amount remain distinct
+  ---
+  duration_ms: 374.08892
+  type: 'test'
+  ...
+# Subtest: dashboard: no scan never repurposes the historical field as an estimate
+ok 14 - dashboard: no scan never repurposes the historical field as an estimate
+  ---
+  duration_ms: 64.655606
+  type: 'test'
+  ...
+# Subtest: dashboard: failed read does not become an empty list or zero estimate
+ok 15 - dashboard: failed read does not become an empty list or zero estimate
+  ---
+  duration_ms: 48.536181
+  type: 'test'
+  ...
+# Subtest: dashboard: a completed zero estimate is shown, an invalid amount is unavailable
+ok 16 - dashboard: a completed zero estimate is shown, an invalid amount is unavailable
+  ---
+  duration_ms: 181.051054
+  type: 'test'
+  ...
+# Subtest: profile: original counter remains readable only as unverified history
+ok 17 - profile: original counter remains readable only as unverified history
+  ---
+  duration_ms: 27.761351
+  type: 'test'
+  ...
+# Subtest: profile: missing historical value does not become zero
+ok 18 - profile: missing historical value does not become zero
+  ---
+  duration_ms: 22.101459
+  type: 'test'
+  ...
+# Subtest: admin: sum is historical, never money verified as recovered
+ok 19 - admin: sum is historical, never money verified as recovered
+  ---
+  duration_ms: 27.316585
+  type: 'test'
+  ...
+# Subtest: admin: failed, incomplete or invalid reads never produce a fabricated aggregate
+ok 20 - admin: failed, incomplete or invalid reads never produce a fabricated aggregate
+  ---
+  duration_ms: 84.675353
+  type: 'test'
+  ...
+# Subtest: scan detail: estimated result and share text cannot imply a payment or guaranteed timing
+ok 21 - scan detail: estimated result and share text cannot imply a payment or guaranteed timing
+  ---
+  duration_ms: 40.996378
+  type: 'test'
+  ...
+# Subtest: scan detail: malformed or unfinished scan has no numerical success or share
+ok 22 - scan detail: malformed or unfinished scan has no numerical success or share
+  ---
+  duration_ms: 127.523545
+  type: 'test'
+  ...
+# Subtest: web wallet: sharing balance never turns it into recovered aid or a transfer receipt
+ok 23 - web wallet: sharing balance never turns it into recovered aid or a transfer receipt
+  ---
+  duration_ms: 21.829592
+  type: 'test'
+  ...
+# Subtest: web wallet: unknown balance is not shared as a fabricated zero
+ok 24 - web wallet: unknown balance is not shared as a fabricated zero
+  ---
+  duration_ms: 21.061127
+  type: 'test'
+  ...
+# Subtest: native dashboard: historical counter and actual wallet balance are separate
+ok 25 - native dashboard: historical counter and actual wallet balance are separate
+  ---
+  duration_ms: 25.206064
+  type: 'test'
+  ...
+# Subtest: native dashboard: missing profile and read errors show unknown, never zero money
+ok 26 - native dashboard: missing profile and read errors show unknown, never zero money
+  ---
+  duration_ms: 46.492203
+  type: 'test'
+  ...
+# Subtest: native wallet: balance and transaction values remain intact, history stays unverified
+ok 27 - native wallet: balance and transaction values remain intact, history stays unverified
+  ---
+  duration_ms: 31.601655
+  type: 'test'
+  ...
+# Subtest: native wallet: failed profile or transaction read does not mean zero or no transactions
+ok 28 - native wallet: failed profile or transaction read does not mean zero or no transactions
+  ---
+  duration_ms: 53.834067
+  type: 'test'
+  ...
+# Subtest: native profile reads cannot restore a previous account after account switch or sign-out
+ok 29 - native profile reads cannot restore a previous account after account switch or sign-out
+  ---
+  duration_ms: 55.94572
+  type: 'test'
+  ...
+# Subtest: real structured scan sends unverified-estimate rules and preserves existing models/schema
+ok 30 - real structured scan sends unverified-estimate rules and preserves existing models/schema
+  ---
+  duration_ms: 99.775762
+  type: 'test'
+  ...
+# Subtest: real prompt preserves declared zero income, rent, dependents and negative disability declaration
+ok 31 - real prompt preserves declared zero income, rent, dependents and negative disability declaration
+  ---
+  duration_ms: 16.746102
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7072.235441

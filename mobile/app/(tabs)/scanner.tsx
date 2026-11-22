@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, View, Pressable, ActivityIndicator } from "react-native";
 import { Screen } from "@/components/Screen";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { api, ApiError } from "@/lib/api";
+import { inputNumber, ScanValidationError } from "@/lib/scan";
+import { scanContent, type ScanPayload } from "@/lib/scan-attempt";
+import { useScanRequest } from "@/hooks/useScanRequest";
+import { useAuth } from "@/store/auth";
 import { theme } from "@/lib/theme";
-import { Search, CheckCircle2, TrendingUp } from "lucide-react-native";
+import { Search } from "lucide-react-native";
+import ScanEstimateResults from "@/components/ScanEstimateResults";
 import * as Haptics from "expo-haptics";
 
 type Emploi =
@@ -46,33 +50,22 @@ const FAMILLES: { id: Famille; label: string }[] = [
   { id: "divorce", label: "Divorcé·e" },
 ];
 
-type ScanResult = {
-  scan_id: string;
-  results: Array<{
-    category: string;
-    title: string;
-    description: string;
-    amount: number;
-    frequency: "monthly" | "yearly" | "one_time";
-  }>;
-  total_recoverable: number;
-  total_recoverable_monthly: number;
-  summary?: string;
-};
-
 function Chip({
   label,
   active,
   onPress,
   testID,
+  disabled,
 }: {
   label: string;
   active: boolean;
   onPress: () => void;
   testID?: string;
+  disabled?: boolean;
 }) {
   return (
     <Pressable
+      disabled={disabled}
       onPress={() => {
         Haptics.selectionAsync().catch(() => {});
         onPress();
@@ -91,13 +84,7 @@ function Chip({
         opacity: pressed ? 0.7 : 1,
       })}
     >
-      <Text
-        style={{
-          color: active ? theme.primary : theme.muted,
-          fontSize: 13,
-          fontWeight: "600",
-        }}
-      >
+      <Text style={{ color: active ? theme.primary : theme.muted, fontSize: 13, fontWeight: "600", }}>
         {label}
       </Text>
     </Pressable>
@@ -105,6 +92,11 @@ function Chip({
 }
 
 export default function ScannerScreen() {
+  const userId = useAuth((state) => state.user?.id);
+  return <ScannerForm key={userId ?? 'signed-out'} userId={userId} />;
+}
+
+function ScannerForm({ userId }: { userId?: string }) {
   const [emploi, setEmploi] = useState<Emploi | null>(null);
   const [revenus, setRevenus] = useState("");
   const [logement, setLogement] = useState<Logement | null>(null);
@@ -113,245 +105,66 @@ export default function ScannerScreen() {
   const [enfants, setEnfants] = useState("");
   const [age, setAge] = useState("");
   const [region, setRegion] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<ScanResult | null>(null);
-
-  const canSubmit = emploi && revenus && logement && !loading;
-
+  const { loading, ready, preparing, error, setError, result, restored, attempt, submit: send, reset } = useScanRequest(userId);
+  const [appliedRestore, setAppliedRestore] = useState<ScanPayload | null>(null);
+  useEffect(() => {
+    if (!restored || restored.type !== 'financial') return;
+    const situation = restored.situation;
+    const numberText = (value: unknown) => typeof value === 'number' ? String(value) : '';
+    setEmploi(EMPLOIS.some((entry) => entry.id === situation.emploi) ? situation.emploi as Emploi : null);
+    setLogement(LOGEMENTS.some((entry) => entry.id === situation.logement) ? situation.logement as Logement : null);
+    setFamille(FAMILLES.some((entry) => entry.id === situation.famille) ? situation.famille as Famille : null);
+    setRevenus(numberText(situation.revenus_mensuels_nets)); setLoyer(numberText(situation.loyer_mensuel));
+    setEnfants(numberText(situation.enfants)); setAge(numberText(situation.age));
+    setRegion(typeof situation.region === 'string' ? situation.region : '');
+    setAppliedRestore(restored);
+  }, [restored]);
+  const formReady = ready && (!restored || appliedRestore === restored);
+  const canSubmit = Boolean(userId && formReady && emploi && revenus.trim() && logement && !loading);
+  function payload(): ScanPayload {
+    if (region.length > 80) throw new ScanValidationError('Région : limite de 80 caractères.');
+    return { type: 'financial', situation: {
+      emploi, revenus_mensuels_nets: inputNumber(revenus, 'Revenus', 1_000_000), logement,
+      loyer_mensuel: logement === 'locataire' ? inputNumber(loyer, 'Loyer', 50_000) : undefined,
+      famille: famille ?? undefined, enfants: inputNumber(enfants, 'Enfants', 20, true),
+      age: inputNumber(age, 'Âge', 120, true, 16), region: region || undefined,
+    } };
+  }
+  let sameContent = false;
+  try { sameContent = attempt?.content === scanContent(payload()); } catch { /* The submit handler reports incomplete input. */ }
   async function submit() {
     if (!canSubmit) return;
-    setLoading(true);
-    setError(null);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
-    try {
-      const body = {
-        situation: {
-          emploi,
-          revenus_mensuels_nets: Number(revenus) || undefined,
-          logement,
-          loyer_mensuel: loyer ? Number(loyer) : undefined,
-          famille: famille ?? undefined,
-          enfants: enfants ? Number(enfants) : undefined,
-          age: age ? Number(age) : undefined,
-          region: region || undefined,
-        },
-      };
-      const data = await api<ScanResult>("/api/scan", {
-        method: "POST",
-        body: JSON.stringify(body),
-      });
-      setResult(data);
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(
-        () => {}
-      );
-    } catch (e) {
-      const msg =
-        e instanceof ApiError
-          ? e.message
-          : "AideIA est indisponible un instant. Réessaie.";
-      setError(msg);
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(
-        () => {}
-      );
-    } finally {
-      setLoading(false);
-    }
+    try { await send(payload()); }
+    catch (cause) { setError(cause instanceof ScanValidationError ? cause.message : 'Les données saisies sont invalides.'); }
   }
-
-  function resetScan() {
-    setResult(null);
-    setError(null);
-  }
-
-  if (result) {
-    return (
-      <Screen>
-        <View style={{ marginBottom: 16, marginTop: 8 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 6,
-              marginBottom: 4,
-            }}
-          >
-            <CheckCircle2 color={theme.primary} size={18} />
-            <Text
-              style={{ color: theme.primary, fontSize: 12, letterSpacing: 1.5 }}
-            >
-              SCAN TERMINÉ
-            </Text>
-          </View>
-          <Text
-            style={{
-              color: theme.text,
-              fontSize: 32,
-              fontWeight: "800",
-              marginTop: 4,
-              letterSpacing: -1,
-            }}
-            testID="scan-total"
-          >
-            {result.total_recoverable.toLocaleString("fr-FR")} €
-          </Text>
-          <Text style={{ color: theme.muted, fontSize: 13, marginTop: 4 }}>
-            {result.results.length} aides et droits détectés ·{" "}
-            {result.total_recoverable_monthly.toFixed(0)} €/mois récurrent
-          </Text>
-        </View>
-
-        {result.summary ? (
-          <Card testID="scan-summary-card">
-            <Text style={{ color: theme.text, fontSize: 14, lineHeight: 20 }}>
-              {result.summary}
-            </Text>
-          </Card>
-        ) : null}
-
-        <View style={{ gap: 10, marginTop: 12 }}>
-          {result.results.map((r, i) => (
-            <Card key={`${r.title}-${i}`} testID={`scan-result-${i}`}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "flex-start",
-                  gap: 12,
-                }}
-              >
-                <View
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 10,
-                    backgroundColor: "rgba(16,185,129,0.18)",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <TrendingUp color={theme.primary} size={18} />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: theme.dim,
-                        fontSize: 10,
-                        letterSpacing: 1,
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {r.category}
-                    </Text>
-                    <Text
-                      style={{
-                        color: theme.gold,
-                        fontSize: 16,
-                        fontWeight: "700",
-                      }}
-                    >
-                      {r.amount.toLocaleString("fr-FR")} €
-                      {r.frequency === "monthly"
-                        ? "/mois"
-                        : r.frequency === "yearly"
-                          ? "/an"
-                          : ""}
-                    </Text>
-                  </View>
-                  <Text
-                    style={{
-                      color: theme.text,
-                      fontSize: 15,
-                      fontWeight: "600",
-                      marginTop: 2,
-                    }}
-                  >
-                    {r.title}
-                  </Text>
-                  <Text
-                    style={{
-                      color: theme.muted,
-                      fontSize: 12,
-                      marginTop: 4,
-                      lineHeight: 17,
-                    }}
-                  >
-                    {r.description}
-                  </Text>
-                </View>
-              </View>
-            </Card>
-          ))}
-        </View>
-
-        <View style={{ marginTop: 20 }}>
-          <Button
-            testID="scan-new"
-            variant="secondary"
-            onPress={resetScan}
-          >
-            Lancer un nouveau scan
-          </Button>
-        </View>
-      </Screen>
-    );
-  }
+  if (result) return <ScanEstimateResults result={result} onReset={() => { void reset(); }} />;
 
   return (
     <Screen>
       <View style={{ marginBottom: 20, marginTop: 8 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 6,
-            marginBottom: 4,
-          }}
-        >
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 4, }}>
           <Search color={theme.primary} size={18} />
-          <Text
-            style={{ color: theme.primary, fontSize: 12, letterSpacing: 1.5 }}
-          >
+          <Text style={{ color: theme.primary, fontSize: 12, letterSpacing: 1.5 }}>
             SCANNER FINANCIER
           </Text>
         </View>
-        <Text
-          style={{
-            color: theme.text,
-            fontSize: 26,
-            fontWeight: "700",
-            marginTop: 4,
-          }}
-        >
-          Ta situation en 2 minutes.
+        <Text style={{ color: theme.text, fontSize: 26, fontWeight: "700", marginTop: 4, }}>
+          Une estimation pour ta situation.
         </Text>
         <Text style={{ color: theme.muted, fontSize: 13, marginTop: 6 }}>
-          AideIA analyse 200+ aides, optimisations et droits oubliés.
+          AideIA propose des pistes d’aides et de droits à vérifier auprès des organismes.
         </Text>
       </View>
 
       <Card testID="scanner-emploi-card">
-        <Text
-          style={{
-            color: theme.muted,
-            fontSize: 11,
-            letterSpacing: 1,
-            marginBottom: 10,
-            textTransform: "uppercase",
-          }}
-        >
+        <Text style={{ color: theme.muted, fontSize: 11, letterSpacing: 1, marginBottom: 10, textTransform: "uppercase", }}>
           Ta situation pro
         </Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
           {EMPLOIS.map((e) => (
             <Chip
               key={e.id}
+              disabled={loading || !formReady}
               label={e.label}
               active={emploi === e.id}
               onPress={() => setEmploi(e.id)}
@@ -362,32 +175,18 @@ export default function ScannerScreen() {
       </Card>
 
       <View style={{ marginTop: 10 }}>
-        <Input
-          label="Revenus nets mensuels (€)"
-          value={revenus}
-          onChangeText={setRevenus}
-          keyboardType="numeric"
-          placeholder="Ex: 2100"
-          testID="scanner-revenus"
-        />
+        <Input editable={!loading && formReady} label="Revenus nets mensuels (€)" value={revenus} onChangeText={setRevenus} keyboardType="numeric" placeholder="Ex: 2100" testID="scanner-revenus" />
       </View>
 
       <Card testID="scanner-logement-card">
-        <Text
-          style={{
-            color: theme.muted,
-            fontSize: 11,
-            letterSpacing: 1,
-            marginBottom: 10,
-            textTransform: "uppercase",
-          }}
-        >
+        <Text style={{ color: theme.muted, fontSize: 11, letterSpacing: 1, marginBottom: 10, textTransform: "uppercase", }}>
           Logement
         </Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
           {LOGEMENTS.map((l) => (
             <Chip
               key={l.id}
+              disabled={loading || !formReady}
               label={l.label}
               active={logement === l.id}
               onPress={() => setLogement(l.id)}
@@ -399,33 +198,19 @@ export default function ScannerScreen() {
 
       {logement === "locataire" ? (
         <View style={{ marginTop: 10 }}>
-          <Input
-            label="Loyer mensuel (€)"
-            value={loyer}
-            onChangeText={setLoyer}
-            keyboardType="numeric"
-            placeholder="Ex: 650"
-            testID="scanner-loyer"
-          />
+          <Input editable={!loading && formReady} label="Loyer mensuel (€)" value={loyer} onChangeText={setLoyer} keyboardType="numeric" placeholder="Ex: 650" testID="scanner-loyer" />
         </View>
       ) : null}
 
       <Card testID="scanner-famille-card">
-        <Text
-          style={{
-            color: theme.muted,
-            fontSize: 11,
-            letterSpacing: 1,
-            marginBottom: 10,
-            textTransform: "uppercase",
-          }}
-        >
+        <Text style={{ color: theme.muted, fontSize: 11, letterSpacing: 1, marginBottom: 10, textTransform: "uppercase", }}>
           Famille
         </Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
           {FAMILLES.map((f) => (
             <Chip
               key={f.id}
+              disabled={loading || !formReady}
               label={f.label}
               active={famille === f.id}
               onPress={() => setFamille(f.id)}
@@ -437,52 +222,26 @@ export default function ScannerScreen() {
 
       <View style={{ flexDirection: "row", gap: 10, marginTop: 10 }}>
         <View style={{ flex: 1 }}>
-          <Input
-            label="Enfants"
-            value={enfants}
-            onChangeText={setEnfants}
-            keyboardType="numeric"
-            placeholder="0"
-            testID="scanner-enfants"
-          />
+          <Input editable={!loading && formReady} label="Enfants" value={enfants} onChangeText={setEnfants} keyboardType="numeric" placeholder="0" testID="scanner-enfants" />
         </View>
         <View style={{ flex: 1 }}>
-          <Input
-            label="Âge"
-            value={age}
-            onChangeText={setAge}
-            keyboardType="numeric"
-            placeholder="Ex: 32"
-            testID="scanner-age"
-          />
+          <Input editable={!loading && formReady} label="Âge" value={age} onChangeText={setAge} keyboardType="numeric" placeholder="Ex: 32" testID="scanner-age" />
         </View>
       </View>
 
       <View style={{ marginTop: 10 }}>
-        <Input
-          label="Région / Département"
-          value={region}
-          onChangeText={setRegion}
-          placeholder="Ex: Doubs, Paris, Occitanie"
-          testID="scanner-region"
-        />
+        <Input editable={!loading && formReady} label="Région / Département" value={region} onChangeText={setRegion} placeholder="Ex: Doubs, Paris, Occitanie" testID="scanner-region" />
       </View>
 
       {error ? (
-        <View
-          style={{
-            marginTop: 12,
-            padding: 12,
-            borderRadius: 12,
-            backgroundColor: "rgba(239,68,68,0.12)",
-            borderWidth: 1,
-            borderColor: "rgba(239,68,68,0.3)",
-          }}
-        >
+        <View style={{ marginTop: 12, padding: 12, borderRadius: 12, backgroundColor: "rgba(239,68,68,0.12)", borderWidth: 1, borderColor: "rgba(239,68,68,0.3)", }}>
           <Text style={{ color: theme.danger, fontSize: 13 }}>{error}</Text>
         </View>
       ) : null}
 
+      <Text style={{ color: theme.muted, fontSize: 12, marginTop: 16 }}>En gratuit, chaque nouvelle demande, même échouée ou incertaine, compte dans la limite de 5 scans par 24 h. Reprendre la même demande ne relance pas le modèle. Modifier le contenu crée une nouvelle demande. Ce décompte ne déclenche aucun paiement.</Text>
+      {attempt || !ready ? <Button testID="scanner-new-intent" variant="secondary" disabled={loading || preparing || !userId} onPress={() => { void reset(); }}>Préparer une nouvelle demande</Button> : null}
+      {!formReady && !error ? <Text style={{ color: theme.muted, marginTop: 8 }}>{userId ? 'Lecture de la demande conservée…' : 'Connexion requise.'}</Text> : null}
       <View style={{ marginTop: 20 }}>
         <Button
           testID="scanner-submit"
@@ -490,21 +249,13 @@ export default function ScannerScreen() {
           loading={loading}
           disabled={!canSubmit}
         >
-          {loading ? "Scan en cours…" : "Lancer le scan →"}
+          {loading ? "Scan en cours…" : sameContent ? "Reprendre cette demande →" : "Lancer un nouveau scan →"}
         </Button>
         {loading ? (
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8,
-              marginTop: 12,
-            }}
-          >
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 12, }}>
             <ActivityIndicator color={theme.primary} size="small" />
             <Text style={{ color: theme.muted, fontSize: 12 }}>
-              AideIA analyse 200+ aides · 10 à 30 secondes
+              Préparation d’une estimation indicative…
             </Text>
           </View>
         ) : null}

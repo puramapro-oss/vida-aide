@@ -23,6 +23,7 @@ export const VIDA_AIDE_STRIPE_PLANS = {
 export type VidaAidePlanId = keyof typeof VIDA_AIDE_STRIPE_PLANS
 
 export async function createCheckoutSession(params: {
+  profileId: string
   customerId?: string
   customerEmail?: string
   plan: VidaAidePlanId
@@ -49,7 +50,7 @@ export async function createCheckoutSession(params: {
           product_data: {
             name: planCfg.label,
             description:
-              "Récupère TOUT l'argent que tu laisses sur la table — aides sociales, optimisation fiscale, droits oubliés. AideIA fait les démarches pour toi.",
+              "Repère des aides, des pistes fiscales et des droits à vérifier. AideIA t’aide à comprendre les conditions et à préparer tes démarches.",
           },
           recurring: { interval: params.interval === 'monthly' ? 'month' : 'year' },
           unit_amount: amount,
@@ -61,6 +62,7 @@ export async function createCheckoutSession(params: {
       trial_period_days: params.trialDays ?? planCfg.trial_days,
       metadata: {
         app_slug: 'vida-aide',
+        profile_id: params.profileId,
         plan: params.plan,
         interval: params.interval,
         ...(params.referralCode ? { referral_code: params.referralCode } : {}),
@@ -68,6 +70,7 @@ export async function createCheckoutSession(params: {
     },
     metadata: {
       app_slug: 'vida-aide',
+      profile_id: params.profileId,
       plan: params.plan,
       interval: params.interval,
       ...(params.referralCode ? { referral_code: params.referralCode } : {}),
@@ -75,7 +78,7 @@ export async function createCheckoutSession(params: {
     success_url: params.successUrl,
     cancel_url: params.cancelUrl,
   }, {
-    idempotencyKey: `checkout:${params.customerId ?? params.customerEmail ?? 'anon'}:${params.plan}:${params.interval}:${new Date().toISOString().slice(0, 10)}`,
+    idempotencyKey: `checkout:${params.profileId}:${params.plan}:${params.interval}:${new Date().toISOString().slice(0, 10)}`,
   })
 }
 

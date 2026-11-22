@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-22",
+  "base": "af8eda90be63dba1592f347a9356b85fc0144b55",
+  "status": "PASS for bounded local checks; native device and full application qualification not claimed",
+  "scope": "8 screens, native response component, native API identity binding and existing-response validation",
+  "tests": {
+    "status": "PASS",
+    "total": 31,
+    "presentation": 17,
+    "native_scanner_real_handler": 12,
+    "real_prompt_mock_sdk": 2,
+    "test_runner": "Node24.22.3 with one worker and heap512MiB"
+  },
+  "lint": {
+    "status": "PASS",
+    "files": 11,
+    "errors": 0,
+    "warnings": 0,
+    "rules": "TypeScript recommended + PURAMA unchanged + hooks rules/exhaustive-deps",
+    "eslint": "9.39.5"
+  },
+  "types": {
+    "status": "PASS",
+    "entrypoints": 6,
+    "source_files": 357,
+    "diagnostics": 0,
+    "typescript": "5.9.3",
+    "coverage": "5 web screens and pure native scan contract, including transitive source imports",
+    "dependency_banks": "Next16.2.11/Zod4.3.6/@supabase2.103.0, React declarations19.2.14; UI package declarations from existing QA bank; not a canonical full install"
+  },
+  "boundaries": [
+    "Real component logic, real mobile API helper and real scan POST execute together",
+    "React19.2.4/JSDOM27.0.1; native visual primitives, focus lifecycle, router and haptics adapted",
+    "Supabase session/database and paid SDK boundaries simulated; no real provider/network/database/payment operation",
+    "Counter animation and ShareStoryButton I/O adapted; actual caller props are asserted"
+  ],
+  "preserved": [
+    "No schema or data migration by this UI lot",
+    "Historical profile values remain unverified and are never substituted for current estimates",
+    "Wallet balances, transaction amounts, commission calculations and withdrawal threshold unchanged",
+    "Malformed or arithmetically incoherent stored scans are unavailable without rewriting their data",
+    "No automatic retry after uncertain scan response"
+  ],
+  "limitations": [
+    "No full Expo54/ReactNative0.81.5 typecheck: exact dependencies not found in bounded existing banks",
+    "No native device or browser visual qualification",
+    "GitNexus indexing was terminated137; impact remains UNKNOWN, compensated by source/caller inventory and targeted regression checks",
+    "Publication and native CI reception owned by the coordinating agent"
+  ],
+  "sources": {
+    "src/app/(dashboard)/dashboard/page.tsx": "56462c25e206f7492b3f316429bc314da3385204127b7d12deaa7beb72288107",
+    "src/app/(dashboard)/dashboard/profile/page.tsx": "b9017ae172a9401c438eb941aecc8b68c3b46735065e9eb7dd4e4a7b0932e902",
+    "src/app/(dashboard)/dashboard/admin/page.tsx": "134b3075a3e4acfb53f7053cca8a66efa15bd6537413f91cf689cf92a1e4998c",
+    "src/app/(dashboard)/scanner/[id]/page.tsx": "006a15a28d762da6351d16b55a004b48532426f618f49e062d8a1035534b98a5",
+    "src/app/(dashboard)/dashboard/wallet/page.tsx": "ed2912a48f8b5afc4e54bc82b749c938f9119abcecb02f3c621bbc5ccdb67143",
+    "mobile/app/(tabs)/dashboard.tsx": "020f0e0c7f710f661269d7ea17ceab5abd350253a40a9cb74bfe60049cd3db6e",
+    "mobile/app/(tabs)/wallet.tsx": "e611a4aa59063c5c6d1b13a5ff301c2f6c7d8b985d38cf40e13776544d113343",
+    "mobile/app/(tabs)/scanner.tsx": "e1bdbc9f0b415552cdf933eb7b3bb6ad38dc02656c851b540d39eaeec7c4ab4b",
+    "mobile/components/ScanEstimateResults.tsx": "1d17583e2732779df2bd89b8d028a2180088b4a20743322273b751e4dff5cde2",
+    "mobile/lib/api.ts": "d405f3ee2c02ead5c7dc1d4445c81396f1fb4d8e280e22ea97422bb18b475ca1",
+    "mobile/lib/scan.ts": "e5f12583e3cae81af1c84fa7394165358440a08d63a59082aefbb778228a60c2"
+  },
+  "test_sources": {
+    "verification/scan/presentation-harness.cjs": "053381932b59f976143f95cbd8545cf13a65a5964ca33453ee86d6fc5914212f",
+    "verification/scan/presentation.test.cjs": "167dc37666a23fe50c6e0958c1c2de3fe46ac533b4e72512b1ad150e8b451f90",
+    "verification/scan/native-scanner.test.cjs": "dd957a8b993d572e6435e1b9792065aa16f1a156b201343b2595b172df2d74fd",
+    "verification/scan/prompt.test.cjs": "126d8f1caf6ceca00d6f7660eb67a56af30563460dbbb204e2b2525b9087af3e"
+  },
+  "integration_sources": {
+    "src/app/api/scan/route.ts": "e261e968ffd9c9f78db0dbd23c3d09cd58cbf85227f025f6046fd28cca0f5c9a",
+    "src/lib/scan-result.ts": "1e77a13c0ccc40fb0f7a4f32ca2fd3c02e5256af09fcd17dae935025c7ca5ad6",
+    "src/lib/claude.ts": "210405674c8f2fdcc95bfd3bcd1ec5cf6284ec9cd0c7a6e15dbbaec91a8d965b"
+  },
+  "evidence": {
+    "verification/scan/presentation-evidence/initial-regression.txt": "51354e724d1e22f46122dc29a60639e5129f56dacabf4d5e73257ed8747cb1b5",
+    "verification/scan/presentation-evidence/lint.txt": "6f1aa6ca4d7856c908cbec7b039ed2aaa6221e96c5bd8fe231d808f5fb5d651a",
+    "verification/scan/presentation-evidence/tests.txt": "e28024d68428c1dc099d4ad7bf4fedc1c31398b88a7476d6e0e2be21433087a0",
+    "verification/scan/presentation-evidence/types.txt": "6ac9a79caa2142bf4dc627bade6037e88ffedf3f280de17576b832a29ecfc931"
+  },
+  "review": "Independent MUKTI review plus enum-array counterexamples rejected; exact latest source hash communicated after error-class-only adjustment"
+}
