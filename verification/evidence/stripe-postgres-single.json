@@ -1,0 +1,191 @@
+{
+  "status": "PASS",
+  "mode": "native PostgreSQL single-user",
+  "version": "postgres (PostgreSQL) 18.7",
+  "binary_sha256": "18ffe5aa6231bf3b34c0000e32ea9775610168e8ab6e4eb6d444ceee8134e704",
+  "source_sha256": {
+    "setup": "13fe6597e7611ab80ebeff580f6b1643273f5effa689adc020d067b476219ef0",
+    "schema": "82be2d90a524657f954c4990dd35a8a6f889cb2bcefacba704dd18e3a4c4ee48",
+    "profile_migration": "ff4dcc0161aa41b7b0140e6450c97fc83736156b119792595623863d618a112c",
+    "stripe_migration": "268d8eb5543301dfd8696e36f038b774c6387d2bb819c88732722edd44ce1caa",
+    "seed": "abb69a4d12c3e1f5e8f87436460aa0a3025c13bd3990adcf1a5e32f16ca7d4fb",
+    "support": "55a175ff03167385de1a27b948081581710247b4dfc74ff9463554153100e499",
+    "cases": "0e2b2d44e5662e24d067009990089b5b651a03224f609ae20dafe556a7f6d411"
+  },
+  "cases": [
+    {
+      "case": "normal_user_oid_calibration",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "setup",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "apply_migrations",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "actual_handler_fixture",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "private_registry_and_rpc",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "one_paid_checkout",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "same_event_replay",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "distinct_event_same_session",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "distinct_sessions_accumulate",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "unpaid_then_async_paid",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "failed_effect_rolls_back_and_retries",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "legacy_unverified_event_preserved",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "pre_cutover_event_and_session_refused",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "event_identity_conflict",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "currency_and_positive_unconfirmed_payment",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "trial_does_not_invent_payment",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "stale_subscription_read_cannot_restore_access",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "superseded_subscription_cannot_revoke_current",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "subscription_replacement_requires_terminal_receipt",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "historical_values_and_cutover_preserved",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapply_both_migrations",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapplied_permissions",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapplied_history",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    }
+  ],
+  "remote_connections": 0,
+  "concurrent_sessions": 0,
+  "evidence": "/workspace/scratch/dcfb234e0a8f/vida-stripe-pg-evidence-exact/stripe-yp_ke82m",
+  "cluster_removed": true,
+  "http_fixture_source_sha256": {
+    "src/lib/stripe-fulfillment.ts": "2867fdb7d96671703cb1c8bb13d440c1a01c9ae02eba16a304411b32283fe74d",
+    "src/app/api/stripe/webhook/route.ts": "4dbfe44d406a817a6b98a0f660a6af8748d4d961ac1422207757f3335fe59a09",
+    "src/app/api/internal/stripe-fulfillment/route.ts": "76d2b4d2659023c45f32c60728b7f287c7d18c2c1c5892e9c3927717f7a62e72",
+    "verification/stripe-fulfillment/harness.cjs": "741cf2a9e725e7c0bb9244208b192bf262228ab06ad0bbc7cd4afb21cac90ed5",
+    "verification/stripe-fulfillment/emit-fixture.cjs": "aab42637b4c2043f2501dd96c3d26f7e946bd56d40ff4f15d959561edf6c43ce",
+    "verification/stripe-fulfillment/runtime.cjs": "140d0c4b66f97f01b044be4b21c7fa0d2c64cc65f68fd59e5eece92ab39a4f12"
+  },
+  "http_fixture_runtime": {
+    "node": "v24.22.3",
+    "dependencies": {
+      "next": {
+        "actual": "16.2.11",
+        "locked": "16.2.11"
+      },
+      "zod": {
+        "actual": "4.3.6",
+        "locked": "4.3.6"
+      },
+      "typescript": {
+        "actual": "5.9.3",
+        "locked": "5.9.3"
+      },
+      "stripe": {
+        "actual": "22.0.0",
+        "locked": "22.0.0"
+      }
+    },
+    "all_match_lock": true,
+    "network_calls": 0
+  },
+  "behavior_cases": 16
+}

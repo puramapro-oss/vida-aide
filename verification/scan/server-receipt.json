@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-11-22T03:58:51.155372+00:00",
+  "status": "PASS_LOCAL_BOUNDED_CHECKS",
+  "scope": "Scan provenance, atomic reservation and actual-provider SDK controls with synthetic transport",
+  "base": "af8eda90be63dba1592f347a9356b85fc0144b55",
+  "tests": {
+    "actual_route": 53,
+    "estimate_arithmetic": 11,
+    "reservation_and_interruption": 23,
+    "real_sdk_synthetic_transport": 2,
+    "total": 89,
+    "combined_run_log": "verification/scan/server-evidence/combined-before-contest.tap"
+  },
+  "initial_regression": {
+    "tests": 53,
+    "pass": 8,
+    "fail": 45,
+    "log": "verification/scan/server-evidence/initial-regression.txt"
+  },
+  "initial_quota_race": "verification/evidence/scan-quota-before.json",
+  "postgresql": {
+    "status": "PASS",
+    "version": "18.7",
+    "behavioral_cases": 16,
+    "mode": "single-user, no socket",
+    "receipt": "verification/evidence/scan-postgres-single.json"
+  },
+  "concurrency": {
+    "status": "NON_TESTE",
+    "cases_defined": 6,
+    "gate": "verification/scan-quota/concurrency.cjs",
+    "reason": "Local server sockets are unavailable; actual multi-session execution remains a CI gate"
+  },
+  "lint": "verification/evidence/backend-candidate-lint.json",
+  "strict_typecheck": "verification/evidence/backend-candidate-typecheck.json",
+  "runtime": "verification/evidence/backend-runtime-assembly.json",
+  "sources": {
+    "src/app/api/scan/route.ts": "ba64e7786f01cce3ddb72dae90c894b5fa36b338589a785dbef2b2ff26ab35ec",
+    "src/lib/scan-result.ts": "d1da1589029f9607bbc15e4a14385f1990a4259fa5aa4ea8d7626057d1beae83",
+    "src/lib/scan-admission.ts": "9d3e5cce93ae4b252b1e59c049c117948b1388a2a895681510bdb4d4e464c928",
+    "src/lib/scan-provider.ts": "f267b55b639b2201f9fef822db37991549ee0abd06f38730e050e491ff4c0462",
+    "src/lib/claude.ts": "85b29a78262fbdbd571704ac8d28b51d864a30dfdc332858a64dee238089174e",
+    "src/lib/constants.ts": "cb7f661055225b9e69e85d91db57e256cba3f8cbc4c9e5f995a2a07185d55e49",
+    "migrations/0006_scan_admission.sql": "ba0b1793f103a3c92a13a6a6be25d1d984dd3a152a44de3002a0bfc02391246c",
+    "verification/scan/scan-route-harness.cjs": "1b082ceb8d540d456904e3944dbdc92d422bf56f68e26565eb7ecbbbfc1598d5",
+    "verification/scan/scan-rpc-double.cjs": "e621acf43dc18f2f84138801ed6d462d7a5f494c184e0a3168b17a686fbcab3b",
+    "verification/scan/scan-route.test.cjs": "eabdf5018307fa972db02c7be64a09a9997f8c2abf54f5f9245a80e1c7542eeb",
+    "verification/scan/scan-arithmetic.test.cjs": "dc8425dcd5f25dbf6a3f99682d2a23ca12ba52af335392b73494c6d15478d38a",
+    "verification/scan/scan-reservation.test.cjs": "56c28f84215a6c4b037e5c84b5a82d468f1e2c98fbae3d124b9d0fad04d958e5",
+    "verification/scan/provider-controls.test.cjs": "a547172064b49e193992a6ba7fab5b0170e028c060a429d98dcda394664bdde2",
+    "verification/scan-quota/seed.sql": "0e2e6697f9cba0d42f7dbd5caeb8571a7bd60e3319ef3a64592b4f8baa462216",
+    "verification/scan-quota/support.sql": "3132bd3f43795d582e6d333acf8a07aa9fc3cdbb8bd4867ae076e99f128e1f4a",
+    "verification/scan-quota/cases.sql": "262d7d10365fc00a63f02166db8a26620152f68f273b1bb65d51e3520f784459",
+    "verification/scan-quota/emit-fixture.cjs": "dd3008d5245287341d6aa293a91b796fc0fffe37772367c2c41b2cde1969ad5e",
+    "verification/scan-quota/run-postgres.py": "2ec47dd768e753b3253b1ac9a4e94a9f05291f6d8c854e57e3693a4635b730d3",
+    "verification/scan-quota/concurrency.cjs": "e0264249633324b68ba249fac3d457a48b16d4b88246fc36b172fa86f9fa8d7c",
+    "verification/local-postgres-fixture.cjs": "838326ba4589b8621df680d8f7e2bcaf25fe2a2e780a6863000ad42ec2ab879e",
+    "verification/package-lock.json": "28c32a43131834920a68db3e69f196604e989e4f96341ad001ee1ec369aa6fc5"
+  },
+  "limits": [
+    "No real provider call, production database or deployment.",
+    "Quota use after interruption does not prove whether an upstream charge occurred.",
+    "The arithmetic validator does not qualify legal eligibility or cumulation.",
+    "Historical recovered-money values are retained without retroactive reconciliation.",
+    "Full Next/Expo builds and native hardware are outside these bounded checks.",
+    "GitNexus index exited137; impacts remain UNKNOWN with manual caller review."
+  ]
+}

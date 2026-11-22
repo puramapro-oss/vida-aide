@@ -147,10 +147,10 @@ function Hero() {
         {/* Trust badges */}
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[
-            { icon: Shield, label: 'RGPD' },
-            { icon: Zap, label: 'Scan en 10 sec' },
-            { icon: Globe, label: '8 corridors frontaliers' },
-            { icon: Sparkles, label: 'IA française' },
+            { icon: Shield, label: 'Ton espace personnel' },
+            { icon: Zap, label: 'Estimations indicatives' },
+            { icon: Globe, label: 'Situations frontalières' },
+            { icon: Sparkles, label: 'Assistant en français' },
           ].map((b) => (
             <div key={b.label} className="glass flex items-center gap-2 rounded-xl border border-[var(--border)] p-3 text-xs text-[var(--text-secondary)]">
               <b.icon className="h-4 w-4 shrink-0 text-[var(--cyan)]" />
@@ -168,22 +168,22 @@ function Features() {
     {
       icon: Search,
       title: '1. Décris ta situation',
-      body: '4 questions rapides : âge, revenus, logement, situation familiale. AideIA te comprend en 30 secondes.',
+      body: 'Renseigne tes revenus, ton logement et ta situation familiale pour orienter les pistes proposées.',
     },
     {
       icon: Sparkles,
       title: '2. AideIA scanne tes droits',
-      body: 'En 10 secondes, IA analyse 200+ aides françaises et conventions fiscales. Tu vois le montant total récupérable.',
+      body: 'AideIA propose des pistes et des estimations indicatives. Les conditions et les montants restent à confirmer auprès des organismes.',
     },
     {
       icon: Coins,
-      title: '3. Lance les démarches',
-      body: '1 clic pour activer chaque demande. Lettres pré-remplies, rappels automatiques, suivi en temps réel.',
+      title: '3. Prépare les démarches',
+      body: 'Consulte les conditions et prépare les pièces demandées avant de déposer ton dossier auprès de l’organisme.',
     },
     {
       icon: Wallet,
-      title: '4. Encaisse',
-      body: "L'argent récupéré atterrit sur ton compte. Tu reçois aussi des points et des places aux concours hebdo.",
+      title: '4. Vérifie les retours',
+      body: "Les organismes décident des aides et de leur versement. Le portefeuille affiche séparément les crédits de l’application.",
     },
   ]
 
@@ -195,7 +195,7 @@ function Features() {
             Comment ça marche
           </h2>
           <p className="mt-4 text-base text-[var(--text-secondary)]">
-            En 2 minutes, tu sais combien tu peux récupérer. En 1 clic, tu lances les démarches.
+            Repère des pistes adaptées à ta situation, puis confirme les conditions avec les organismes concernés.
           </p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">

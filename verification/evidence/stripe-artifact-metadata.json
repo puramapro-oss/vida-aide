@@ -1,0 +1,11 @@
+{
+  "package": "stripe",
+  "lock_version": "22.0.0",
+  "cache_integrity_valid": true,
+  "tar_manifest_version": "22.0.0",
+  "tar_internal_package_version": "21.0.1",
+  "extracted_core_equal_tar": true,
+  "core_sha256": "e7788d001e4398ce8d46c8c367c7c4690220417b7f17a960d517caa5c5936220",
+  "status": "ARTIFACT_METADATA_DISCREPANCY",
+  "no_network": true
+}

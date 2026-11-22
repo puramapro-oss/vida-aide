@@ -1,0 +1,38 @@
+{
+  "name": "vida-aide-scan-and-receipts-verification",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "description": "Isolated checks of real source with no production credentials or paid provider calls.",
+  "scripts": {
+    "test:scan": "node --test --test-concurrency=1 scan/scan-*.test.cjs scan/provider-controls.test.cjs",
+    "test:presentation": "node --test --test-concurrency=1 scan/presentation.test.cjs scan/native-scanner.test.cjs scan/prompt.test.cjs scan/request-replay.test.cjs",
+    "test:profile": "node --test profiles-permissions/profile-update.test.cjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.82.0",
+    "@supabase/ssr": "0.10.0",
+    "@supabase/supabase-js": "2.101.1",
+    "@testing-library/react": "16.3.0",
+    "@types/node": "20.19.39",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "clsx": "2.1.1",
+    "jsdom": "27.0.1",
+    "next": "16.2.11",
+    "pg": "8.23.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "stripe": "22.0.0",
+    "tailwind-merge": "3.5.0",
+    "typescript": "5.9.3",
+    "zod": "4.3.6"
+  },
+  "overrides": {
+    "sharp": "^0.35.3",
+    "postcss": "^8.5.18"
+  }
+}

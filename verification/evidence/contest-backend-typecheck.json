@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "targeted strict source typecheck",
+  "diagnostics": 0,
+  "typescript": "5.9.3",
+  "targets": [
+    "src/app/api/cron/contest-weekly/route.ts"
+  ],
+  "sourceSha256": {
+    "src/lib/constants.ts": "cb7f661055225b9e69e85d91db57e256cba3f8cbc4c9e5f995a2a07185d55e49",
+    "src/lib/supabase.ts": "f38b2b1325d0c3a518d4347ac1a97906e6dc88c26004e131f0ce210f5d0b8fb4",
+    "src/app/api/cron/contest-weekly/route.ts": "47f64e0fa47de776f5da933f695c87e31a8cbdc7dad67270c9bdf8225d2bfa76"
+  }
+}

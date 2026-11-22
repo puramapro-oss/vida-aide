@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "tests": 44,
+  "failures": 0,
+  "runtime": {
+    "node": "v24.22.3",
+    "dependencies": {
+      "next": {
+        "actual": "16.2.11",
+        "locked": "16.2.11"
+      },
+      "zod": {
+        "actual": "4.3.6",
+        "locked": "4.3.6"
+      },
+      "typescript": {
+        "actual": "5.9.3",
+        "locked": "5.9.3"
+      },
+      "stripe": {
+        "actual": "22.0.0",
+        "locked": "22.0.0"
+      }
+    },
+    "all_match_lock": true,
+    "network_calls": 0
+  },
+  "log_name": "vida-stripe-exact-backend-routes.log",
+  "limits": [
+    "database boundary simulated in HTTP tests",
+    "PostgreSQL transaction tested separately with the emitted handler fixture",
+    "no remote provider or payment"
+  ],
+  "stripe_integrity": "sha512-q1UgXXpSfZCmkyzZEh3vFEWT7+ajuaFGqaP9Tsi2NMtwlkigIWNr+KBIUQqtNeNEsreDKgdn+BP5HRW9JDj22Q==",
+  "backend_resolution": "53 exact locked manifests and 55 transitive edges; preserve-symlinks",
+  "artifact_metadata_discrepancy": {
+    "package": "stripe",
+    "lock_version": "22.0.0",
+    "cache_integrity_valid": true,
+    "tar_manifest_version": "22.0.0",
+    "tar_internal_package_version": "21.0.1",
+    "extracted_core_equal_tar": true,
+    "core_sha256": "e7788d001e4398ce8d46c8c367c7c4690220417b7f17a960d517caa5c5936220",
+    "status": "ARTIFACT_METADATA_DISCREPANCY",
+    "no_network": true
+  }
+}

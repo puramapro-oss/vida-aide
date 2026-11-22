@@ -1,0 +1,17 @@
+{
+  "status": "REPRODUCED_FAILURE",
+  "scope": "real POST, controlled persistence boundary; not a PostgreSQL concurrency test",
+  "beforeCount": 4,
+  "observed": [
+    4,
+    4
+  ],
+  "providerCalls": 2,
+  "statuses": [
+    200,
+    200
+  ],
+  "inserted": 2,
+  "afterCount": 6,
+  "requiredMaximum": 5
+}

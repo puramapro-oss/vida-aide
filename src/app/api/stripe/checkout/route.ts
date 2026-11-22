@@ -15,8 +15,8 @@ const BodySchema = z.object({
 
 export async function POST(req: Request) {
   const sb = await createServerSupabaseClient()
-  const { data: { user } } = await sb.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Connexion requise.' }, { status: 401 })
+  const { data: { user }, error: authError } = await sb.auth.getUser()
+  if (authError || !user) return NextResponse.json({ error: 'Connexion requise.' }, { status: 401 })
 
   const json = await req.json().catch(() => ({}))
   const parsed = BodySchema.safeParse(json)
@@ -25,11 +25,12 @@ export async function POST(req: Request) {
   }
 
   const admin = createServiceClient()
-  const { data: profile } = await admin
+  const { data: profile, error: profileError } = await admin
     .from('profiles')
     .select('id, email, stripe_customer_id, role')
     .eq('auth_user_id', user.id)
     .maybeSingle()
+  if (profileError) return NextResponse.json({ error: 'Profil momentanément indisponible.' }, { status: 503 })
   if (!profile) return NextResponse.json({ error: 'Profil introuvable.' }, { status: 404 })
 
   if (profile.role === 'super_admin') {
@@ -38,6 +39,7 @@ export async function POST(req: Request) {
 
   try {
     const session = await createCheckoutSession({
+      profileId: profile.id,
       customerId: profile.stripe_customer_id ?? undefined,
       customerEmail: profile.email ?? user.email ?? undefined,
       plan: 'premium',
@@ -46,9 +48,11 @@ export async function POST(req: Request) {
       cancelUrl: `${APP_URL}/pricing`,
       referralCode: parsed.data.referral_code,
     })
+    if (typeof session.url !== 'string' || new URL(session.url).protocol !== 'https:') {
+      throw new Error('Missing checkout URL')
+    }
     return NextResponse.json({ url: session.url })
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : 'Erreur Stripe'
-    return NextResponse.json({ error: 'Stripe indisponible : ' + msg }, { status: 502 })
+  } catch {
+    return NextResponse.json({ error: 'Paiement momentanément indisponible.' }, { status: 502 })
   }
 }

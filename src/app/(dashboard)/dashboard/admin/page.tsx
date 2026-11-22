@@ -13,8 +13,8 @@ interface Stats {
   total_users: number
   total_scans: number
   total_messages: number
-  total_recovered: number
-  premium_users: number
+  total_recovered: number | null
+  premium_users: number | null
 }
 
 export default function AdminPage() {
@@ -22,6 +22,7 @@ export default function AdminPage() {
   const { isSuperAdmin, loading: authLoading } = useAuth()
   const [stats, setStats] = useState<Stats | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     if (authLoading) return
@@ -29,27 +30,43 @@ export default function AdminPage() {
       router.replace('/dashboard')
       return
     }
+    let cancelled = false
+    setLoading(true)
+    setError(false)
     const sb = createClient()
-    Promise.all([
+    async function load() {
+      try {
+        const [users, scans, messages, profiles] = await Promise.all([
       sb.from('profiles').select('id', { count: 'exact', head: true }),
       sb.from('scans').select('id', { count: 'exact', head: true }),
       sb.from('messages').select('id', { count: 'exact', head: true }),
       sb.from('profiles').select('total_money_recovered, subscription_plan'),
-    ]).then(([users, scans, messages, profiles]) => {
-      const totalRecovered = (profiles.data ?? []).reduce(
-        (s: number, p: { total_money_recovered: number | null }) => s + Number(p.total_money_recovered ?? 0),
-        0,
-      )
-      const premium = (profiles.data ?? []).filter((p: { subscription_plan: string }) => p.subscription_plan === 'premium').length
-      setStats({
-        total_users: users.count ?? 0,
-        total_scans: scans.count ?? 0,
-        total_messages: messages.count ?? 0,
+        ])
+        if ([users, scans, messages, profiles].some((result) => result.error)
+          || users.count === null || scans.count === null || messages.count === null || !Array.isArray(profiles.data)) {
+          throw new Error('Statistics unavailable')
+        }
+        const complete = profiles.data.length === users.count
+        const amounts = profiles.data.map((p: { total_money_recovered: unknown }) => p.total_money_recovered)
+        const valid = amounts.every((value: unknown) => typeof value === 'number' && Number.isFinite(value) && value >= 0)
+        const totalRecovered = complete && valid ? (amounts as number[]).reduce((sum, value) => sum + value, 0) : null
+        const premium = complete ? profiles.data.filter((p: { subscription_plan: string }) => p.subscription_plan === 'premium').length : null
+        if (cancelled) return
+        setStats({
+        total_users: users.count,
+        total_scans: scans.count,
+        total_messages: messages.count,
         total_recovered: totalRecovered,
         premium_users: premium,
-      })
-      setLoading(false)
-    })
+        })
+      } catch {
+        if (!cancelled) { setStats(null); setError(true) }
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    void load()
+    return () => { cancelled = true }
   }, [authLoading, isSuperAdmin, router])
 
   if (!isSuperAdmin) return null
@@ -61,17 +78,20 @@ export default function AdminPage() {
         <p className="mt-1 text-sm text-[var(--text-secondary)]">Vue d&apos;ensemble PURAMA Aide.</p>
       </header>
 
-      {loading || !stats ? (
+      {error ? (
+        <Card className="p-8 text-center text-sm text-[var(--text-muted)]" role="alert">Impossible de charger les statistiques. Recharge la page pour réessayer.</Card>
+      ) : loading || !stats ? (
         <Card className="p-8 text-center text-sm text-[var(--text-muted)]">Chargement…</Card>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <StatCard icon={Users} label="Utilisateurs" value={String(stats.total_users)} />
-          <StatCard icon={Coins} label="Premium" value={String(stats.premium_users)} />
+          <StatCard icon={Coins} label="Premium" value={stats.premium_users === null ? 'Données incomplètes' : String(stats.premium_users)} />
           <StatCard icon={Search} label="Scans réalisés" value={String(stats.total_scans)} />
           <StatCard icon={MessageSquare} label="Messages chat" value={String(stats.total_messages)} />
-          <StatCard icon={TrendingUp} label="€ récupérés" value={formatEurosFraction(stats.total_recovered)} />
+          <StatCard icon={TrendingUp} label="Historique non vérifié" value={stats.total_recovered === null || !Number.isFinite(stats.total_recovered) ? 'Total indisponible' : formatEurosFraction(stats.total_recovered)} />
         </div>
       )}
+      <p className="text-xs text-[var(--text-muted)]">Les anciens compteurs des profils sont conservés sans attestation de versement. Un total historique indisponible peut signaler des données absentes, invalides ou une lecture incomplète.</p>
 
       <Link
         href="/dashboard/admin/financement"

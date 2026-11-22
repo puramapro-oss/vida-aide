@@ -1,0 +1,75 @@
+{
+  "status": "PARTIEL",
+  "scope": "Weekly contest atomic settlement verification only",
+  "http": {
+    "status": "PASS",
+    "tests": 50,
+    "pass": 50,
+    "fail": 0,
+    "skipped": 0,
+    "log": "evidence/http-tests.txt"
+  },
+  "native_postgresql": {
+    "status": "PASS",
+    "behavior_cases": 19,
+    "phases": 32,
+    "cluster_removed": true,
+    "receipt": "evidence/native-receipt.json",
+    "log": "evidence/native-run.txt"
+  },
+  "original_counterexample": {
+    "status": "DEFECT_REPRODUCED",
+    "commit": "af8eda90be63dba1592f347a9356b85fc0144b55",
+    "receipt": "evidence/baseline-receipt.json",
+    "boundary": "Real original handler; synthetic persistence replies with final UPDATE failure"
+  },
+  "concurrency": {
+    "status": "NON TESTE",
+    "syntax": "PASS",
+    "scenarios": [
+      "two_actual_handlers_same_contest",
+      "two_contests_share_one_wallet"
+    ],
+    "socket_runs_local": 0,
+    "static_reviews": [
+      {
+        "reviewer": "/root/one_completion",
+        "status": "PASS",
+        "execution": "none",
+        "source_sha256": "1f0a8cd405bc4ddbecfa77311aa1566d540d6c1b1e7bf141d68696efa1be6bcf",
+        "shared_launcher_sha256": "838326ba4589b8621df680d8f7e2bcaf25fe2a2e780a6863000ad42ec2ab879e"
+      }
+    ]
+  },
+  "provider_calls": 0,
+  "remote_database_connections": 0,
+  "remote_migrations": 0,
+  "source_sha256": {
+    "verification/contest-payout/baseline.cjs": "01017429dad3588ba5b9ed66c03c9f8c7a796e36f7c99b7fb376d2ab23ce8515",
+    "verification/contest-payout/harness.cjs": "c463dfb4116c5b6249d479353f307c62d0c91b6834bcfaeca647d1d4547152eb",
+    "verification/contest-payout/run-postgres.py": "aebf881014760cc695ac64b8f4c4285856ebd01ce53b89ea1b04254bc1c18c76",
+    "verification/contest-payout/seed.sql": "52209cf28e86406f903dae7588c36f86c0477a3d1d2a0410d306f29792b8bb1f",
+    "verification/contest-payout/emit-fixture.cjs": "66475cbf3287166c537dbc3ab998f9288a107581bbd755706c633cf07f00680f",
+    "verification/contest-payout/routes.test.cjs": "ba2fc6f9d9dbf15a15d85c1192017473f89db9609d370ee7489373801387f23f",
+    "verification/contest-payout/support.sql": "4832e2433c9b4033c973c28b892c9da12ce4b8ec2fdd7c51fdc0d1e165885a7d",
+    "verification/contest-payout/concurrency.cjs": "1f0a8cd405bc4ddbecfa77311aa1566d540d6c1b1e7bf141d68696efa1be6bcf",
+    "verification/contest-payout/cases.sql": "f443d9ec2d1069e26698458884c5e34c45b34e4b1292f100082f92475a68605b",
+    "verification/contest-payout/README.md": "3e76bfead3e8e4d05c662ac23c3b1bc2a776f0d42e067561c7ea48b46b6063c8",
+    "src/app/api/cron/contest-weekly/route.ts": "47f64e0fa47de776f5da933f695c87e31a8cbdc7dad67270c9bdf8225d2bfa76",
+    "migrations/0007_weekly_contest_receipts.sql": "d928e948ba4ae81b97d7b6e25d4e6762a0a8b27509dc0ff6d614915a94c83374"
+  },
+  "evidence_sha256": {
+    "native-receipt.json": "8a15e9aa633ce35a4f4734f5c2936332debfb7848d3b5bd907b57d4b2a5cd07e",
+    "baseline-receipt.json": "069c38a3f3776bff00ed178df22a0e7dbff42fd6a2cb1b59486444920e474a17",
+    "baseline-original-handler.ts.txt": "ec4b53a87af7cc828c1a382265e5e294e408ecb16bd00d0ac79df6c8a721544e",
+    "native-run.txt": "d95c35b891c5cb1ed2c77ecddf4069f54fe3295f6601689a6636d042b7711dff",
+    "http-tests.txt": "fded9961764b2ebfc9e6a6759779f87de9650322478c6eb37ea7dc218de25265",
+    "baseline-run.txt": "514f77cef6bd3ca06b64e2c249242a5051bcff3663935d673ab3842c1764b2da",
+    "initial-missing-binary.txt": "17c9eb343dccca9c79e325c35af4eb4b8bdb2d0244ba36c777c5d873d24be5c6"
+  },
+  "limits": [
+    "No claim of CI success or deployment.",
+    "Single-user PostgreSQL does not prove multiple simultaneous sessions.",
+    "Stripe/contest cross-lock interaction is a static observation, not reproduced."
+  ]
+}

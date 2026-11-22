@@ -30,39 +30,49 @@ export default function DashboardScreen() {
   const user = useAuth((s) => s.user);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [owner, setOwner] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const userId = user?.id;
 
   useEffect(() => {
     let cancelled = false;
+    setProfile(null);
+    setOwner(null);
+    setError(null);
+    setLoading(true);
     (async () => {
-      if (!user) {
-        setLoading(false);
-        return;
-      }
-      const { data } = await supabase
+      try {
+        if (!userId) throw new Error('Sign-in required');
+        const { data, error: readError } = await supabase
         .from("profiles")
         .select(
           "id, full_name, wallet_balance, purama_points, total_money_recovered, subscription_plan"
         )
-        .eq("auth_user_id", user.id)
+        .eq("auth_user_id", userId)
         .maybeSingle();
-      if (!cancelled) {
-        setProfile(data as Profile | null);
-        setLoading(false);
+        if (readError || !data || typeof data.id !== 'string') throw new Error('Profile unavailable');
+        if (!cancelled) setProfile(data as Profile);
+      } catch {
+        if (!cancelled) setError('Impossible de charger le profil. Les montants sont indisponibles.');
+      } finally {
+        if (!cancelled) { setOwner(userId ?? null); setLoading(false); }
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [user]);
+  }, [userId]);
+
+  const currentProfile = owner === userId ? profile : null;
 
   const firstName =
     (user?.user_metadata?.full_name as string | undefined)?.split(" ")[0] ??
-    profile?.full_name?.split(" ")[0] ??
+    currentProfile?.full_name?.split(" ")[0] ??
     "👋";
 
-  const totalRecoverable = Number(profile?.total_money_recovered ?? 0);
-  const walletEuro = Number(profile?.wallet_balance ?? 0);
-  const points = profile?.purama_points ?? 0;
+  const historical = finiteAmount(currentProfile?.total_money_recovered);
+  const walletEuro = finiteAmount(currentProfile?.wallet_balance);
+  const points = finiteAmount(currentProfile?.purama_points);
 
   return (
     <Screen>
@@ -81,11 +91,12 @@ export default function DashboardScreen() {
           Salut {firstName}.
         </Text>
         <Text style={{ color: theme.muted, fontSize: 14, marginTop: 4 }}>
-          Récupère tout l&apos;argent qui te revient.
+          Explore les aides possibles pour ta situation.
         </Text>
       </View>
 
-      {/* Hero money recoverable */}
+      {error ? <Text accessibilityRole="alert" style={{ color: theme.danger, marginBottom: 12 }}>{error}</Text> : null}
+      {/* Ancien compteur conservé, distinct des estimations de scans */}
       <Card testID="dashboard-total-card">
         <View
           style={{
@@ -97,7 +108,7 @@ export default function DashboardScreen() {
         >
           <Coins color={theme.primary} size={18} />
           <Text style={{ color: theme.muted, fontSize: 12 }}>
-            Argent récupérable détecté
+            Historique non vérifié
           </Text>
         </View>
         {loading ? (
@@ -112,11 +123,11 @@ export default function DashboardScreen() {
             }}
             testID="dashboard-total-euro"
           >
-            {totalRecoverable.toLocaleString("fr-FR")} €
+            {historical === null ? 'Indisponible' : `${historical.toLocaleString("fr-FR")} €`}
           </Text>
         )}
         <Text style={{ color: theme.dim, fontSize: 11, marginTop: 4 }}>
-          Fais ton premier scan pour débloquer ton montant.
+          Ancien compteur conservé, sans preuve de versement. Lance un scan pour obtenir une nouvelle estimation indicative.
         </Text>
         <View style={{ marginTop: 14 }}>
           <Button
@@ -149,7 +160,7 @@ export default function DashboardScreen() {
             <Text
               style={{ color: theme.text, fontSize: 22, fontWeight: "700" }}
             >
-              {walletEuro.toFixed(2)} €
+              {walletEuro === null ? 'Indisponible' : `${walletEuro.toFixed(2)} €`}
             </Text>
             <Text style={{ color: theme.dim, fontSize: 10, marginTop: 2 }}>
               Retrait dès 5 €
@@ -175,7 +186,7 @@ export default function DashboardScreen() {
             <Text
               style={{ color: theme.text, fontSize: 22, fontWeight: "700" }}
             >
-              {points.toLocaleString("fr-FR")}
+              {points === null ? 'Indisponible' : points.toLocaleString("fr-FR")}
             </Text>
             <Text style={{ color: theme.dim, fontSize: 10, marginTop: 2 }}>
               1 pt = 0,01 €
@@ -214,7 +225,7 @@ export default function DashboardScreen() {
               <Text
                 style={{ color: theme.muted, fontSize: 12, marginTop: 2 }}
               >
-                Aides, remboursements, optimisation · 2 min
+                Pistes d’aides, remboursements et optimisation à vérifier
               </Text>
             </View>
             <ArrowRight color={theme.dim} size={18} />
@@ -293,4 +304,8 @@ export default function DashboardScreen() {
       </View>
     </Screen>
   );
+}
+
+function finiteAmount(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
 }

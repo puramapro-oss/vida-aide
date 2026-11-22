@@ -1,0 +1,33 @@
+{"case": "normal_user_oid_calibration", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "setup_with_pre_migration_history", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "apply_migrations", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "actual_handler_fixture", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "client_rpc_and_direct_close_denied", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "exact_handler_settlement_commits", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "committed_replay_uses_original_receipt", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "final_closure_failure_rolls_back_then_explicit_retry", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "last_notification_failure_rolls_back_every_award", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "invalid_ranks_and_duplicate_beneficiaries", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "invalid_amounts_never_change_allocation", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "invalid_winner_types_and_scores", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "missing_or_excess_beneficiaries_refused", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "stale_pool_end_or_contest_state_refused", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "legacy_without_any_ledger_is_not_replayed", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "legacy_partial_ledger_is_preserved", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "tracked_contest_with_ambiguous_ledger_is_refused", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "zero_pool_has_notifications_without_money", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "no_positive_candidates_closes_with_empty_receipt", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "fewer_winners_do_not_redistribute_remainder", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "maximum_integer_pool_uses_exact_cents", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "null_arguments_fail_without_side_effects", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "historical_rows_and_marker_preserved", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "reapply_all_migrations", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "reapplied_history", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "reapplied_acl", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "inject_unexpected_inherited_rpc_grant", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "inherited_rpc_grant_refuses_migration", "status": "EXPECTED_FAILURE_PROVED", "exit_code": 0, "errors": ["backend> backend> 2026-11-22 04:57:44.093 CET [55] ERROR:  Unexpected inherited contest settlement privileges"]}
+{"case": "refusal_did_not_hide_the_existing_grant", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "restore_fixture_role", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "final_acl", "status": "PASS", "exit_code": 0, "errors": []}
+{"case": "final_history", "status": "PASS", "exit_code": 0, "errors": []}
+{"status": "PASS", "receipt": "/workspace/scratch/dcfb234e0a8f/vida-contest-pg-evidence/contest-h1lrecqx/receipt.json"}

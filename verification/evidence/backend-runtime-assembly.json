@@ -1,0 +1,1198 @@
+{
+  "status": "PASS_LOCKED_ARTIFACTS_AND_RESOLUTION_WITH_STRIPE_METADATA_DISCREPANCY",
+  "package_lock": "/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/package-lock.json",
+  "package_lock_sha256": "28c32a43131834920a68db3e69f196604e989e4f96341ad001ee1ec369aa6fc5",
+  "mode": "offline cache extraction or read-only link of matching existing packages",
+  "network_requests": 0,
+  "required_node_flags": [
+    "--preserve-symlinks"
+  ],
+  "required_typescript_option": {
+    "preserveSymlinks": true
+  },
+  "roots": [
+    "@anthropic-ai/sdk",
+    "@supabase/ssr",
+    "@supabase/supabase-js",
+    "stripe",
+    "next",
+    "zod",
+    "typescript",
+    "@types/node",
+    "@types/react",
+    "@types/react-dom",
+    "react",
+    "react-dom",
+    "pg",
+    "@types/pg"
+  ],
+  "edges": [
+    {
+      "owner": "node_modules/@anthropic-ai/sdk",
+      "dependency": "json-schema-to-ts",
+      "target": "node_modules/json-schema-to-ts"
+    },
+    {
+      "owner": "node_modules/json-schema-to-ts",
+      "dependency": "@babel/runtime",
+      "target": "node_modules/@babel/runtime"
+    },
+    {
+      "owner": "node_modules/json-schema-to-ts",
+      "dependency": "ts-algebra",
+      "target": "node_modules/ts-algebra"
+    },
+    {
+      "owner": "node_modules/@supabase/ssr",
+      "dependency": "cookie",
+      "target": "node_modules/cookie"
+    },
+    {
+      "owner": "node_modules/@supabase/ssr",
+      "dependency": "@supabase/supabase-js",
+      "target": "node_modules/@supabase/supabase-js"
+    },
+    {
+      "owner": "node_modules/@supabase/supabase-js",
+      "dependency": "@supabase/auth-js",
+      "target": "node_modules/@supabase/auth-js"
+    },
+    {
+      "owner": "node_modules/@supabase/auth-js",
+      "dependency": "tslib",
+      "target": "node_modules/tslib"
+    },
+    {
+      "owner": "node_modules/@supabase/supabase-js",
+      "dependency": "@supabase/functions-js",
+      "target": "node_modules/@supabase/functions-js"
+    },
+    {
+      "owner": "node_modules/@supabase/functions-js",
+      "dependency": "tslib",
+      "target": "node_modules/tslib"
+    },
+    {
+      "owner": "node_modules/@supabase/supabase-js",
+      "dependency": "@supabase/postgrest-js",
+      "target": "node_modules/@supabase/postgrest-js"
+    },
+    {
+      "owner": "node_modules/@supabase/postgrest-js",
+      "dependency": "tslib",
+      "target": "node_modules/tslib"
+    },
+    {
+      "owner": "node_modules/@supabase/supabase-js",
+      "dependency": "@supabase/realtime-js",
+      "target": "node_modules/@supabase/realtime-js"
+    },
+    {
+      "owner": "node_modules/@supabase/realtime-js",
+      "dependency": "@supabase/phoenix",
+      "target": "node_modules/@supabase/phoenix"
+    },
+    {
+      "owner": "node_modules/@supabase/realtime-js",
+      "dependency": "@types/ws",
+      "target": "node_modules/@types/ws"
+    },
+    {
+      "owner": "node_modules/@types/ws",
+      "dependency": "@types/node",
+      "target": "node_modules/@types/node"
+    },
+    {
+      "owner": "node_modules/@types/node",
+      "dependency": "undici-types",
+      "target": "node_modules/undici-types"
+    },
+    {
+      "owner": "node_modules/@supabase/realtime-js",
+      "dependency": "tslib",
+      "target": "node_modules/tslib"
+    },
+    {
+      "owner": "node_modules/@supabase/realtime-js",
+      "dependency": "ws",
+      "target": "node_modules/ws"
+    },
+    {
+      "owner": "node_modules/@supabase/supabase-js",
+      "dependency": "@supabase/storage-js",
+      "target": "node_modules/@supabase/storage-js"
+    },
+    {
+      "owner": "node_modules/@supabase/storage-js",
+      "dependency": "iceberg-js",
+      "target": "node_modules/iceberg-js"
+    },
+    {
+      "owner": "node_modules/@supabase/storage-js",
+      "dependency": "tslib",
+      "target": "node_modules/tslib"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "@next/env",
+      "target": "node_modules/@next/env"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "@swc/helpers",
+      "target": "node_modules/@swc/helpers"
+    },
+    {
+      "owner": "node_modules/@swc/helpers",
+      "dependency": "tslib",
+      "target": "node_modules/tslib"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "baseline-browser-mapping",
+      "target": "node_modules/baseline-browser-mapping"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "caniuse-lite",
+      "target": "node_modules/caniuse-lite"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "postcss",
+      "target": "node_modules/postcss"
+    },
+    {
+      "owner": "node_modules/postcss",
+      "dependency": "nanoid",
+      "target": "node_modules/nanoid"
+    },
+    {
+      "owner": "node_modules/postcss",
+      "dependency": "picocolors",
+      "target": "node_modules/picocolors"
+    },
+    {
+      "owner": "node_modules/postcss",
+      "dependency": "source-map-js",
+      "target": "node_modules/source-map-js"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "styled-jsx",
+      "target": "node_modules/styled-jsx"
+    },
+    {
+      "owner": "node_modules/styled-jsx",
+      "dependency": "client-only",
+      "target": "node_modules/client-only"
+    },
+    {
+      "owner": "node_modules/styled-jsx",
+      "dependency": "react",
+      "target": "node_modules/react"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "react",
+      "target": "node_modules/react"
+    },
+    {
+      "owner": "node_modules/next",
+      "dependency": "react-dom",
+      "target": "node_modules/react-dom"
+    },
+    {
+      "owner": "node_modules/react-dom",
+      "dependency": "scheduler",
+      "target": "node_modules/scheduler"
+    },
+    {
+      "owner": "node_modules/react-dom",
+      "dependency": "react",
+      "target": "node_modules/react"
+    },
+    {
+      "owner": "node_modules/@types/react",
+      "dependency": "csstype",
+      "target": "node_modules/csstype"
+    },
+    {
+      "owner": "node_modules/@types/react-dom",
+      "dependency": "@types/react",
+      "target": "node_modules/@types/react"
+    },
+    {
+      "owner": "node_modules/pg",
+      "dependency": "pg-connection-string",
+      "target": "node_modules/pg-connection-string"
+    },
+    {
+      "owner": "node_modules/pg",
+      "dependency": "pg-pool",
+      "target": "node_modules/pg-pool"
+    },
+    {
+      "owner": "node_modules/pg-pool",
+      "dependency": "pg",
+      "target": "node_modules/pg"
+    },
+    {
+      "owner": "node_modules/pg",
+      "dependency": "pg-protocol",
+      "target": "node_modules/pg-protocol"
+    },
+    {
+      "owner": "node_modules/pg",
+      "dependency": "pg-types",
+      "target": "node_modules/pg-types"
+    },
+    {
+      "owner": "node_modules/pg-types",
+      "dependency": "pg-int8",
+      "target": "node_modules/pg-int8"
+    },
+    {
+      "owner": "node_modules/pg-types",
+      "dependency": "postgres-array",
+      "target": "node_modules/postgres-array"
+    },
+    {
+      "owner": "node_modules/pg-types",
+      "dependency": "postgres-bytea",
+      "target": "node_modules/postgres-bytea"
+    },
+    {
+      "owner": "node_modules/pg-types",
+      "dependency": "postgres-date",
+      "target": "node_modules/postgres-date"
+    },
+    {
+      "owner": "node_modules/pg-types",
+      "dependency": "postgres-interval",
+      "target": "node_modules/postgres-interval"
+    },
+    {
+      "owner": "node_modules/postgres-interval",
+      "dependency": "xtend",
+      "target": "node_modules/xtend"
+    },
+    {
+      "owner": "node_modules/pg",
+      "dependency": "pgpass",
+      "target": "node_modules/pgpass"
+    },
+    {
+      "owner": "node_modules/pgpass",
+      "dependency": "split2",
+      "target": "node_modules/split2"
+    },
+    {
+      "owner": "node_modules/@types/pg",
+      "dependency": "@types/node",
+      "target": "node_modules/@types/node"
+    },
+    {
+      "owner": "node_modules/@types/pg",
+      "dependency": "pg-protocol",
+      "target": "node_modules/pg-protocol"
+    },
+    {
+      "owner": "node_modules/@types/pg",
+      "dependency": "pg-types",
+      "target": "node_modules/pg-types"
+    }
+  ],
+  "packages": [
+    {
+      "key": "node_modules/@anthropic-ai/sdk",
+      "version": "0.82.0",
+      "integrity": "sha512-xdHTjL1GlUlDugHq/I47qdOKp/ROPvuHl7ROJCgUQigbvPu7asf9KcAcU1EqdrP2LuVhEKaTs7Z+ShpZDRzHdQ==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-xdHTjL1GlUlDugHq/I47qdOKp/ROPvuHl7ROJCgUQigbvPu7asf9KcAcU1EqdrP2LuVhEKaTs7Z+ShpZDRzHdQ==",
+      "manifest_sha256": "c6ea2d7e2e2d1233d486864625b6e91701545e7038195367f5c2b69534a22125"
+    },
+    {
+      "key": "node_modules/json-schema-to-ts",
+      "version": "3.1.1",
+      "integrity": "sha512-+DWg8jCJG2TEnpy7kOm/7/AxaYoaRbjVB4LFZLySZlWn8exGs3A4OLJR966cVvU26N7X9TWxl+Jsw7dzAqKT6g==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/json-schema-to-ts",
+      "manifest_sha256": "9439fa620a0f7a930950239ec4445d902c7d29590cddf0985a83bea531b2e81e"
+    },
+    {
+      "key": "node_modules/@babel/runtime",
+      "version": "7.29.2",
+      "integrity": "sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==",
+      "manifest_sha256": "a34bfb8ab99545a10b211e8918e4a58cc66740366644298cb8efa3b766537ee0"
+    },
+    {
+      "key": "node_modules/ts-algebra",
+      "version": "2.0.0",
+      "integrity": "sha512-FPAhNPFMrkwz76P7cdjdmiShwMynZYN6SgOujD1urY4oNm80Ou9oMdmbR45LotcKOXoy7wSmHkRFE6Mxbrhefw==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/ts-algebra",
+      "manifest_sha256": "6c6f692e1a3ad9943c77b5fa4eb04b0f63cb708353c67dcc5d86b35b2f7e5c30"
+    },
+    {
+      "key": "node_modules/@supabase/ssr",
+      "version": "0.10.0",
+      "integrity": "sha512-36jIu+DuKzg5EgA3fnH+zHvwASvpKcL4zPgmHoZaULroS5Q4mzeHcM69zJ0sXUHddO5IcHjQNZJ9Vyhl/DdbRw==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-36jIu+DuKzg5EgA3fnH+zHvwASvpKcL4zPgmHoZaULroS5Q4mzeHcM69zJ0sXUHddO5IcHjQNZJ9Vyhl/DdbRw==",
+      "manifest_sha256": "afb9095cf31e463594d8fc758a25d14337fa3119ca239ad3b212bde1e2c615a0"
+    },
+    {
+      "key": "node_modules/cookie",
+      "version": "1.1.1",
+      "integrity": "sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/cookie",
+      "manifest_sha256": "e13337a4eb106b201e0502361f3214af9cc22ae88b2bfac2368996bb949a102f"
+    },
+    {
+      "key": "node_modules/@supabase/supabase-js",
+      "version": "2.101.1",
+      "integrity": "sha512-Jnhm3LfuACwjIzvk2pfUbGQn7pa7hi6MFzfSyPrRYWVCCu69RPLCFyHSBl7HSBwadbQ3UZOznnD3gPca3ePrRA==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-Jnhm3LfuACwjIzvk2pfUbGQn7pa7hi6MFzfSyPrRYWVCCu69RPLCFyHSBl7HSBwadbQ3UZOznnD3gPca3ePrRA==",
+      "manifest_sha256": "c18d4c1b4974ebacce941a1a914e4001920cca6235d56321698d4b5be3e0abf6"
+    },
+    {
+      "key": "node_modules/@supabase/auth-js",
+      "version": "2.101.1",
+      "integrity": "sha512-Kd0Wey+RkFHgyVep7adS6UOE2pN6MJ3mZ32PAXSvfw6IjUkFRC7IQpdZZjUOcUe5pXr1ejufCRgF6lsGINe4Tw==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-Kd0Wey+RkFHgyVep7adS6UOE2pN6MJ3mZ32PAXSvfw6IjUkFRC7IQpdZZjUOcUe5pXr1ejufCRgF6lsGINe4Tw==",
+      "manifest_sha256": "03682c30c464873361b0013251f85af53c0483f237e17b2e3883d1f9a271f8e8"
+    },
+    {
+      "key": "node_modules/tslib",
+      "version": "2.8.1",
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/tslib",
+      "manifest_sha256": "f02b4851df316f29bdfcd404aa1eb41e4e216b5859015f81fcd3e91caf8be931"
+    },
+    {
+      "key": "node_modules/@supabase/functions-js",
+      "version": "2.101.1",
+      "integrity": "sha512-OZWU7YtaG+NNNFZK8p/FuJ6gpq7pFyrG2fLOopP73HAIDHDGpOttPJapvO8ADu3RkqfQfkwrB354vPkSBbZ20A==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-OZWU7YtaG+NNNFZK8p/FuJ6gpq7pFyrG2fLOopP73HAIDHDGpOttPJapvO8ADu3RkqfQfkwrB354vPkSBbZ20A==",
+      "manifest_sha256": "1c561e8c0dcca22a5063d03affb61f54cf9f344128a8e8368e6730081223bd74"
+    },
+    {
+      "key": "node_modules/@supabase/postgrest-js",
+      "version": "2.101.1",
+      "integrity": "sha512-UW1RajH5jbZoK+ldAJ1I6VZ+HWwZ2oaKjEQ6Gn+AQ67CHQVxGl8wNQoLYyumbyaExm41I+wn7arulcY1eHeZJw==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-UW1RajH5jbZoK+ldAJ1I6VZ+HWwZ2oaKjEQ6Gn+AQ67CHQVxGl8wNQoLYyumbyaExm41I+wn7arulcY1eHeZJw==",
+      "manifest_sha256": "4f28ec5f97f0ed15e0ebdbf5630e1252c8c4a8ad381e9454d6a7685244ac2755"
+    },
+    {
+      "key": "node_modules/@supabase/realtime-js",
+      "version": "2.101.1",
+      "integrity": "sha512-Oa6dno0OB9I+hv5do5zsZHbFu41ViZnE9IWjmkeeF/8fPmB5fWoHGqeTYEC3/0DAgtpUoFJa4FpvzFH0SBHo1Q==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-Oa6dno0OB9I+hv5do5zsZHbFu41ViZnE9IWjmkeeF/8fPmB5fWoHGqeTYEC3/0DAgtpUoFJa4FpvzFH0SBHo1Q==",
+      "manifest_sha256": "ab5a4a2e00fb4747e8b7e10e2e595e8bc9e02480d441c181617f048637a9f57d"
+    },
+    {
+      "key": "node_modules/@supabase/phoenix",
+      "version": "0.4.0",
+      "integrity": "sha512-RHSx8bHS02xwfHdAbX5Lpbo6PXbgyf7lTaXTlwtFDPwOIw64NnVRwFAXGojHhjtVYI+PEPNSWwkL90f4agN3bw==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-RHSx8bHS02xwfHdAbX5Lpbo6PXbgyf7lTaXTlwtFDPwOIw64NnVRwFAXGojHhjtVYI+PEPNSWwkL90f4agN3bw==",
+      "manifest_sha256": "22547ace65d1595de542f21587b80e1ae330f4fcad004882c7674c260e5ebdc8"
+    },
+    {
+      "key": "node_modules/@types/ws",
+      "version": "8.18.1",
+      "integrity": "sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==",
+      "manifest_sha256": "92f0a87117b71231a0864f7bb7c6a84b7fc91dbdd7d33379fc23d655980ad083"
+    },
+    {
+      "key": "node_modules/@types/node",
+      "version": "20.19.39",
+      "integrity": "sha512-orrrD74MBUyK8jOAD/r0+lfa1I2MO6I+vAkmAWzMYbCcgrN4lCrmK52gRFQq/JRxfYPfonkr4b0jcY7Olqdqbw==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/@types/node",
+      "manifest_sha256": "dff75445c782bf28ff62a6b3768aee8b50f87f21f776a8dec60206e28371fb8b"
+    },
+    {
+      "key": "node_modules/undici-types",
+      "version": "6.21.0",
+      "integrity": "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/undici-types",
+      "manifest_sha256": "11f873b423b96a5ad444a099685ca6b9de1379dcd83fd8d368e757ddb53658e4"
+    },
+    {
+      "key": "node_modules/ws",
+      "version": "8.21.1",
+      "integrity": "sha512-+0NTnW77fFN/DjQi6k/Sq/Yvk4Sgajw7urW8V+asjXnRgDs9gyGkdb7EzgfhA4goXsRIZKE28fzIXBHEzhuiWw==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-+0NTnW77fFN/DjQi6k/Sq/Yvk4Sgajw7urW8V+asjXnRgDs9gyGkdb7EzgfhA4goXsRIZKE28fzIXBHEzhuiWw==",
+      "manifest_sha256": "5d9fcf3bb6aaa7c789b4a020b79e208e76fbc32b1989caf2c275db8cb04329de"
+    },
+    {
+      "key": "node_modules/@supabase/storage-js",
+      "version": "2.101.1",
+      "integrity": "sha512-WhTaUOBgeEvnKLy95Cdlp6+D5igSF/65yC727w1olxbet5nzUvMlajKUWyzNtQu2efrz2cQ7FcdVBdQqgT9YKQ==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-WhTaUOBgeEvnKLy95Cdlp6+D5igSF/65yC727w1olxbet5nzUvMlajKUWyzNtQu2efrz2cQ7FcdVBdQqgT9YKQ==",
+      "manifest_sha256": "4956e1cb59b8b0e246d5286c929e0f5df5db7ec29c388e7bbec386d70afc7237"
+    },
+    {
+      "key": "node_modules/iceberg-js",
+      "version": "0.8.1",
+      "integrity": "sha512-1dhVQZXhcHje7798IVM+xoo/1ZdVfzOMIc8/rgVSijRK38EDqOJoGula9N/8ZI5RD8QTxNQtK/Gozpr+qUqRRA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/iceberg-js",
+      "manifest_sha256": "0976ea84c41c49a5d853da05066c343ac735329301cf9c9c81c01848e0988c35"
+    },
+    {
+      "key": "node_modules/stripe",
+      "version": "22.0.0",
+      "integrity": "sha512-q1UgXXpSfZCmkyzZEh3vFEWT7+ajuaFGqaP9Tsi2NMtwlkigIWNr+KBIUQqtNeNEsreDKgdn+BP5HRW9JDj22Q==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/dcfb234e0a8f/vida-stripe-sdk-exact/node_modules/stripe",
+      "manifest_sha256": "1d411078acfe1d8ac504f3bd66a1c5e19298b31399f4d94dfefeb790bd4fa5ca"
+    },
+    {
+      "key": "node_modules/next",
+      "version": "16.2.11",
+      "integrity": "sha512-B339zaqbyK8cmxhoAvLrcwoabwCP1wz21zSzfqxqXAemTu2BXnH7tQnfcglKv1vnMUIDBc+Hth7XODQriTZiRQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/next",
+      "manifest_sha256": "a3e5748a888e72375ca43eb6ceaf7f76aeecea41afe4d51717ba33730c93ed79"
+    },
+    {
+      "key": "node_modules/@next/env",
+      "version": "16.2.11",
+      "integrity": "sha512-0do5A3BJ2gxWr0ZCMcD6BhW+e595jyxdTl3rXTS6lOtD8ektMiW6CO+EPwt1Eca1DBnm90r/7GdiKWBKxH++DA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/@next/env",
+      "manifest_sha256": "c421782fc2413b1546d898d5cc95f2dc266a7e4df0f98dc68f324f479099b52c"
+    },
+    {
+      "key": "node_modules/@swc/helpers",
+      "version": "0.5.15",
+      "integrity": "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/@swc/helpers",
+      "manifest_sha256": "552d77f83701fb8cff89a0ab0ef43bc969e7fa68e359512f6a9f2f08f36709da"
+    },
+    {
+      "key": "node_modules/baseline-browser-mapping",
+      "version": "2.11.1",
+      "integrity": "sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A==",
+      "manifest_sha256": "7acb26cda7794416396b6ea3f7cb9b5fbe6f90e34c4c0639a15c42913c3e01d6"
+    },
+    {
+      "key": "node_modules/caniuse-lite",
+      "version": "1.0.30001806",
+      "integrity": "sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==",
+      "manifest_sha256": "0c48cd455f15387a401011d12d1979fdeeaa581fa4d37f382dcc397d262e604b"
+    },
+    {
+      "key": "node_modules/postcss",
+      "version": "8.5.23",
+      "integrity": "sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==",
+      "manifest_sha256": "df43e035f054943454c49556c89cea8a288d91f5d4b1a6f4e56d48b85c7ebd75"
+    },
+    {
+      "key": "node_modules/nanoid",
+      "version": "3.3.16",
+      "integrity": "sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==",
+      "manifest_sha256": "c6acf9ab29ee1c38ec6ef8dff594fc6218fd48028677632662c7397258986a8c"
+    },
+    {
+      "key": "node_modules/picocolors",
+      "version": "1.1.1",
+      "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/picocolors",
+      "manifest_sha256": "ef2ac226c4811d312e12c64214c453878653e834482125ae475f27cea60de737"
+    },
+    {
+      "key": "node_modules/source-map-js",
+      "version": "1.2.1",
+      "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==",
+      "manifest_sha256": "58f8e94a461a5e461e0cb2bb2be681cbd89b9181989fd26fceb858e67711469a"
+    },
+    {
+      "key": "node_modules/styled-jsx",
+      "version": "5.1.6",
+      "integrity": "sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/styled-jsx",
+      "manifest_sha256": "0a11b14d7bbeab650019db18883a14cb67daa3615f498a5a625d45828be7eef9"
+    },
+    {
+      "key": "node_modules/client-only",
+      "version": "0.0.1",
+      "integrity": "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/client-only",
+      "manifest_sha256": "4d6342705767832f299b9a59c28e4275bcf02db19472732f93f67d979441df8f"
+    },
+    {
+      "key": "node_modules/react",
+      "version": "19.2.4",
+      "integrity": "sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/react",
+      "manifest_sha256": "e60b92f6031f023907bbfab8f96e63e44307776ec1488f310ba61d41b8cda8cc"
+    },
+    {
+      "key": "node_modules/react-dom",
+      "version": "19.2.4",
+      "integrity": "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/react-dom",
+      "manifest_sha256": "b8448092689c7e6191595a98526ced808288f35138d97fbce5801a94922e3c36"
+    },
+    {
+      "key": "node_modules/scheduler",
+      "version": "0.27.0",
+      "integrity": "sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/scheduler",
+      "manifest_sha256": "393bb96b7e481bf50189a1a02c7e0e7f4d01acba5abc6fbe7d214638624462fc"
+    },
+    {
+      "key": "node_modules/zod",
+      "version": "4.3.6",
+      "integrity": "sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/zod",
+      "manifest_sha256": "1a316ad36e36c6c500bce6e9a6dcbec8efda1083f49a72185226b35573b543ba"
+    },
+    {
+      "key": "node_modules/typescript",
+      "version": "5.9.3",
+      "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/typescript",
+      "manifest_sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "key": "node_modules/@types/react",
+      "version": "19.2.14",
+      "integrity": "sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/@types/react",
+      "manifest_sha256": "e8beff67b2575112eff5757dc8e9310a78fc6e7d2d44d9d7a8204026f4ab81b7"
+    },
+    {
+      "key": "node_modules/csstype",
+      "version": "3.2.3",
+      "integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==",
+      "manifest_sha256": "c818b74a9bc1556488b7ec2a65399224738f6619228f9a6491c5c02ca91f849e"
+    },
+    {
+      "key": "node_modules/@types/react-dom",
+      "version": "19.2.3",
+      "integrity": "sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/@types/react-dom",
+      "manifest_sha256": "bf90986beaec5f757c164bf1d374f3038dc41b0b06673de4a55fd975d1e5deca"
+    },
+    {
+      "key": "node_modules/pg",
+      "version": "8.23.0",
+      "integrity": "sha512-Ip2EQCngowJLGOfCwkFhPXU7/ljlhn6Rxlmy4XYfL2Y+vyRM59+8uR2xqRWKdYmbXmxCFOAmKxBuSUCdF34qLg==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/pg",
+      "manifest_sha256": "e42dd36cba6e9dd8dbb6f773a2f7be8a8c3c273e18b155e42e75961a4cb8bc28"
+    },
+    {
+      "key": "node_modules/pg-connection-string",
+      "version": "2.14.0",
+      "integrity": "sha512-XwWDGcLRGCXAR8F/AM5bG7Q+A3Wm2s6QeEjlOKZLlH3UYcguiqCWKyWXVag5TLTIjR7oOJUY8kcADaZgWPyLeg==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-XwWDGcLRGCXAR8F/AM5bG7Q+A3Wm2s6QeEjlOKZLlH3UYcguiqCWKyWXVag5TLTIjR7oOJUY8kcADaZgWPyLeg==",
+      "manifest_sha256": "5e07e70c64af1e8695a91f9371b713106eeed3b52a1d6b7f7238a33f01dd3f20"
+    },
+    {
+      "key": "node_modules/pg-pool",
+      "version": "3.14.0",
+      "integrity": "sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/pg-pool",
+      "manifest_sha256": "0a9924def9e06f791b09a44eaefb227f323a39199887f6ce17b44cb5a9193134"
+    },
+    {
+      "key": "node_modules/pg-protocol",
+      "version": "1.16.0",
+      "integrity": "sha512-sILXutLVjCLjcDuOmvhX5e2Z4cS5qG/6Bu3VkpFwdf/633ElGLpEh9bgmuI5I4sqKqkifQiGyiCcx1HdtrK7tg==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-sILXutLVjCLjcDuOmvhX5e2Z4cS5qG/6Bu3VkpFwdf/633ElGLpEh9bgmuI5I4sqKqkifQiGyiCcx1HdtrK7tg==",
+      "manifest_sha256": "4ee6a91e60a002e828e64dfab04c232bba566db233a905a1a15e475a0336c73d"
+    },
+    {
+      "key": "node_modules/pg-types",
+      "version": "2.2.0",
+      "integrity": "sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/pg-types",
+      "manifest_sha256": "3ec0293cb38cc8d9475e3eb32ac5f19d195bf9fccc8b19a0714e6ecd6e7c2cf0"
+    },
+    {
+      "key": "node_modules/pg-int8",
+      "version": "1.0.1",
+      "integrity": "sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/pg-int8",
+      "manifest_sha256": "147155887a41bb6f69ff98b3dde827b7e6a8214c3a71938da4babf8e12adff2e"
+    },
+    {
+      "key": "node_modules/postgres-array",
+      "version": "2.0.0",
+      "integrity": "sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/postgres-array",
+      "manifest_sha256": "dcd6a505fcbc032b409ee2838ab2c776dea3a9cfe02b736364b6cb82a946665f"
+    },
+    {
+      "key": "node_modules/postgres-bytea",
+      "version": "1.0.1",
+      "integrity": "sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/postgres-bytea",
+      "manifest_sha256": "9125568c5fb51a65b8f11adb0080c2775b99ee82822d73bff8b56b2a9d47d7aa"
+    },
+    {
+      "key": "node_modules/postgres-date",
+      "version": "1.0.7",
+      "integrity": "sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/postgres-date",
+      "manifest_sha256": "03f9edefa96697072075e02df045cc61ed4ca2f8dfffb1ff87f4070bc3404151"
+    },
+    {
+      "key": "node_modules/postgres-interval",
+      "version": "1.2.0",
+      "integrity": "sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/postgres-interval",
+      "manifest_sha256": "cc3056db105e66c9128cb8a387cda782d5f1ae9281be90de0b8d26a90af89c57"
+    },
+    {
+      "key": "node_modules/xtend",
+      "version": "4.0.2",
+      "integrity": "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/xtend",
+      "manifest_sha256": "b02ffef8cda96c5c3ee00a00390e63f608362c2ddfb3ed754e181d013a45d48a"
+    },
+    {
+      "key": "node_modules/pgpass",
+      "version": "1.0.5",
+      "integrity": "sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/pgpass",
+      "manifest_sha256": "d75240eb4fe759c10db9f903838275348676a8bdc1f329e20a833713cd7c99bd"
+    },
+    {
+      "key": "node_modules/split2",
+      "version": "4.2.0",
+      "integrity": "sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==",
+      "method": "read-only-symlink",
+      "source": "/workspace/scratch/8d341c793775/juris21-vida-tools/http-app/node_modules/split2",
+      "manifest_sha256": "87b734c3087c8d9ed5d76d1bff00db30f960831ba8705dd18d73b180d08d2140"
+    },
+    {
+      "key": "node_modules/@types/pg",
+      "version": "8.23.1",
+      "integrity": "sha512-fKVHpikPdg4GKks3JuLEhvwSyvwzF23hnabPy6DD8ljVbC7+6J5dQzdv4arV6jqq57djnMgs1HKBxX4P8aBI3A==",
+      "method": "offline-cache-extraction",
+      "extracted_integrity": "sha512-fKVHpikPdg4GKks3JuLEhvwSyvwzF23hnabPy6DD8ljVbC7+6J5dQzdv4arV6jqq57djnMgs1HKBxX4P8aBI3A==",
+      "manifest_sha256": "d122ef1e1bdb760edd5cff70d39597b9b3ae757c80e829bc297cd34fb7f01bd3"
+    }
+  ],
+  "omitted_optional_runtime_targets": [
+    "@next/swc-darwin-arm64",
+    "@next/swc-darwin-x64",
+    "@next/swc-linux-arm64-gnu",
+    "@next/swc-linux-arm64-musl",
+    "@next/swc-linux-x64-gnu",
+    "@next/swc-linux-x64-musl",
+    "@next/swc-win32-arm64-msvc",
+    "@next/swc-win32-x64-msvc",
+    "sharp",
+    "pg-cloudflare"
+  ],
+  "limits": [
+    "Backend handler/types subset; no Next build, native compiler, image processing or Cloudflare runtime qualification."
+  ],
+  "initial_import_probe": {
+    "status": "FAIL",
+    "reason": "Probe expected a named Stripe export; the pinned CommonJS package exports the constructor directly. Corrected probe uses the actual constructor contract. No package or product code altered."
+  },
+  "initial_package_constant_probe": {
+    "status": "FAIL",
+    "expected": "22.0.0",
+    "actual": "21.0.1",
+    "resolution": "Locked tarball SRI and extracted bytes independently rechecked. Discrepancy retained; package code and lock unchanged."
+  },
+  "stripe_metadata_discrepancy": {
+    "package": "stripe",
+    "lock_version": "22.0.0",
+    "cache_integrity_valid": true,
+    "tar_manifest_version": "22.0.0",
+    "tar_internal_package_version": "21.0.1",
+    "extracted_core_equal_tar": true,
+    "core_sha256": "e7788d001e4398ce8d46c8c367c7c4690220417b7f17a960d517caa5c5936220",
+    "status": "ARTIFACT_METADATA_DISCREPANCY",
+    "no_network": true
+  },
+  "resolution": {
+    "node_flags": [
+      "--preserve-symlinks",
+      "--max-old-space-size=256"
+    ],
+    "edges_checked": 55,
+    "edges": [
+      {
+        "owner": "node_modules/@anthropic-ai/sdk",
+        "dependency": "json-schema-to-ts",
+        "target": "node_modules/json-schema-to-ts",
+        "version": "3.1.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/json-schema-to-ts/package.json"
+      },
+      {
+        "owner": "node_modules/json-schema-to-ts",
+        "dependency": "@babel/runtime",
+        "target": "node_modules/@babel/runtime",
+        "version": "7.29.2",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@babel/runtime/package.json"
+      },
+      {
+        "owner": "node_modules/json-schema-to-ts",
+        "dependency": "ts-algebra",
+        "target": "node_modules/ts-algebra",
+        "version": "2.0.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/ts-algebra/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/ssr",
+        "dependency": "cookie",
+        "target": "node_modules/cookie",
+        "version": "1.1.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/cookie/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/ssr",
+        "dependency": "@supabase/supabase-js",
+        "target": "node_modules/@supabase/supabase-js",
+        "version": "2.101.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/supabase-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/supabase-js",
+        "dependency": "@supabase/auth-js",
+        "target": "node_modules/@supabase/auth-js",
+        "version": "2.101.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/auth-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/auth-js",
+        "dependency": "tslib",
+        "target": "node_modules/tslib",
+        "version": "2.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/tslib/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/supabase-js",
+        "dependency": "@supabase/functions-js",
+        "target": "node_modules/@supabase/functions-js",
+        "version": "2.101.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/functions-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/functions-js",
+        "dependency": "tslib",
+        "target": "node_modules/tslib",
+        "version": "2.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/tslib/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/supabase-js",
+        "dependency": "@supabase/postgrest-js",
+        "target": "node_modules/@supabase/postgrest-js",
+        "version": "2.101.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/postgrest-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/postgrest-js",
+        "dependency": "tslib",
+        "target": "node_modules/tslib",
+        "version": "2.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/tslib/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/supabase-js",
+        "dependency": "@supabase/realtime-js",
+        "target": "node_modules/@supabase/realtime-js",
+        "version": "2.101.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/realtime-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/realtime-js",
+        "dependency": "@supabase/phoenix",
+        "target": "node_modules/@supabase/phoenix",
+        "version": "0.4.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/phoenix/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/realtime-js",
+        "dependency": "@types/ws",
+        "target": "node_modules/@types/ws",
+        "version": "8.18.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@types/ws/package.json"
+      },
+      {
+        "owner": "node_modules/@types/ws",
+        "dependency": "@types/node",
+        "target": "node_modules/@types/node",
+        "version": "20.19.39",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@types/node/package.json"
+      },
+      {
+        "owner": "node_modules/@types/node",
+        "dependency": "undici-types",
+        "target": "node_modules/undici-types",
+        "version": "6.21.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/undici-types/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/realtime-js",
+        "dependency": "tslib",
+        "target": "node_modules/tslib",
+        "version": "2.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/tslib/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/realtime-js",
+        "dependency": "ws",
+        "target": "node_modules/ws",
+        "version": "8.21.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/ws/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/supabase-js",
+        "dependency": "@supabase/storage-js",
+        "target": "node_modules/@supabase/storage-js",
+        "version": "2.101.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@supabase/storage-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/storage-js",
+        "dependency": "iceberg-js",
+        "target": "node_modules/iceberg-js",
+        "version": "0.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/iceberg-js/package.json"
+      },
+      {
+        "owner": "node_modules/@supabase/storage-js",
+        "dependency": "tslib",
+        "target": "node_modules/tslib",
+        "version": "2.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/tslib/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "@next/env",
+        "target": "node_modules/@next/env",
+        "version": "16.2.11",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@next/env/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "@swc/helpers",
+        "target": "node_modules/@swc/helpers",
+        "version": "0.5.15",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@swc/helpers/package.json"
+      },
+      {
+        "owner": "node_modules/@swc/helpers",
+        "dependency": "tslib",
+        "target": "node_modules/tslib",
+        "version": "2.8.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/tslib/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "baseline-browser-mapping",
+        "target": "node_modules/baseline-browser-mapping",
+        "version": "2.11.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/baseline-browser-mapping/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "caniuse-lite",
+        "target": "node_modules/caniuse-lite",
+        "version": "1.0.30001806",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/caniuse-lite/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "postcss",
+        "target": "node_modules/postcss",
+        "version": "8.5.23",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/postcss/package.json"
+      },
+      {
+        "owner": "node_modules/postcss",
+        "dependency": "nanoid",
+        "target": "node_modules/nanoid",
+        "version": "3.3.16",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/nanoid/package.json"
+      },
+      {
+        "owner": "node_modules/postcss",
+        "dependency": "picocolors",
+        "target": "node_modules/picocolors",
+        "version": "1.1.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/picocolors/package.json"
+      },
+      {
+        "owner": "node_modules/postcss",
+        "dependency": "source-map-js",
+        "target": "node_modules/source-map-js",
+        "version": "1.2.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/source-map-js/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "styled-jsx",
+        "target": "node_modules/styled-jsx",
+        "version": "5.1.6",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/styled-jsx/package.json"
+      },
+      {
+        "owner": "node_modules/styled-jsx",
+        "dependency": "client-only",
+        "target": "node_modules/client-only",
+        "version": "0.0.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/client-only/package.json"
+      },
+      {
+        "owner": "node_modules/styled-jsx",
+        "dependency": "react",
+        "target": "node_modules/react",
+        "version": "19.2.4",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/react/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "react",
+        "target": "node_modules/react",
+        "version": "19.2.4",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/react/package.json"
+      },
+      {
+        "owner": "node_modules/next",
+        "dependency": "react-dom",
+        "target": "node_modules/react-dom",
+        "version": "19.2.4",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/react-dom/package.json"
+      },
+      {
+        "owner": "node_modules/react-dom",
+        "dependency": "scheduler",
+        "target": "node_modules/scheduler",
+        "version": "0.27.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/scheduler/package.json"
+      },
+      {
+        "owner": "node_modules/react-dom",
+        "dependency": "react",
+        "target": "node_modules/react",
+        "version": "19.2.4",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/react/package.json"
+      },
+      {
+        "owner": "node_modules/@types/react",
+        "dependency": "csstype",
+        "target": "node_modules/csstype",
+        "version": "3.2.3",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/csstype/package.json"
+      },
+      {
+        "owner": "node_modules/@types/react-dom",
+        "dependency": "@types/react",
+        "target": "node_modules/@types/react",
+        "version": "19.2.14",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@types/react/package.json"
+      },
+      {
+        "owner": "node_modules/pg",
+        "dependency": "pg-connection-string",
+        "target": "node_modules/pg-connection-string",
+        "version": "2.14.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-connection-string/package.json"
+      },
+      {
+        "owner": "node_modules/pg",
+        "dependency": "pg-pool",
+        "target": "node_modules/pg-pool",
+        "version": "3.14.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-pool/package.json"
+      },
+      {
+        "owner": "node_modules/pg-pool",
+        "dependency": "pg",
+        "target": "node_modules/pg",
+        "version": "8.23.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg/package.json"
+      },
+      {
+        "owner": "node_modules/pg",
+        "dependency": "pg-protocol",
+        "target": "node_modules/pg-protocol",
+        "version": "1.16.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-protocol/package.json"
+      },
+      {
+        "owner": "node_modules/pg",
+        "dependency": "pg-types",
+        "target": "node_modules/pg-types",
+        "version": "2.2.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-types/package.json"
+      },
+      {
+        "owner": "node_modules/pg-types",
+        "dependency": "pg-int8",
+        "target": "node_modules/pg-int8",
+        "version": "1.0.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-int8/package.json"
+      },
+      {
+        "owner": "node_modules/pg-types",
+        "dependency": "postgres-array",
+        "target": "node_modules/postgres-array",
+        "version": "2.0.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/postgres-array/package.json"
+      },
+      {
+        "owner": "node_modules/pg-types",
+        "dependency": "postgres-bytea",
+        "target": "node_modules/postgres-bytea",
+        "version": "1.0.1",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/postgres-bytea/package.json"
+      },
+      {
+        "owner": "node_modules/pg-types",
+        "dependency": "postgres-date",
+        "target": "node_modules/postgres-date",
+        "version": "1.0.7",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/postgres-date/package.json"
+      },
+      {
+        "owner": "node_modules/pg-types",
+        "dependency": "postgres-interval",
+        "target": "node_modules/postgres-interval",
+        "version": "1.2.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/postgres-interval/package.json"
+      },
+      {
+        "owner": "node_modules/postgres-interval",
+        "dependency": "xtend",
+        "target": "node_modules/xtend",
+        "version": "4.0.2",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/xtend/package.json"
+      },
+      {
+        "owner": "node_modules/pg",
+        "dependency": "pgpass",
+        "target": "node_modules/pgpass",
+        "version": "1.0.5",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pgpass/package.json"
+      },
+      {
+        "owner": "node_modules/pgpass",
+        "dependency": "split2",
+        "target": "node_modules/split2",
+        "version": "4.2.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/split2/package.json"
+      },
+      {
+        "owner": "node_modules/@types/pg",
+        "dependency": "@types/node",
+        "target": "node_modules/@types/node",
+        "version": "20.19.39",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/@types/node/package.json"
+      },
+      {
+        "owner": "node_modules/@types/pg",
+        "dependency": "pg-protocol",
+        "target": "node_modules/pg-protocol",
+        "version": "1.16.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-protocol/package.json"
+      },
+      {
+        "owner": "node_modules/@types/pg",
+        "dependency": "pg-types",
+        "target": "node_modules/pg-types",
+        "version": "2.2.0",
+        "resolved": "/workspace/scratch/dcfb234e0a8f/vida-backend-exact-runtime/node_modules/pg-types/package.json"
+      }
+    ],
+    "import_signals": [
+      [
+        "@anthropic-ai/sdk",
+        "Anthropic"
+      ],
+      [
+        "@supabase/ssr",
+        "createServerClient"
+      ],
+      [
+        "@supabase/supabase-js",
+        "createClient"
+      ],
+      [
+        "stripe",
+        null
+      ],
+      [
+        "next/server.js",
+        "NextResponse"
+      ],
+      [
+        "zod",
+        "object"
+      ],
+      [
+        "pg",
+        "Client"
+      ],
+      [
+        "typescript",
+        "transpileModule"
+      ]
+    ],
+    "signed_stripe_fixture_roundtrip": "PASS",
+    "provider_calls": 0
+  }
+}

@@ -17,6 +17,9 @@ export default function ProfilePage() {
   if (!profile) return null
 
   const lvl = levelFromXp(profile.xp ?? 0)
+  const historical = profile.total_money_recovered
+  const historicalLabel = typeof historical === 'number' && Number.isFinite(historical) && historical >= 0
+    ? formatEurosFraction(historical) : 'Non renseigné'
 
   async function save() {
     setSaving(true)
@@ -56,10 +59,11 @@ export default function ProfilePage() {
         </div>
 
         <div className="mt-6 grid gap-3 text-sm sm:grid-cols-3">
-          <Stat label="Total récupéré" value={formatEurosFraction(Number(profile.total_money_recovered ?? 0))} />
+          <Stat label="Historique non vérifié" value={historicalLabel} />
           <Stat label="Démarches" value={String(profile.total_demarches_launched ?? 0)} />
           <Stat label="Points" value={formatPoints(profile.purama_points ?? 0)} />
         </div>
+        <p className="mt-3 text-xs text-[var(--text-muted)]">L’ancien compteur est conservé. Il ne constitue pas une preuve de versement et ne mesure pas les estimations des nouveaux scans.</p>
       </Card>
 
       <Card className="p-6">

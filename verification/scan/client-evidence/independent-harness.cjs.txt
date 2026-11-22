@@ -1,0 +1,95 @@
+const { test, afterEach } = require('node:test');
+const assert = require('node:assert/strict');
+const base = '/workspace/scratch/dcfb234e0a8f/vida-aide-work';
+const { harness, profile, testing, React } = require(base + '/verification/scan/presentation-harness.cjs');
+const { createScanHarness, ids, modelResult } = require(base + '/verification/scan/scan-route-harness.cjs');
+const originalFetch = global.fetch;
+afterEach(() => { testing.cleanup(); global.fetch = originalFetch; });
+const web = 'src/app/(dashboard)/scanner/page.tsx', native = 'mobile/app/(tabs)/scanner.tsx';
+function fixture(provider) {
+  const backend = createScanHarness(provider ? { provider } : {}), h = harness();
+  h.state.auth.user = { id: ids.user };
+  h.state.auth.profile = { ...profile, id: ids.profile, auth_user_id: ids.user };
+  h.state.nativeAuth = { user: { id: ids.user } };
+  h.state.session = { data: { session: { user: { id: ids.user }, access_token: 'synthetic-session-token' } }, error: null };
+  const calls = [];
+  const transport = async (url, init) => { calls.push(JSON.parse(init.body)); return backend.POST(new Request(new URL(url, 'https://fixture.invalid'), init)); };
+  global.fetch = transport;
+  return { h, backend, calls, transport };
+}
+function fillNative(h, view) {
+  h.fireEvent.click(view.getByTestId('scanner-emploi-salarie'));
+  h.fireEvent.click(view.getByTestId('scanner-logement-locataire'));
+  h.fireEvent.change(view.getByTestId('scanner-age'), { target: { value: '32' } });
+  h.fireEvent.change(view.getByTestId('scanner-revenus'), { target: { value: '1500' } });
+}
+async function click(h, view, id) { await React.act(async () => h.fireEvent.click(view.getByTestId(id))); }
+
+test('web: user B with delayed profile A unmounts old request before its response', async () => {
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  const f = fixture(async () => gate);
+  const view = await f.h.render(web);
+  f.h.fireEvent.change(view.getByTestId('field-age'), { target: { value: '32' } });
+  f.h.fireEvent.change(view.getByTestId('field-emploi'), { target: { value: 'salarie' } });
+  f.h.fireEvent.change(view.getByTestId('field-revenus'), { target: { value: '1500' } });
+  await click(f.h, view, 'btn-launch-scan');
+  assert.equal(f.backend.calls.provider.length, 1);
+  try {
+    f.h.state.auth.user = { id: ids.other }; // The genuine useAuth keeps A's profile until B's query returns.
+    await React.act(async () => view.rerender(React.createElement(f.h.load(web).default)));
+    assert.equal(view.queryByTestId('field-revenus'), null);
+    await React.act(async () => release(modelResult));
+    assert.equal(f.h.state.navigations.length, 0); assert.equal(f.h.state.alerts.length, 0);
+  } finally { release(modelResult); }
+});
+
+test('native: initial async storage read blocks both reset and POST', async () => {
+  const f = fixture(); let release, deletes = 0;
+  const gate = new Promise((resolve) => { release = resolve; });
+  f.h.state.secureGet = async (_key, _storage) => { await gate; return null; };
+  f.h.state.secureDelete = async (key, storage) => { deletes += 1; storage.removeItem(key); };
+  const view = await f.h.render(native);
+  try {
+    assert.equal(view.getByTestId('scanner-submit').disabled, true);
+    assert.equal(view.getByTestId('scanner-new-intent').disabled, true);
+    await click(f.h, view, 'scanner-new-intent'); await click(f.h, view, 'scanner-submit');
+    assert.equal(deletes, 0); assert.equal(f.calls.length, 0);
+    await React.act(async () => release());
+    fillNative(f.h, view); await click(f.h, view, 'scanner-submit');
+    assert.equal(f.backend.calls.provider.length, 1);
+  } finally { release(); }
+});
+
+test('native: an old pending store write cannot replace the newer key after remount and lost receipt', async () => {
+  const f = fixture(); let release, writes = 0, firstResponse = true;
+  const gate = new Promise((resolve) => { release = resolve; });
+  f.h.state.secureSet = async (key, value, storage) => {
+    writes += 1;
+    if (writes === 1) await gate;
+    storage.setItem(key, value);
+  };
+  global.fetch = async (...args) => {
+    const response = await f.transport(...args);
+    if (firstResponse) { firstResponse = false; throw new TypeError('Synthetic lost acknowledgement'); }
+    return response;
+  };
+  let view = await f.h.render(native);
+  fillNative(f.h, view); await click(f.h, view, 'scanner-submit');
+  assert.equal(writes, 1); assert.equal(f.calls.length, 0);
+  view.unmount(); view = await f.h.render(native);
+  try {
+    // A serial store may correctly keep the replacement form waiting on the old write.
+    if (view.getByTestId('scanner-revenus').disabled) await React.act(async () => release());
+    fillNative(f.h, view); await click(f.h, view, 'scanner-submit');
+    assert.equal(f.backend.calls.provider.length, 1);
+    const sent = f.calls[0];
+    await React.act(async () => release());
+    view.unmount(); view = await f.h.render(native);
+    assert.equal(view.getByTestId('scanner-revenus').value, '1500');
+    await click(f.h, view, 'scanner-submit');
+    assert.equal(f.calls[1].request_id, sent.request_id, 'the durable key must still identify the request whose acknowledgement was lost');
+    assert.equal(f.backend.calls.provider.length, 1, 'recovery must not cause a second model call');
+    assert.equal(f.backend.state.scans.size, 1);
+  } finally { release(); }
+});

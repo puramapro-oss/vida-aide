@@ -17,3 +17,7 @@ docs/
 AKASHA-BRIEF.md
 AGENT-EMAIL-BRIEF.md
 .claude/
+
+# Local verification runtime artifacts
+__pycache__/
+*.py[cod]

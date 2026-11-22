@@ -1,0 +1,50 @@
+{
+  "status": "DEFECT_REPRODUCED",
+  "mode": "actual original handler, synthetic persistence failure",
+  "source_sha256": "ec4b53a87af7cc828c1a382265e5e294e408ecb16bd00d0ac79df6c8a721544e",
+  "responses": [
+    {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "processed": 1,
+        "results": [
+          {
+            "contest_id": "00000000-0000-4000-8000-000000000900",
+            "winners_count": 1,
+            "total_paid_cents": 3300
+          }
+        ],
+        "timestamp": "2026-11-22T03:59:02.917Z"
+      },
+      "wallet_balance": 58.5,
+      "ledger_entries": 1,
+      "closure_errors": 1
+    },
+    {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "processed": 1,
+        "results": [
+          {
+            "contest_id": "00000000-0000-4000-8000-000000000900",
+            "winners_count": 1,
+            "total_paid_cents": 3300
+          }
+        ],
+        "timestamp": "2026-11-22T03:59:02.921Z"
+      },
+      "wallet_balance": 91.5,
+      "ledger_entries": 2,
+      "closure_errors": 2
+    }
+  ],
+  "real_provider_calls": 0,
+  "real_database_connections": 0,
+  "original_balance": 25.5,
+  "final_balance": 91.5,
+  "false_success_responses": 2,
+  "repeat_prizes": 2,
+  "contest_status": "live"
+}

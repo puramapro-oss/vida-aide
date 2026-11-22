@@ -1,0 +1,28 @@
+✖ dashboard: current estimate and historical amount remain distinct (203.515446ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4416.933206
+
+✖ failing tests:
+
+test at verification/scan/presentation.test.cjs:9:1
+✖ dashboard: current estimate and historical amount remain distinct (203.515446ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Estimation du dernier scan/i. Input:
+  
+  'Argent récupérable détecté1200 €1 aides détectées dans ton dernier scan. Lance les démarches pour récupérer cet argent.Nouveau scanPoser une question26 €Wallet30 ptsPoints PURAMA2Démarches lancéesNiv. 2Chercheur 🔍Tes derniers scansVoir tout💰 Financier22 nov.1 200 €1 aides détectées'
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/presentation.test.cjs:12:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Argent récupérable détecté1200 €1 aides détectées dans ton dernier scan. Lance les démarches pour récupérer cet argent.Nouveau scanPoser une question26 €Wallet30 ptsPoints PURAMA2Démarches lancéesNiv. 2Chercheur 🔍Tes derniers scansVoir tout💰 Financier22 nov.1 200 €1 aides détectées',
+    expected: /Estimation du dernier scan/i,
+    operator: 'match',
+    diff: 'simple'
+  }

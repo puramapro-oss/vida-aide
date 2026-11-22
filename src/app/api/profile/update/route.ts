@@ -52,8 +52,8 @@ const BodySchema = z
 
 export async function POST(req: Request) {
   const sb = await createServerSupabaseClient()
-  const { data: { user } } = await sb.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Connexion requise.' }, { status: 401 })
+  const { data: { user }, error: authError } = await sb.auth.getUser()
+  if (authError || !user) return NextResponse.json({ error: 'Connexion requise.' }, { status: 401 })
 
   const json = await req.json().catch(() => ({}))
   const parsed = BodySchema.safeParse(json)

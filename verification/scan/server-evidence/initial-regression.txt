@@ -1,0 +1,818 @@
+✖ an estimate is saved as a scan without rewriting historical money or crediting a wallet (226.575866ms)
+✖ success is derived from the persisted scan receipt, including stored decimal rounding (41.588017ms)
+✔ cookie authentication verifies the user without an explicit token (22.260601ms)
+✖ native Bearer authentication verifies exactly the supplied token (28.619853ms)
+✖ malformed authorization is rejected without using a cookie session: Basic synthetic (36.714742ms)
+✖ malformed authorization is rejected without using a cookie session: Bearer (18.741268ms)
+✖ malformed authorization is rejected without using a cookie session: Bearer one two (15.376184ms)
+✖ malformed authorization is rejected without using a cookie session: Bearer token, Bearer other (14.535299ms)
+✖ auth error wins over a returned user (cookie) (22.727844ms)
+✖ auth error wins over a returned user (Bearer) (26.106958ms)
+✔ no session is rejected without invoking the provider (32.007282ms)
+✖ an unavailable auth verifier fails closed without exposing its error (13.077104ms)
+✔ invalid request is refused before profile lookup and paid work (14.809636ms)
+✖ a failed profile read is unavailable even when stale data accompanies the error (15.860609ms)
+✔ a missing profile has a distinct not-found response (23.112191ms)
+✖ invalid profile cannot obtain premium admission: {"subscription_plan":"unknown"} (22.937452ms)
+✖ invalid profile cannot obtain premium admission: {"subscription_plan":null} (23.347698ms)
+✖ invalid profile cannot obtain premium admission: {"role":"administrator"} (26.318961ms)
+✖ invalid profile cannot obtain premium admission: {"id":"not-a-profile-id"} (12.292925ms)
+✖ invalid profile cannot obtain premium admission: {"auth_user_id":"40000000-0000-4000-8000-000000000004"} (11.346816ms)
+✖ an unreadable quota is never treated as zero: {"count":0,"error":{"message":"unavailable"}} (12.302288ms)
+✖ an unreadable quota is never treated as zero: {"count":null,"error":null} (11.795109ms)
+✖ an unreadable quota is never treated as zero: {"count":-1,"error":null} (29.112411ms)
+✖ an unreadable quota is never treated as zero: {"count":0.5,"error":null} (9.348332ms)
+✖ an unreadable quota is never treated as zero: {"count":"0","error":null} (11.504639ms)
+✔ quota exactly at the existing limit refuses paid work (10.942779ms)
+✔ the last admitted free scan uses the profile ID and the existing 24-hour window (9.780871ms)
+✔ existing premium entitlement is preserved: {"subscription_plan":"premium"} (13.843757ms)
+✔ existing premium entitlement is preserved: {"role":"super_admin"} (18.56645ms)
+✖ provider diagnostics never reach the client (22.105603ms)
+✖ malformed model output is refused before persistence: null (20.506278ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":-1,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (22.037813ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":null,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (21.276507ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":10000000000,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (20.843416ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":"100","summary":"Estimation indicative, à vérifier auprès de l’organisme."} (23.126292ms)
+✖ malformed model output is refused before persistence: {"results":[{}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (22.209246ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":-1,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (30.415709ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"jour","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (9.39497ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"javascript:alert(1)","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (18.624226ms)
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":null} (25.547746ms)
+✖ a nonconforming persisted receipt cannot produce success: {"id":""} (22.504412ms)
+✖ a nonconforming persisted receipt cannot produce success: {"id":"not-a-scan-id"} (24.685497ms)
+✖ a nonconforming persisted receipt cannot produce success: {"user_id":"40000000-0000-4000-8000-000000000004"} (22.261544ms)
+✖ a nonconforming persisted receipt cannot produce success: {"type":"fiscal"} (22.128946ms)
+✖ a nonconforming persisted receipt cannot produce success: {"status":"processing"} (21.073126ms)
+✖ a nonconforming persisted receipt cannot produce success: {"total_recoverable":-1} (42.156462ms)
+✖ a nonconforming persisted receipt cannot produce success: {"total_recoverable_monthly":null} (38.960232ms)
+✖ a nonconforming persisted receipt cannot produce success: {"results":[{}]} (10.188854ms)
+✖ a nonconforming persisted receipt cannot produce success: {"ai_summary":null} (8.880429ms)
+✖ a database error accompanying a receipt remains unconfirmed (9.342123ms)
+✖ a lost insert response does not perform profile or notification side effects (10.985182ms)
+✖ a confirmed scan stays available when profile or notification bookkeeping fails (11.269431ms)
+✖ a thrown ancillary request does not turn a saved scan into an invitation to rerun it (9.567536ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 8
+ℹ fail 45
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1797.783049
+
+✖ failing tests:
+
+test at verification/scan/scan-route.test.cjs:19:1
+✖ an estimate is saved as a scan without rewriting historical money or crediting a wallet (226.575866ms)
+  AssertionError [ERR_ASSERTION]: total_money_recovered stays untouched
+  
+  1200 !== 9734.56
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1200,
+    expected: 9734.56,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:37:1
+✖ success is derived from the persisted scan receipt, including stored decimal rounding (41.588017ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 1200.123
+  - 1200.12
+           ^
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:47:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1200.123,
+    expected: 1200.12,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:66:1
+✖ native Bearer authentication verifies exactly the supplied token (28.619853ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   []
+  -   [
+  -     'synthetic-session-token'
+  -   ]
+    ]
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:70:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ [] ],
+    expected: [ [ 'synthetic-session-token' ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:74:3
+✖ malformed authorization is rejected without using a cookie session: Basic synthetic (36.714742ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:76:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:74:3
+✖ malformed authorization is rejected without using a cookie session: Bearer (18.741268ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:76:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:74:3
+✖ malformed authorization is rejected without using a cookie session: Bearer one two (15.376184ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:76:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:74:3
+✖ malformed authorization is rejected without using a cookie session: Bearer token, Bearer other (14.535299ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:76:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:83:3
+✖ auth error wins over a returned user (cookie) (22.727844ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:86:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:83:3
+✖ auth error wins over a returned user (Bearer) (26.106958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 401
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:86:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:99:1
+✖ an unavailable auth verifier fails closed without exposing its error (13.077104ms)
+  Error: private-auth-diagnostic
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:100:44)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at verification/scan/scan-route.test.cjs:114:1
+✖ a failed profile read is unavailable even when stale data accompanies the error (15.860609ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:118:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:133:3
+✖ invalid profile cannot obtain premium admission: {"subscription_plan":"unknown"} (22.937452ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:136:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:133:3
+✖ invalid profile cannot obtain premium admission: {"subscription_plan":null} (23.347698ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:136:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:133:3
+✖ invalid profile cannot obtain premium admission: {"role":"administrator"} (26.318961ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:136:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:133:3
+✖ invalid profile cannot obtain premium admission: {"id":"not-a-profile-id"} (12.292925ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:136:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:133:3
+✖ invalid profile cannot obtain premium admission: {"auth_user_id":"40000000-0000-4000-8000-000000000004"} (11.346816ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:136:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:145:3
+✖ an unreadable quota is never treated as zero: {"count":0,"error":{"message":"unavailable"}} (12.302288ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:147:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:145:3
+✖ an unreadable quota is never treated as zero: {"count":null,"error":null} (11.795109ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:147:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:145:3
+✖ an unreadable quota is never treated as zero: {"count":-1,"error":null} (29.112411ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:147:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:145:3
+✖ an unreadable quota is never treated as zero: {"count":0.5,"error":null} (9.348332ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:147:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:145:3
+✖ an unreadable quota is never treated as zero: {"count":"0","error":null} (11.504639ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:147:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:180:1
+✖ provider diagnostics never reach the client (22.105603ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /provider-secret|private-situation/. Input:
+  
+  '{"error":"AideIA est indisponible un instant. Réessaie. (provider-secret-key-and-private-situation)"}'
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:184:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"error":"AideIA est indisponible un instant. Réessaie. (provider-secret-key-and-private-situation)"}',
+    expected: /provider-secret|private-situation/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: null (20.506278ms)
+  TypeError [Error]: Cannot read properties of null (reading 'results')
+      at Object.POST (eval at load (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route-harness.cjs:116:5), <anonymous>:86:25)
+      at async submit (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:6:20)
+      at async TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:19)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":-1,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (22.037813ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":null,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (21.276507ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":10000000000,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (20.843416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":"100","summary":"Estimation indicative, à vérifier auprès de l’organisme."} (23.126292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (22.209246ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":-1,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (30.415709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"jour","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (9.39497ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"javascript:alert(1)","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."} (18.624226ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:197:3
+✖ malformed model output is refused before persistence: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":null} (25.547746ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:199:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"id":""} (22.504412ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"id":"not-a-scan-id"} (24.685497ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"user_id":"40000000-0000-4000-8000-000000000004"} (22.261544ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"type":"fiscal"} (22.128946ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"status":"processing"} (21.073126ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"total_recoverable":-1} (42.156462ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"total_recoverable_monthly":null} (38.960232ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"results":[{}]} (10.188854ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:210:3
+✖ a nonconforming persisted receipt cannot produce success: {"ai_summary":null} (8.880429ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 500
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:213:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:220:1
+✖ a database error accompanying a receipt remains unconfirmed (9.342123ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'scan_save_unconfirmed'
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:224:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'scan_save_unconfirmed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:229:1
+✖ a lost insert response does not perform profile or notification side effects (10.985182ms)
+  Error: lost insert response
+      at Object.query (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:231:84)
+      at /workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route-harness.cjs:77:67
+      at async Object.POST (eval at load (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route-harness.cjs:116:5), <anonymous>:80:46)
+      at async submit (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:6:20)
+      at async TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:234:30)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at verification/scan/scan-route.test.cjs:240:1
+✖ a confirmed scan stays available when profile or notification bookkeeping fails (11.269431ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - [
+  -   'profile_update_failed',
+  -   'notification_failed'
+  - ]
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:246:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [ 'profile_update_failed', 'notification_failed' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at verification/scan/scan-route.test.cjs:250:1
+✖ a thrown ancillary request does not turn a saved scan into an invitation to rerun it (9.567536ms)
+  Error: profile response lost
+      at Object.query (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:252:87)
+      at /workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route-harness.cjs:77:67
+      at async Object.POST (eval at load (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route-harness.cjs:116:5), <anonymous>:98:5)
+      at async submit (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:6:20)
+      at async TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-aide-work/verification/scan/scan-route.test.cjs:256:30)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

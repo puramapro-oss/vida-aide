@@ -1,0 +1,34 @@
+{
+  "status": "PASS_TARGETED_COUNTER_REVIEW",
+  "files_sha256": {
+    "src/app/(dashboard)/scanner/page.tsx": "10093eeb5ec623f65d0b2e6741743fc0e8ff96c7dd5327b407f58cbe65de73a0",
+    "src/hooks/useScanRequest.ts": "8ae90f4ca8df186f6d9a81195cb6b32bb8c6edc029458b53bd137a058bb4d542",
+    "src/lib/scan-attempt.ts": "03abf84fbbd57a1df7d91bc33efc42c296b0f83fc21e8ecb5c08ec7655995382",
+    "mobile/app/(tabs)/scanner.tsx": "cfc290dcda4d55d856248ac931537fda5cf211912bc6eec20217f1c438423ef8",
+    "mobile/hooks/useScanRequest.ts": "fb240adb6b3eef66701fbafa83a2ce9fe76b35161c57eb3418a0802afe88569d",
+    "mobile/lib/scan-attempt.ts": "7e5b1f952c66465f664d7eeaf9400dadcaa0d323020eeff6787232da42b2784a",
+    "mobile/lib/api.ts": "f1c5595a9c73b452f40028500662e9d3885e9c9baf67948ce0a1aa653585ba62",
+    "mobile/lib/scan.ts": "fca1d553628f4af2ed77457148fec9886658be3e813da1dea4e88ddc1d1f4b68"
+  },
+  "initial_counter_test": {
+    "passed": 2,
+    "failed": 1,
+    "log": "/workspace/scratch/dcfb234e0a8f/vida-client-key-review/initial-counter-tests.log",
+    "failure": "Old pending native store write replaced a newer request key after remount and a lost acknowledgement."
+  },
+  "corrected_counter_test": {
+    "passed": 3,
+    "failed": 0,
+    "unchanged_assertions": true,
+    "log": "/workspace/scratch/dcfb234e0a8f/vida-client-key-review/corrected-counter-tests.log"
+  },
+  "coverage": [
+    "Changed authenticated user with previous profile still loaded: no stale navigation or success",
+    "Initial asynchronous storage read: reset and POST blocked until ready",
+    "Pending native write across remount and lost acknowledgement: original request key preserved and only one synthetic model call"
+  ],
+  "scope": "Actual React source components, storage helper and POST handler; platform, identity/database and provider boundaries are synthetic",
+  "real_provider_calls": 0,
+  "native_device_execution": false,
+  "production_effects": false
+}

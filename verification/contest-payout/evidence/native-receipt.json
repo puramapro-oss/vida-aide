@@ -1,0 +1,232 @@
+{
+  "status": "PASS",
+  "mode": "native PostgreSQL single-user",
+  "version": "postgres (PostgreSQL) 18.7",
+  "binary_sha256": "18ffe5aa6231bf3b34c0000e32ea9775610168e8ab6e4eb6d444ceee8134e704",
+  "source_sha256": {
+    "verification/profiles-permissions/setup.sql": "13fe6597e7611ab80ebeff580f6b1643273f5effa689adc020d067b476219ef0",
+    "schema.sql": "82be2d90a524657f954c4990dd35a8a6f889cb2bcefacba704dd18e3a4c4ee48",
+    "migrations/0004_profiles_client_permissions.sql": "ff4dcc0161aa41b7b0140e6450c97fc83736156b119792595623863d618a112c",
+    "migrations/0005_stripe_atomic_fulfillment.sql": "268d8eb5543301dfd8696e36f038b774c6387d2bb819c88732722edd44ce1caa",
+    "migrations/0006_scan_admission.sql": "ba0b1793f103a3c92a13a6a6be25d1d984dd3a152a44de3002a0bfc02391246c",
+    "migrations/0007_weekly_contest_receipts.sql": "d928e948ba4ae81b97d7b6e25d4e6762a0a8b27509dc0ff6d614915a94c83374",
+    "verification/contest-payout/seed.sql": "52209cf28e86406f903dae7588c36f86c0477a3d1d2a0410d306f29792b8bb1f",
+    "verification/contest-payout/support.sql": "4832e2433c9b4033c973c28b892c9da12ce4b8ec2fdd7c51fdc0d1e165885a7d",
+    "verification/contest-payout/cases.sql": "f443d9ec2d1069e26698458884c5e34c45b34e4b1292f100082f92475a68605b",
+    "src/app/api/cron/contest-weekly/route.ts": "47f64e0fa47de776f5da933f695c87e31a8cbdc7dad67270c9bdf8225d2bfa76",
+    "verification/contest-payout/harness.cjs": "c463dfb4116c5b6249d479353f307c62d0c91b6834bcfaeca647d1d4547152eb",
+    "verification/contest-payout/emit-fixture.cjs": "66475cbf3287166c537dbc3ab998f9288a107581bbd755706c633cf07f00680f",
+    "verification/contest-payout/run-postgres.py": "aebf881014760cc695ac64b8f4c4285856ebd01ce53b89ea1b04254bc1c18c76",
+    "verification/package-lock.json": "28c32a43131834920a68db3e69f196604e989e4f96341ad001ee1ec369aa6fc5"
+  },
+  "cases": [
+    {
+      "case": "normal_user_oid_calibration",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "setup_with_pre_migration_history",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "apply_migrations",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "actual_handler_fixture",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "client_rpc_and_direct_close_denied",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "exact_handler_settlement_commits",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "committed_replay_uses_original_receipt",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "final_closure_failure_rolls_back_then_explicit_retry",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "last_notification_failure_rolls_back_every_award",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "invalid_ranks_and_duplicate_beneficiaries",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "invalid_amounts_never_change_allocation",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "invalid_winner_types_and_scores",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "missing_or_excess_beneficiaries_refused",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "stale_pool_end_or_contest_state_refused",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "legacy_without_any_ledger_is_not_replayed",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "legacy_partial_ledger_is_preserved",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "tracked_contest_with_ambiguous_ledger_is_refused",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "zero_pool_has_notifications_without_money",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "no_positive_candidates_closes_with_empty_receipt",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "fewer_winners_do_not_redistribute_remainder",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "maximum_integer_pool_uses_exact_cents",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "null_arguments_fail_without_side_effects",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "historical_rows_and_marker_preserved",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapply_all_migrations",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapplied_history",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapplied_acl",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "inject_unexpected_inherited_rpc_grant",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "inherited_rpc_grant_refuses_migration",
+      "status": "EXPECTED_FAILURE_PROVED",
+      "exit_code": 0,
+      "errors": [
+        "backend> backend> 2026-11-22 04:57:44.093 CET [55] ERROR:  Unexpected inherited contest settlement privileges"
+      ]
+    },
+    {
+      "case": "refusal_did_not_hide_the_existing_grant",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "restore_fixture_role",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "final_acl",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "final_history",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    }
+  ],
+  "remote_connections": 0,
+  "concurrent_sessions": 0,
+  "provider_calls": 0,
+  "cluster_removed": true,
+  "limits": [
+    "Auth/DB acquisition in the emitted HTTP fixture is synthetic; all settlement SQL executes in PostgreSQL.",
+    "Single-user mode proves values, rollback and permissions, not simultaneous transactions."
+  ],
+  "fixture_runtime": {
+    "typescript": "5.9.3",
+    "next": "16.2.11",
+    "zod": "4.3.6"
+  },
+  "behavior_cases": 19
+}

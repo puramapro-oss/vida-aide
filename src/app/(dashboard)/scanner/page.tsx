@@ -1,18 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search, Loader2, Sparkles, Coins, Building2, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/useAuth'
+import { useScanRequest } from '@/hooks/useScanRequest'
+import { scanContent, type ScanPayload } from '@/lib/scan-attempt'
 import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 import { CORRIDORS_FRONTALIERS } from '@/lib/constants'
-import type { Situation } from '@/types'
+import type { Profile, Situation } from '@/types'
 
 const SCAN_TYPES = [
-  { id: 'financial', label: 'Scanner financier', desc: 'Toutes les aides sociales auxquelles tu as droit', icon: Search, accent: 'cyan' },
+  { id: 'financial', label: 'Scanner financier', desc: 'Des pistes d’aides sociales à vérifier', icon: Search, accent: 'cyan' },
   { id: 'fiscal', label: 'Optimisation fiscale', desc: 'Crédits d\'impôt, déductions, frontaliers', icon: Coins, accent: 'purple' },
   { id: 'forgotten_money', label: 'Argent oublié', desc: 'Ciclade, assurances vie, trop-perçus', icon: Building2, accent: 'green' },
 ] as const
@@ -20,42 +22,40 @@ const SCAN_TYPES = [
 type ScanType = typeof SCAN_TYPES[number]['id']
 
 export default function ScannerPage() {
+  const { user, profile, loading, refetch } = useAuth()
+  if (loading || !user || !profile || profile.auth_user_id !== user.id) {
+    return <Card className="mx-auto max-w-xl p-6 text-center" role="status">Vérification du compte et de son profil…</Card>
+  }
+  return <ScannerForm key={`${user.id}:${profile.id}`} profile={profile} refetch={refetch} />
+}
+
+function ScannerForm({ profile, refetch }: { profile: Profile; refetch: ReturnType<typeof useAuth>['refetch'] }) {
   const router = useRouter()
-  const { profile, refetch } = useAuth()
   const [scanType, setScanType] = useState<ScanType>('financial')
-  const [loading, setLoading] = useState(false)
   const [situation, setSituation] = useState<Situation>(() => (profile?.situation as Situation) ?? {})
+  const { loading, ready, error, attempt, restored, run, reset } = useScanRequest(profile?.id)
+  const [appliedRestore, setAppliedRestore] = useState<ScanPayload | null>(null)
+  useEffect(() => {
+    if (restored) { setSituation(restored.situation); setScanType(restored.type); setAppliedRestore(restored) }
+  }, [restored])
+  const formReady = ready && (!restored || appliedRestore === restored)
+  const sameContent = attempt?.content === scanContent({ type: scanType, situation })
 
   function update<K extends keyof Situation>(k: K, v: Situation[K]) {
     setSituation((prev) => ({ ...prev, [k]: v }))
   }
 
   async function launchScan() {
-    if (!profile) return
+    if (!profile || !formReady) return
     if (!situation.age || !situation.emploi) {
       toast.error('Renseigne au minimum ton âge et ta situation pro.')
       return
     }
-    setLoading(true)
-    try {
-      const res = await fetch('/api/scan', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ type: scanType, situation }),
-      })
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}))
-        throw new Error(err.error ?? 'Erreur scan')
-      }
-      const data = await res.json()
-      toast.success(`Scan terminé ! ${data.results?.length ?? 0} aides détectées.`)
+    const data = await run({ type: scanType, situation })
+    if (data) {
+      toast.success(`Estimation enregistrée : ${data.count} pistes d’aides à vérifier.`)
       refetch()
-      router.push(`/scanner/${data.scan_id}`)
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Le scan a échoué. Réessaie dans un instant.'
-      toast.error(msg)
-    } finally {
-      setLoading(false)
+      router.push(`/scanner/${data.scanId}`)
     }
   }
 
@@ -64,7 +64,7 @@ export default function ScannerPage() {
       <header>
         <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold text-[var(--text-primary)]">Scanner financier</h1>
         <p className="mt-2 text-sm text-[var(--text-secondary)]">
-          AideIA analyse ta situation et liste tout l&apos;argent que tu peux récupérer.
+          AideIA propose des estimations indicatives et des pistes à vérifier auprès des organismes. Un scan ne prouve ni un droit acquis, ni un versement.
         </p>
       </header>
 
@@ -76,6 +76,7 @@ export default function ScannerPage() {
             <button
               key={t.id}
               type="button"
+              disabled={loading || !formReady}
               onClick={() => setScanType(t.id)}
               data-testid={`scan-type-${t.id}`}
               className={`glass relative rounded-2xl border p-5 text-left transition-all ${
@@ -95,6 +96,7 @@ export default function ScannerPage() {
       {/* Formulaire situation */}
       <Card className="p-6">
         <h2 className="mb-4 font-[family-name:var(--font-display)] text-xl font-bold text-[var(--text-primary)]">Ta situation</h2>
+        <fieldset disabled={loading || !formReady}>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Âge">
             <Input
@@ -218,27 +220,33 @@ export default function ScannerPage() {
             />
           </Field>
         </div>
+        </fieldset>
 
         <div className="mt-6 flex items-start gap-2 rounded-xl bg-[var(--cyan)]/5 p-3 text-xs text-[var(--text-secondary)]">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--cyan)]" />
-          <span>Tes données restent privées. AideIA les utilise uniquement pour calculer tes droits, jamais pour les partager.</span>
+          <span>Ces informations servent à préparer une estimation, dont les conditions doivent être vérifiées. La demande en cours reste conservée dans cet onglet pour permettre sa reprise.</span>
         </div>
+
+        <p className="mt-3 text-xs text-[var(--text-muted)]">En gratuit, chaque nouvelle demande, même échouée ou incertaine, compte dans la limite de 5 scans par 24 h. Reprendre la même demande ne relance pas le modèle. Modifier le contenu crée une nouvelle demande. Ce décompte ne déclenche aucun paiement.</p>
+        {error && <p role="alert" className="mt-3 text-sm text-red-400">{error}</p>}
+        {!formReady && !error && <p role="status" className="mt-3 text-sm text-[var(--text-muted)]">Lecture de la demande conservée…</p>}
+        {(attempt || !ready) && <Button variant="secondary" disabled={loading || !profile} onClick={reset} data-testid="btn-new-scan-intent" className="mt-3">Préparer une nouvelle demande</Button>}
 
         <Button
           onClick={launchScan}
-          disabled={loading}
+          disabled={loading || !formReady}
           className="mt-6 w-full"
           data-testid="btn-launch-scan"
         >
           {loading ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              Scan en cours… (10-15 sec)
+              Scan en cours…
             </>
           ) : (
             <>
               <Sparkles className="h-4 w-4" />
-              Lancer le scan
+              {sameContent ? 'Reprendre cette demande' : 'Lancer un nouveau scan'}
             </>
           )}
         </Button>
