@@ -8,7 +8,8 @@ export const maxDuration = 60
 
 // Existing distribution, including the undistributed remainder when fewer than
 // ten winners qualify. Calculate cents with integer thousandths, not floats.
-const PRIZE_DISTRIBUTION = [0.33, 0.17, 0.12, 0.08, 0.07, 0.05, 0.045, 0.045, 0.045, 0.045]
+const PRIZE_DISTRIBUTION = [330, 170, 120, 80, 70, 50, 45, 45, 45, 45]
+const prizeCents = (pool: number, index: number) => Math.floor(pool * PRIZE_DISTRIBUTION[index] / 1000)
 const moneyCents = z.number().int().min(0).max(2_147_483_647)
 const ContestSchema = z.object({
   id: z.uuid(), title: z.string(), type: z.literal('weekly'),
@@ -87,7 +88,7 @@ export async function POST(request: Request) {
         const winners = z.array(WinnerSchema).parse(scored.slice(0, 10).filter((winner) => winner.score > 0)
           .map((winner, index) => ({
             ...winner, rank: index + 1,
-            amount_cents: Math.floor(contest.total_pool_cents * Math.round(PRIZE_DISTRIBUTION[index] * 1000) / 1000),
+            amount_cents: prizeCents(contest.total_pool_cents, index),
           })))
         // No balance/notification/closure is written outside this transaction.
         const { data, error } = await supabase.rpc('settle_weekly_contest_v1', {
@@ -99,6 +100,7 @@ export async function POST(request: Request) {
         if (receipt.contest_id !== contest.id || receipt.winners_count !== receipt.awards.length
           || new Set(receipt.awards.map((award) => award.user_id)).size !== receipt.awards.length
           || receipt.awards.some((award, index) => award.rank !== index + 1)
+          || receipt.awards.some((award, index) => award.amount_cents !== prizeCents(contest.total_pool_cents, index))
           || receipt.total_paid_cents !== receipt.awards.reduce((sum, award) => sum + award.amount_cents, 0)
           || receipt.total_paid_cents > contest.total_pool_cents
           || (!receipt.duplicate && JSON.stringify(receipt.awards) !== JSON.stringify(winners))) {

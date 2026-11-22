@@ -114,6 +114,8 @@ const corruptions = {
   'wrong rank': (r) => { r.awards[0].rank = 2; },
   'duplicate recipient': (r) => { r.awards[1].user_id = r.awards[0].user_id; },
   'changed amount with same total': (r) => { r.awards[0].amount_cents += 1; r.awards[1].amount_cents -= 1; },
+  'duplicate with changed allocation and same total': (r) => { r.duplicate = true; r.awards[0].amount_cents += 1; r.awards[1].amount_cents -= 1; },
+  'duplicate with changed allocation below pool': (r) => { r.duplicate = true; r.awards[0].amount_cents += 1; r.total_paid_cents += 1; },
   'changed first result score': (r) => { r.awards[0].score += 1; },
   'changed first result name': (r) => { r.awards[0].name = 'Changed'; },
   'pool exceeded': (r) => { r.awards[0].amount_cents += 100; r.total_paid_cents += 100; },

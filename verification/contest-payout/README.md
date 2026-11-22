@@ -2,12 +2,12 @@
 
 ## Résultat reçu localement
 
-- **PASS — 50 tests du vrai handler** : classement et dix pourcentages conservés, scans terminés seuls, centimes/arrondis, reste non redistribué, lectures défaillantes, identités étrangères, reçus invalides et traitement indépendant des concours.
+- **PASS — 52 tests du vrai handler** : classement et dix pourcentages conservés, scans terminés seuls, centimes/arrondis, reste non redistribué, lectures défaillantes, identités étrangères, reçus invalides et traitement indépendant des concours. Deux contre-tests supplémentaires refusent un reçu de rejeu dont les allocations ont changé, même si sa somme reste cohérente et inférieure au pool. Ces deux cas échouent sur `ebf7c3fc` (HTTP 200 au lieu de 500) et passent avec la validation des montants par rang.
 - **PASS — 19 cas métier, 32 phases PostgreSQL natives** : reçu produit avec les arguments du vrai handler, règlement durable, rejeu, rollback de la dernière notification et de la clôture finale, droits effectifs, montants/rangs, anciennes données et réapplication des migrations.
 - **DÉFAUT ORIGINAL REPRODUIT** : le handler extrait sans modification du commit `af8eda90be63dba1592f347a9356b85fc0144b55` répond deux fois `200 / ok:true` alors que la clôture simulée échoue. Il répète deux prix de 33 €, garde le concours ouvert et fait passer le solde de 25,50 € à 91,50 €. Cette contre-épreuve utilise des réponses de persistance synthétiques ; elle ne constitue pas un essai PostgreSQL.
 - **NON TESTÉ — concurrence réelle** : `concurrency.cjs` est préparé et sa syntaxe est vérifiée. Seule son exécution en CI, avec connexions distinctes et attentes de verrou effectivement observées, pourra qualifier ses deux scénarios.
 
-Les résultats, empreintes et journaux sont copiés dans `evidence/`. `local-receipt.json` les rapproche. Ils ne valent pas résultat CI ni déploiement. Aucun fournisseur, versement, compte externe ou base distante n'a été utilisé.
+Les résultats, empreintes et journaux historiques des 50 premiers tests sont copiés dans `evidence/`. `local-receipt.json` les rapproche ; ils ne sont pas réécrits pour représenter les deux nouveaux cas. La suite complète courante contient 52 cas. Les résultats CI se lisent au SHA exact exécuté et ne valent pas déploiement. Aucun fournisseur, versement, compte externe ou base distante n'a été utilisé.
 
 ## Frontières de vérification
 
