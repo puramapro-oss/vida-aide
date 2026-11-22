@@ -1,0 +1,197 @@
+{
+  "status": "PASS",
+  "mode": "native PostgreSQL single-user",
+  "version": "postgres (PostgreSQL) 18.7",
+  "binary_sha256": "18ffe5aa6231bf3b34c0000e32ea9775610168e8ab6e4eb6d444ceee8134e704",
+  "source_sha256": {
+    "setup": "13fe6597e7611ab80ebeff580f6b1643273f5effa689adc020d067b476219ef0",
+    "schema": "82be2d90a524657f954c4990dd35a8a6f889cb2bcefacba704dd18e3a4c4ee48",
+    "profiles": "ff4dcc0161aa41b7b0140e6450c97fc83736156b119792595623863d618a112c",
+    "stripe": "268d8eb5543301dfd8696e36f038b774c6387d2bb819c88732722edd44ce1caa",
+    "scan": "ba0b1793f103a3c92a13a6a6be25d1d984dd3a152a44de3002a0bfc02391246c",
+    "seed": "0e2e6697f9cba0d42f7dbd5caeb8571a7bd60e3319ef3a64592b4f8baa462216",
+    "cases": "262d7d10365fc00a63f02166db8a26620152f68f273b1bb65d51e3520f784459",
+    "support": "3132bd3f43795d582e6d333acf8a07aa9fc3cdbb8bd4867ae076e99f128e1f4a"
+  },
+  "handler_source_sha256": {
+    "src/app/api/scan/route.ts": "ba64e7786f01cce3ddb72dae90c894b5fa36b338589a785dbef2b2ff26ab35ec",
+    "src/lib/scan-result.ts": "d1da1589029f9607bbc15e4a14385f1990a4259fa5aa4ea8d7626057d1beae83",
+    "src/lib/scan-admission.ts": "9d3e5cce93ae4b252b1e59c049c117948b1388a2a895681510bdb4d4e464c928",
+    "src/lib/scan-provider.ts": "f267b55b639b2201f9fef822db37991549ee0abd06f38730e050e491ff4c0462",
+    "src/lib/claude.ts": "85b29a78262fbdbd571704ac8d28b51d864a30dfdc332858a64dee238089174e",
+    "src/lib/constants.ts": "cb7f661055225b9e69e85d91db57e256cba3f8cbc4c9e5f995a2a07185d55e49",
+    "verification/scan/scan-route-harness.cjs": "1b082ceb8d540d456904e3944dbdc92d422bf56f68e26565eb7ecbbbfc1598d5",
+    "verification/scan/scan-rpc-double.cjs": "e621acf43dc18f2f84138801ed6d462d7a5f494c184e0a3168b17a686fbcab3b",
+    "verification/scan-quota/emit-fixture.cjs": "dd3008d5245287341d6aa293a91b796fc0fffe37772367c2c41b2cde1969ad5e"
+  },
+  "cases": [
+    {
+      "case": "normal_user_oid_calibration",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "setup",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "apply_migrations",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "actual_handler_fixture",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "real_handler_reservation_and_receipt",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "final_slot_and_all_attempt_states",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "stable_key_and_structural_input",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "owner_binding_and_uuid_conflict",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "failed_attempt_remains_counted",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "expiry_needs_service_passage",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "late_finalization_has_no_xp_or_result",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "rolling_window_and_bounded_cleanup",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "premium_and_administrator_policy",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "inconsistent_result_is_atomic_rejection",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "decimal_rounding_and_initial_xp_floor",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "rollback_after_result_before_xp",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "client_cannot_forge_admission_or_completion",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "historical_rows_and_money_preserved",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "historical_pending_is_not_automatically_reclassified",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "invalid_reservation_is_not_admitted",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapply_all_migrations",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapplied_history",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "reapplied_acl",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "unexpected_rpc_grant",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "inherited_rpc_grant_refuses_migration",
+      "status": "EXPECTED_FAILURE_PROVED",
+      "exit_code": 0,
+      "errors": [
+        "backend> backend> 2026-11-22 04:44:42.168 CET [51] ERROR:  Unexpected inherited scan RPC privileges"
+      ]
+    },
+    {
+      "case": "restore_fixture_role",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "case": "final_history",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": []
+    }
+  ],
+  "remote_connections": 0,
+  "concurrent_sessions": 0,
+  "cluster_removed": true,
+  "behavior_cases": 16
+}

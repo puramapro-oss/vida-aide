@@ -1,0 +1,135 @@
+{
+  "created_at": "2026-11-22T03:45:41.697921+00:00",
+  "base": "af8eda90be63dba1592f347a9356b85fc0144b55",
+  "branch": "fix/scan-estimate-provenance-20261122-dcfb",
+  "status": "PASS for bounded local source/component/handler checks; full application/native device qualification is PARTIEL",
+  "scope": "Estimate provenance across web/native surfaces and durable scan intention protocol for both real callers",
+  "previous_checkpoint": {
+    "path": "verification/scan/presentation-receipt.json",
+    "sha256": "1526f50cef0304d90555bd8a1e3dad8a438299165880117f63733fd6f4affb8a",
+    "note": "Preserved historical 31-test checkpoint; this receipt qualifies the current source hashes below."
+  },
+  "tests": {
+    "status": "PASS",
+    "total": 55,
+    "presentation": 17,
+    "native_scanner_real_handler": 12,
+    "real_prompt_mock_sdk": 3,
+    "request_replay_web_native_real_handler": 23,
+    "runner": "Node24.22.3, one test worker, 512MiB heap"
+  },
+  "independent_counter_review": {
+    "status": "PASS",
+    "total": 3,
+    "same_assertions": true,
+    "initial_pass": 2,
+    "initial_fail": 1,
+    "final_pass": 3,
+    "final_fail": 0,
+    "scope": [
+      "Authenticated user changes before old profile is replaced: form unmounted and late success ignored",
+      "Initial storage read blocks reset and submission",
+      "Old pending native write across remount and lost receipt cannot replace the request key or trigger another model call"
+    ],
+    "receipt": "verification/scan/client-evidence/independent-receipt.json"
+  },
+  "lint": {
+    "status": "PASS",
+    "files": 16,
+    "errors": 0,
+    "warnings": 0,
+    "eslint": "9.39.5",
+    "rules": "TypeScript recommended + exact unchanged PURAMA rules + hooks/rules-of-hooks and exhaustive-deps"
+  },
+  "types": {
+    "status": "PASS",
+    "entrypoints": 7,
+    "source_files": 383,
+    "diagnostics": 0,
+    "typescript": "5.9.3",
+    "target": "ES2017 from repository config",
+    "scope": "Six web screens, imported source closure including request hook/storage helpers, and pure native scan contract",
+    "limitations": "Read-only exact Next16.2.11/Zod4.3.6 bank with existing UI declaration bank; not full canonical dependencies. No Expo54/RN0.81.5 component typecheck."
+  },
+  "contract": [
+    "request_id UUID is saved with exact canonical content and owner before any POST.",
+    "Transport failure, uncertain receipt, processing409 and failed409 retain the same key and payload; no automatic retry.",
+    "HTTP200, ok:true, exact scan_id===request_id and validated result shape/arithmetic are required for success.",
+    "Explicit new intention or edited content creates a new UUID; failed/uncertain attempts are disclosed as counting toward five free attempts per24h.",
+    "Web sessionStorage is scoped to the verified profile; native SecureStore is scoped to the authenticated user.",
+    "Native load/save/clear operations are serialized per owner across component remounts in the same JS runtime; storage failure blocks submission.",
+    "Auth/profile transition, blur, unmount and late responses cannot update another active account or navigate to its predecessor result.",
+    "Historical total_money_recovered remains displayed as unverified; estimate is never presented as money received; wallet amounts and withdrawal rules are preserved."
+  ],
+  "expo_uuid": {
+    "package": "expo-modules-core",
+    "version": "3.0.29",
+    "dependency_change": "Declared existing exact package directly in mobile/package.json and root lock dependency map; resolved package unchanged",
+    "source": "Public uuid.v4 export calls the native Expo UUID generator, with explicit failure and no weak random fallback",
+    "archive_integrity_verified_against_lock": "sha512-LzipcjGqk8gvkrOUf7O2mejNWugPkf3lmd9GkqL9WuNyeN2fRwU0Dn77e3ZUKI3k6sI+DNwjkq4Nu9fNN9WS7Q==",
+    "inspected_source_sha256": {
+      "package/src/index.ts": "0a322a7d58dfc39c312823fc87cb99072e3c8f98e48f320ca1399271a3ac417d",
+      "package/src/uuid/index.ts": "20c2142e5aa8e6ce8958e41f5f00ceeb585f645cf538e6be2611a864bcafebc7"
+    }
+  },
+  "boundaries": [
+    "Real React19.2.4 components and mobile API helper invoke actual POST/validation code",
+    "JSDOM27.0.1 and adapters for native visual primitives, focus, router, haptics and storage",
+    "Supabase identity/database and SDK transport boundaries simulated; zero actual provider/payment/production calls",
+    "Prompt tests inspect real claude.ts calls, original models/tokens, declared zero/false values, exact AbortSignal and maxRetries:0"
+  ],
+  "limitations": [
+    "No browser screenshot or native device execution",
+    "No full Expo54/RN0.81.5 dependency qualification",
+    "No SQL concurrency evidence in this client receipt; database gates belong to the separate server receipt",
+    "GitNexus index failed137; impacts remain UNKNOWN, supplemented by source/caller inventory",
+    "Final Git publication and CI reception belong to the coordinating agent"
+  ],
+  "sources": {
+    "src/app/(dashboard)/dashboard/page.tsx": "56462c25e206f7492b3f316429bc314da3385204127b7d12deaa7beb72288107",
+    "src/app/(dashboard)/dashboard/profile/page.tsx": "b9017ae172a9401c438eb941aecc8b68c3b46735065e9eb7dd4e4a7b0932e902",
+    "src/app/(dashboard)/dashboard/admin/page.tsx": "134b3075a3e4acfb53f7053cca8a66efa15bd6537413f91cf689cf92a1e4998c",
+    "src/app/(dashboard)/dashboard/wallet/page.tsx": "ed2912a48f8b5afc4e54bc82b749c938f9119abcecb02f3c621bbc5ccdb67143",
+    "src/app/(dashboard)/scanner/[id]/page.tsx": "006a15a28d762da6351d16b55a004b48532426f618f49e062d8a1035534b98a5",
+    "src/app/(dashboard)/scanner/page.tsx": "10093eeb5ec623f65d0b2e6741743fc0e8ff96c7dd5327b407f58cbe65de73a0",
+    "src/hooks/useScanRequest.ts": "8ae90f4ca8df186f6d9a81195cb6b32bb8c6edc029458b53bd137a058bb4d542",
+    "src/lib/scan-attempt.ts": "03abf84fbbd57a1df7d91bc33efc42c296b0f83fc21e8ecb5c08ec7655995382",
+    "mobile/app/(tabs)/dashboard.tsx": "020f0e0c7f710f661269d7ea17ceab5abd350253a40a9cb74bfe60049cd3db6e",
+    "mobile/app/(tabs)/wallet.tsx": "e611a4aa59063c5c6d1b13a5ff301c2f6c7d8b985d38cf40e13776544d113343",
+    "mobile/app/(tabs)/scanner.tsx": "cfc290dcda4d55d856248ac931537fda5cf211912bc6eec20217f1c438423ef8",
+    "mobile/components/ScanEstimateResults.tsx": "1d17583e2732779df2bd89b8d028a2180088b4a20743322273b751e4dff5cde2",
+    "mobile/hooks/useScanRequest.ts": "fb240adb6b3eef66701fbafa83a2ce9fe76b35161c57eb3418a0802afe88569d",
+    "mobile/lib/api.ts": "f1c5595a9c73b452f40028500662e9d3885e9c9baf67948ce0a1aa653585ba62",
+    "mobile/lib/scan.ts": "fca1d553628f4af2ed77457148fec9886658be3e813da1dea4e88ddc1d1f4b68",
+    "mobile/lib/scan-attempt.ts": "7e5b1f952c66465f664d7eeaf9400dadcaa0d323020eeff6787232da42b2784a",
+    "mobile/package.json": "8c12a7b59f8f3ad8d26e10ce7f04e7c55834d3defb88007dce215a4ee3f60ed3",
+    "mobile/package-lock.json": "6120a296ca60b23cc97f5d4decf1d653f3e2308f75bee122f9c991cc4babedea"
+  },
+  "test_sources": {
+    "verification/scan/presentation-harness.cjs": "5c592ebe192744c263a91a40d7a383d4d9e67fcdc38d903a47a896c91bcdf7b7",
+    "verification/scan/presentation.test.cjs": "167dc37666a23fe50c6e0958c1c2de3fe46ac533b4e72512b1ad150e8b451f90",
+    "verification/scan/native-scanner.test.cjs": "71f25210128b5f94991e15422365d6abec2118bd8f5708228c510a658ba61583",
+    "verification/scan/prompt.test.cjs": "8e598a5e6e07f9d4d42b57e67604356c5a19fec560b3ef6bb980b52e0bda172b",
+    "verification/scan/request-replay.test.cjs": "5e9358c1c6470f97e17a8a3647d8aeb81fbd6f13e85dc5a00c4259d18888202a"
+  },
+  "integration_sources": {
+    "src/app/api/scan/route.ts": "ba64e7786f01cce3ddb72dae90c894b5fa36b338589a785dbef2b2ff26ab35ec",
+    "src/lib/scan-result.ts": "d1da1589029f9607bbc15e4a14385f1990a4259fa5aa4ea8d7626057d1beae83",
+    "src/lib/scan-admission.ts": "9d3e5cce93ae4b252b1e59c049c117948b1388a2a895681510bdb4d4e464c928",
+    "src/lib/scan-provider.ts": "f267b55b639b2201f9fef822db37991549ee0abd06f38730e050e491ff4c0462",
+    "src/lib/claude.ts": "85b29a78262fbdbd571704ac8d28b51d864a30dfdc332858a64dee238089174e",
+    "migrations/0006_scan_admission.sql": "ba0b1793f103a3c92a13a6a6be25d1d984dd3a152a44de3002a0bfc02391246c",
+    "verification/scan/scan-route-harness.cjs": "1b082ceb8d540d456904e3944dbdc92d422bf56f68e26565eb7ecbbbfc1598d5",
+    "verification/scan/scan-rpc-double.cjs": "e621acf43dc18f2f84138801ed6d462d7a5f494c184e0a3168b17a686fbcab3b"
+  },
+  "evidence": {
+    "verification/scan/client-evidence/independent-after.txt": "6b051904374b754741bb5fd63b1f3607d44739bd3d239c4741da4f8273b49442",
+    "verification/scan/client-evidence/independent-before.txt": "8da46aa5ad117e1df61da4ee7093e31c000d34161620372258efd38285366724",
+    "verification/scan/client-evidence/independent-harness.cjs.txt": "a6fae601586a302e9ba08e15f12ffc6ac9429807a4af21c504205946b2b8a0f7",
+    "verification/scan/client-evidence/independent-receipt.json": "15bc52b558f252911cd9cb1a3ebde5bbe6acc4a9d8b4acfe7d79ab2474d11f77",
+    "verification/scan/client-evidence/lint.txt": "547b60890fb1456e4574951523619748f533ec96d527658cf3344ba24047105c",
+    "verification/scan/client-evidence/tests.txt": "7f8f613174949a8c32396e65e6b3c33368828886ed54f30c405d58026a5a0540",
+    "verification/scan/client-evidence/types.txt": "fbdaa2c56b3d4d5483882d7f632510601e6d8e01dccd79aff7ce322e5f1fb5b5"
+  },
+  "reproduce_tests": "VIDA_PRESENTATION_TOOLS=<package directory containing React/DOM/testing-library/jsdom> VIDA_AIDE_VERIFICATION_NODE_MODULES=<exact backend node_modules> NODE_OPTIONS=--max-old-space-size=512 node --test --test-concurrency=1 verification/scan/presentation.test.cjs verification/scan/native-scanner.test.cjs verification/scan/prompt.test.cjs verification/scan/request-replay.test.cjs"
+}

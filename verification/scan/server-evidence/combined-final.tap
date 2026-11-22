@@ -1,0 +1,1625 @@
+TAP version 13
+# Subtest: real cron preserves ten existing allocations, rounding, ranking and one atomic write
+ok 1 - real cron preserves ten existing allocations, rounding, ranking and one atomic write
+  ---
+  duration_ms: 177.422714
+  type: 'test'
+  ...
+# Subtest: weights, completed scans and stable tied ranking remain the existing business rules
+ok 2 - weights, completed scans and stable tied ranking remain the existing business rules
+  ---
+  duration_ms: 27.145697
+  type: 'test'
+  ...
+# Subtest: fewer winners leave the undistributed remainder and no candidates still require a receipt
+ok 3 - fewer winners leave the undistributed remainder and no candidates still require a receipt
+  ---
+  duration_ms: 40.62024
+  type: 'test'
+  ...
+# Subtest: a zero pool records participation without fabricating money
+ok 4 - a zero pool records participation without fabricating money
+  ---
+  duration_ms: 30.703698
+  type: 'test'
+  ...
+# Subtest: no ended contest is a confirmed empty read, without any settlement
+ok 5 - no ended contest is a confirmed empty read, without any settlement
+  ---
+  duration_ms: 12.65384
+  type: 'test'
+  ...
+# Subtest: contests: error_with_data never closes or reports a successful contest
+ok 6 - contests: error_with_data never closes or reports a successful contest
+  ---
+  duration_ms: 12.191387
+  type: 'test'
+  ...
+# Subtest: contests: null_data never closes or reports a successful contest
+ok 7 - contests: null_data never closes or reports a successful contest
+  ---
+  duration_ms: 14.833482
+  type: 'test'
+  ...
+# Subtest: contests: wrong_shape never closes or reports a successful contest
+ok 8 - contests: wrong_shape never closes or reports a successful contest
+  ---
+  duration_ms: 16.228816
+  type: 'test'
+  ...
+# Subtest: profiles: error_with_data never closes or reports a successful contest
+ok 9 - profiles: error_with_data never closes or reports a successful contest
+  ---
+  duration_ms: 9.963272
+  type: 'test'
+  ...
+# Subtest: profiles: null_data never closes or reports a successful contest
+ok 10 - profiles: null_data never closes or reports a successful contest
+  ---
+  duration_ms: 10.338726
+  type: 'test'
+  ...
+# Subtest: profiles: wrong_shape never closes or reports a successful contest
+ok 11 - profiles: wrong_shape never closes or reports a successful contest
+  ---
+  duration_ms: 10.398494
+  type: 'test'
+  ...
+# Subtest: referrals: error_with_data never closes or reports a successful contest
+ok 12 - referrals: error_with_data never closes or reports a successful contest
+  ---
+  duration_ms: 17.425295
+  type: 'test'
+  ...
+# Subtest: referrals: null_data never closes or reports a successful contest
+ok 13 - referrals: null_data never closes or reports a successful contest
+  ---
+  duration_ms: 10.896181
+  type: 'test'
+  ...
+# Subtest: referrals: wrong_shape never closes or reports a successful contest
+ok 14 - referrals: wrong_shape never closes or reports a successful contest
+  ---
+  duration_ms: 8.376305
+  type: 'test'
+  ...
+# Subtest: mission_completions: error_with_data never closes or reports a successful contest
+ok 15 - mission_completions: error_with_data never closes or reports a successful contest
+  ---
+  duration_ms: 8.228336
+  type: 'test'
+  ...
+# Subtest: mission_completions: null_data never closes or reports a successful contest
+ok 16 - mission_completions: null_data never closes or reports a successful contest
+  ---
+  duration_ms: 13.31025
+  type: 'test'
+  ...
+# Subtest: mission_completions: wrong_shape never closes or reports a successful contest
+ok 17 - mission_completions: wrong_shape never closes or reports a successful contest
+  ---
+  duration_ms: 17.115206
+  type: 'test'
+  ...
+# Subtest: scans: error_with_data never closes or reports a successful contest
+ok 18 - scans: error_with_data never closes or reports a successful contest
+  ---
+  duration_ms: 8.816366
+  type: 'test'
+  ...
+# Subtest: scans: null_data never closes or reports a successful contest
+ok 19 - scans: null_data never closes or reports a successful contest
+  ---
+  duration_ms: 10.644019
+  type: 'test'
+  ...
+# Subtest: scans: wrong_shape never closes or reports a successful contest
+ok 20 - scans: wrong_shape never closes or reports a successful contest
+  ---
+  duration_ms: 9.392738
+  type: 'test'
+  ...
+# Subtest: duplicate profile fails before mutation
+ok 21 - duplicate profile fails before mutation
+  ---
+  duration_ms: 9.202187
+  type: 'test'
+  ...
+# Subtest: invalid profile identity fails before mutation
+ok 22 - invalid profile identity fails before mutation
+  ---
+  duration_ms: 14.842205
+  type: 'test'
+  ...
+# Subtest: noninteger candidate score input fails before mutation
+ok 23 - noninteger candidate score input fails before mutation
+  ---
+  duration_ms: 8.114608
+  type: 'test'
+  ...
+# Subtest: foreign referral fails before mutation
+ok 24 - foreign referral fails before mutation
+  ---
+  duration_ms: 12.245405
+  type: 'test'
+  ...
+# Subtest: foreign mission fails before mutation
+ok 25 - foreign mission fails before mutation
+  ---
+  duration_ms: 17.28035
+  type: 'test'
+  ...
+# Subtest: foreign completed scan fails before mutation
+ok 26 - foreign completed scan fails before mutation
+  ---
+  duration_ms: 17.456962
+  type: 'test'
+  ...
+# Subtest: invalid activity identity fails before mutation
+ok 27 - invalid activity identity fails before mutation
+  ---
+  duration_ms: 18.782992
+  type: 'test'
+  ...
+# Subtest: invalid contest invalid id cannot reach the RPC
+ok 28 - invalid contest invalid id cannot reach the RPC
+  ---
+  duration_ms: 15.96159
+  type: 'test'
+  ...
+# Subtest: invalid contest wrong type cannot reach the RPC
+ok 29 - invalid contest wrong type cannot reach the RPC
+  ---
+  duration_ms: 14.125386
+  type: 'test'
+  ...
+# Subtest: invalid contest wrong status cannot reach the RPC
+ok 30 - invalid contest wrong status cannot reach the RPC
+  ---
+  duration_ms: 14.809837
+  type: 'test'
+  ...
+# Subtest: invalid contest negative pool cannot reach the RPC
+ok 31 - invalid contest negative pool cannot reach the RPC
+  ---
+  duration_ms: 16.138211
+  type: 'test'
+  ...
+# Subtest: invalid contest fractional pool cannot reach the RPC
+ok 32 - invalid contest fractional pool cannot reach the RPC
+  ---
+  duration_ms: 14.308711
+  type: 'test'
+  ...
+# Subtest: invalid contest overflow pool cannot reach the RPC
+ok 33 - invalid contest overflow pool cannot reach the RPC
+  ---
+  duration_ms: 13.843119
+  type: 'test'
+  ...
+# Subtest: invalid contest invalid end cannot reach the RPC
+ok 34 - invalid contest invalid end cannot reach the RPC
+  ---
+  duration_ms: 19.970728
+  type: 'test'
+  ...
+# Subtest: RPC error cannot claim an atomic commit
+ok 35 - RPC error cannot claim an atomic commit
+  ---
+  duration_ms: 7.626576
+  type: 'test'
+  ...
+# Subtest: RPC throw cannot claim an atomic commit
+ok 36 - RPC throw cannot claim an atomic commit
+  ---
+  duration_ms: 7.069714
+  type: 'test'
+  ...
+# Subtest: missing receipt cannot claim an atomic commit
+ok 37 - missing receipt cannot claim an atomic commit
+  ---
+  duration_ms: 15.145263
+  type: 'test'
+  ...
+# Subtest: receipt wrong version is explicitly unconfirmed
+ok 38 - receipt wrong version is explicitly unconfirmed
+  ---
+  duration_ms: 19.655251
+  type: 'test'
+  ...
+# Subtest: receipt wrong contest is explicitly unconfirmed
+ok 39 - receipt wrong contest is explicitly unconfirmed
+  ---
+  duration_ms: 32.793118
+  type: 'test'
+  ...
+# Subtest: receipt missing duplicate flag is explicitly unconfirmed
+ok 40 - receipt missing duplicate flag is explicitly unconfirmed
+  ---
+  duration_ms: 8.55575
+  type: 'test'
+  ...
+# Subtest: receipt wrong count is explicitly unconfirmed
+ok 41 - receipt wrong count is explicitly unconfirmed
+  ---
+  duration_ms: 8.74501
+  type: 'test'
+  ...
+# Subtest: receipt wrong total is explicitly unconfirmed
+ok 42 - receipt wrong total is explicitly unconfirmed
+  ---
+  duration_ms: 7.660406
+  type: 'test'
+  ...
+# Subtest: receipt wrong rank is explicitly unconfirmed
+ok 43 - receipt wrong rank is explicitly unconfirmed
+  ---
+  duration_ms: 7.941382
+  type: 'test'
+  ...
+# Subtest: receipt duplicate recipient is explicitly unconfirmed
+ok 44 - receipt duplicate recipient is explicitly unconfirmed
+  ---
+  duration_ms: 6.988823
+  type: 'test'
+  ...
+# Subtest: receipt changed amount with same total is explicitly unconfirmed
+ok 45 - receipt changed amount with same total is explicitly unconfirmed
+  ---
+  duration_ms: 6.935575
+  type: 'test'
+  ...
+# Subtest: receipt changed first result score is explicitly unconfirmed
+ok 46 - receipt changed first result score is explicitly unconfirmed
+  ---
+  duration_ms: 7.14865
+  type: 'test'
+  ...
+# Subtest: receipt changed first result name is explicitly unconfirmed
+ok 47 - receipt changed first result name is explicitly unconfirmed
+  ---
+  duration_ms: 7.493049
+  type: 'test'
+  ...
+# Subtest: receipt pool exceeded is explicitly unconfirmed
+ok 48 - receipt pool exceeded is explicitly unconfirmed
+  ---
+  duration_ms: 8.172353
+  type: 'test'
+  ...
+# Subtest: a canonical duplicate reports the committed awards, not a second calculation
+ok 49 - a canonical duplicate reports the committed awards, not a second calculation
+  ---
+  duration_ms: 14.60841
+  type: 'test'
+  ...
+# Subtest: one unresolved historic contest stays failed while another independent receipt is reported
+ok 50 - one unresolved historic contest stays failed while another independent receipt is reported
+  ---
+  duration_ms: 30.816384
+  type: 'test'
+  ...
+# {"scope":"actual profile update route; auth/storage simulated","source_sha256":"918daf94fe6236256339cbbaa43086667b10ca003b89be228b0adbb53275c2df","remoteCalls":0}
+# Subtest: profile API refuses protected field id before a storage write
+ok 51 - profile API refuses protected field id before a storage write
+  ---
+  duration_ms: 13.911417
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field auth_user_id before a storage write
+ok 52 - profile API refuses protected field auth_user_id before a storage write
+  ---
+  duration_ms: 5.308609
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field email before a storage write
+ok 53 - profile API refuses protected field email before a storage write
+  ---
+  duration_ms: 3.990759
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field role before a storage write
+ok 54 - profile API refuses protected field role before a storage write
+  ---
+  duration_ms: 5.029666
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field subscription_plan before a storage write
+ok 55 - profile API refuses protected field subscription_plan before a storage write
+  ---
+  duration_ms: 4.332686
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field subscription_interval before a storage write
+ok 56 - profile API refuses protected field subscription_interval before a storage write
+  ---
+  duration_ms: 8.802113
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field trial_ends_at before a storage write
+ok 57 - profile API refuses protected field trial_ends_at before a storage write
+  ---
+  duration_ms: 2.738198
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field stripe_customer_id before a storage write
+ok 58 - profile API refuses protected field stripe_customer_id before a storage write
+  ---
+  duration_ms: 2.517111
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field stripe_subscription_id before a storage write
+ok 59 - profile API refuses protected field stripe_subscription_id before a storage write
+  ---
+  duration_ms: 2.599793
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field referral_code before a storage write
+ok 60 - profile API refuses protected field referral_code before a storage write
+  ---
+  duration_ms: 3.291676
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field referred_by before a storage write
+ok 61 - profile API refuses protected field referred_by before a storage write
+  ---
+  duration_ms: 3.230285
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field wallet_balance before a storage write
+ok 62 - profile API refuses protected field wallet_balance before a storage write
+  ---
+  duration_ms: 3.059984
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field purama_points before a storage write
+ok 63 - profile API refuses protected field purama_points before a storage write
+  ---
+  duration_ms: 2.768302
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field total_money_recovered before a storage write
+ok 64 - profile API refuses protected field total_money_recovered before a storage write
+  ---
+  duration_ms: 3.020135
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field total_demarches_launched before a storage write
+ok 65 - profile API refuses protected field total_demarches_launched before a storage write
+  ---
+  duration_ms: 2.751348
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field level before a storage write
+ok 66 - profile API refuses protected field level before a storage write
+  ---
+  duration_ms: 2.71933
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field xp before a storage write
+ok 67 - profile API refuses protected field xp before a storage write
+  ---
+  duration_ms: 7.018105
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field streak_days before a storage write
+ok 68 - profile API refuses protected field streak_days before a storage write
+  ---
+  duration_ms: 3.196726
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field metadata before a storage write
+ok 69 - profile API refuses protected field metadata before a storage write
+  ---
+  duration_ms: 2.880208
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field created_at before a storage write
+ok 70 - profile API refuses protected field created_at before a storage write
+  ---
+  duration_ms: 2.63151
+  type: 'test'
+  ...
+# Subtest: profile API refuses protected field updated_at before a storage write
+ok 71 - profile API refuses protected field updated_at before a storage write
+  ---
+  duration_ms: 2.593975
+  type: 'test'
+  ...
+# Subtest: existing personal editing contract remains server-owned and owner-filtered
+ok 72 - existing personal editing contract remains server-owned and owner-filtered
+  ---
+  duration_ms: 12.124745
+  type: 'test'
+  ...
+# Subtest: empty profile mutation does not acquire the service client
+ok 73 - empty profile mutation does not acquire the service client
+  ---
+  duration_ms: 3.340789
+  type: 'test'
+  ...
+# Subtest: failed authentication rejects a residual user before any service client or profile write
+ok 74 - failed authentication rejects a residual user before any service client or profile write
+  ---
+  duration_ms: 2.445385
+  type: 'test'
+  ...
+# Subtest: native scan: real POST accepts financial type, verified Bearer and exact zero income
+ok 75 - native scan: real POST accepts financial type, verified Bearer and exact zero income
+  ---
+  duration_ms: 466.62738
+  type: 'test'
+  ...
+# Subtest: native scan: decimal comma is parsed, all existing units render without invented fields
+ok 76 - native scan: decimal comma is parsed, all existing units render without invented fields
+  ---
+  duration_ms: 280.288458
+  type: 'test'
+  ...
+# Subtest: native scan: invalid numbers do not trigger the provider or silently disappear
+ok 77 - native scan: invalid numbers do not trigger the provider or silently disappear
+  ---
+  duration_ms: 526.582742
+  type: 'test'
+  ...
+# Subtest: native scan: rejected session never submits old account inputs
+ok 78 - native scan: rejected session never submits old account inputs
+  ---
+  duration_ms: 358.819223
+  type: 'test'
+  ...
+# Subtest: native scan: HTTP success without exact response shape is not a completed scan
+ok 79 - native scan: HTTP success without exact response shape is not a completed scan
+  ---
+  duration_ms: 867.539696
+  type: 'test'
+  ...
+# Subtest: native scan: persistence receipt failure retains draft and has no numerical success
+ok 80 - native scan: persistence receipt failure retains draft and has no numerical success
+  ---
+  duration_ms: 96.863542
+  type: 'test'
+  ...
+# Subtest: native scan: network loss keeps the draft without claiming a saved result or retrying
+ok 81 - native scan: network loss keeps the draft without claiming a saved result or retrying
+  ---
+  duration_ms: 121.542769
+  type: 'test'
+  ...
+# Subtest: native scan: saved scan survives secondary warning without duplicate provider call
+ok 82 - native scan: saved scan survives secondary warning without duplicate provider call
+  ---
+  duration_ms: 85.99506
+  type: 'test'
+  ...
+# Subtest: native scan: same tick double submit makes one request and permits explicit new scan
+ok 83 - native scan: same tick double submit makes one request and permits explicit new scan
+  ---
+  duration_ms: 98.41715
+  type: 'test'
+  ...
+# Subtest: native scan: late response after unmount or blur/refocus has no stale success
+ok 84 - native scan: late response after unmount or blur/refocus has no stale success
+  ---
+  duration_ms: 242.083735
+  type: 'test'
+  ...
+# Subtest: native scan: account switch clears the old form and rejects an outstanding result
+ok 85 - native scan: account switch clears the old form and rejects an outstanding result
+  ---
+  duration_ms: 84.749838
+  type: 'test'
+  ...
+# Subtest: native and server validation agree on cent rounding without rewriting estimates
+ok 86 - native and server validation agree on cent rounding without rewriting estimates
+  ---
+  duration_ms: 38.568345
+  type: 'test'
+  ...
+# Subtest: dashboard: current estimate and historical amount remain distinct
+ok 87 - dashboard: current estimate and historical amount remain distinct
+  ---
+  duration_ms: 333.819303
+  type: 'test'
+  ...
+# Subtest: dashboard: no scan never repurposes the historical field as an estimate
+ok 88 - dashboard: no scan never repurposes the historical field as an estimate
+  ---
+  duration_ms: 57.710122
+  type: 'test'
+  ...
+# Subtest: dashboard: failed read does not become an empty list or zero estimate
+ok 89 - dashboard: failed read does not become an empty list or zero estimate
+  ---
+  duration_ms: 48.314047
+  type: 'test'
+  ...
+# Subtest: dashboard: a completed zero estimate is shown, an invalid amount is unavailable
+ok 90 - dashboard: a completed zero estimate is shown, an invalid amount is unavailable
+  ---
+  duration_ms: 201.031076
+  type: 'test'
+  ...
+# Subtest: profile: original counter remains readable only as unverified history
+ok 91 - profile: original counter remains readable only as unverified history
+  ---
+  duration_ms: 23.447755
+  type: 'test'
+  ...
+# Subtest: profile: missing historical value does not become zero
+ok 92 - profile: missing historical value does not become zero
+  ---
+  duration_ms: 21.173181
+  type: 'test'
+  ...
+# Subtest: admin: sum is historical, never money verified as recovered
+ok 93 - admin: sum is historical, never money verified as recovered
+  ---
+  duration_ms: 22.317082
+  type: 'test'
+  ...
+# Subtest: admin: failed, incomplete or invalid reads never produce a fabricated aggregate
+ok 94 - admin: failed, incomplete or invalid reads never produce a fabricated aggregate
+  ---
+  duration_ms: 65.693819
+  type: 'test'
+  ...
+# Subtest: scan detail: estimated result and share text cannot imply a payment or guaranteed timing
+ok 95 - scan detail: estimated result and share text cannot imply a payment or guaranteed timing
+  ---
+  duration_ms: 34.529202
+  type: 'test'
+  ...
+# Subtest: scan detail: malformed or unfinished scan has no numerical success or share
+ok 96 - scan detail: malformed or unfinished scan has no numerical success or share
+  ---
+  duration_ms: 110.128273
+  type: 'test'
+  ...
+# Subtest: web wallet: sharing balance never turns it into recovered aid or a transfer receipt
+ok 97 - web wallet: sharing balance never turns it into recovered aid or a transfer receipt
+  ---
+  duration_ms: 19.166283
+  type: 'test'
+  ...
+# Subtest: web wallet: unknown balance is not shared as a fabricated zero
+ok 98 - web wallet: unknown balance is not shared as a fabricated zero
+  ---
+  duration_ms: 17.991426
+  type: 'test'
+  ...
+# Subtest: native dashboard: historical counter and actual wallet balance are separate
+ok 99 - native dashboard: historical counter and actual wallet balance are separate
+  ---
+  duration_ms: 20.904173
+  type: 'test'
+  ...
+# Subtest: native dashboard: missing profile and read errors show unknown, never zero money
+ok 100 - native dashboard: missing profile and read errors show unknown, never zero money
+  ---
+  duration_ms: 30.401037
+  type: 'test'
+  ...
+# Subtest: native wallet: balance and transaction values remain intact, history stays unverified
+ok 101 - native wallet: balance and transaction values remain intact, history stays unverified
+  ---
+  duration_ms: 44.158186
+  type: 'test'
+  ...
+# Subtest: native wallet: failed profile or transaction read does not mean zero or no transactions
+ok 102 - native wallet: failed profile or transaction read does not mean zero or no transactions
+  ---
+  duration_ms: 63.912594
+  type: 'test'
+  ...
+# Subtest: native profile reads cannot restore a previous account after account switch or sign-out
+ok 103 - native profile reads cannot restore a previous account after account switch or sign-out
+  ---
+  duration_ms: 41.876838
+  type: 'test'
+  ...
+# Subtest: real structured scan sends unverified-estimate rules and preserves existing models/schema
+ok 104 - real structured scan sends unverified-estimate rules and preserves existing models/schema
+  ---
+  duration_ms: 60.809355
+  type: 'test'
+  ...
+# Subtest: real scan passes the cancellation signal to the SDK and disables hidden HTTP retries
+ok 105 - real scan passes the cancellation signal to the SDK and disables hidden HTTP retries
+  ---
+  duration_ms: 12.744457
+  type: 'test'
+  ...
+# Subtest: real prompt preserves declared zero income, rent, dependents and negative disability declaration
+ok 106 - real prompt preserves declared zero income, rent, dependents and negative disability declaration
+  ---
+  duration_ms: 10.011335
+  type: 'test'
+  ...
+# Subtest: a retryable provider failure causes one real SDK transport attempt
+ok 107 - a retryable provider failure causes one real SDK transport attempt
+  ---
+  duration_ms: 77.462185
+  type: 'test'
+  ...
+# Subtest: an already aborted signal stops the actual SDK before synthetic transport
+ok 108 - an already aborted signal stops the actual SDK before synthetic transport
+  ---
+  duration_ms: 17.130152
+  type: 'test'
+  ...
+# Subtest: web: same intent survives remount and replays the exact receipt without another provider call
+ok 109 - web: same intent survives remount and replays the exact receipt without another provider call
+  ---
+  duration_ms: 526.899327
+  type: 'test'
+  ...
+# Subtest: web: lost acknowledgement is recovered after remount with the same key and content
+ok 110 - web: lost acknowledgement is recovered after remount with the same key and content
+  ---
+  duration_ms: 287.433121
+  type: 'test'
+  ...
+# Subtest: web: processing409 keeps the key, then retrieves the completed original request
+ok 111 - web: processing409 keeps the key, then retrieves the completed original request
+  ---
+  duration_ms: 209.000526
+  type: 'test'
+  ...
+# Subtest: web: failed409 is terminal until an explicitly new intention
+ok 112 - web: failed409 is terminal until an explicitly new intention
+  ---
+  duration_ms: 132.808699
+  type: 'test'
+  ...
+# Subtest: web: changed content is a new explicit input intent, never a key conflict
+ok 113 - web: changed content is a new explicit input intent, never a key conflict
+  ---
+  duration_ms: 102.128146
+  type: 'test'
+  ...
+# Subtest: web: a valid result with a different receipt ID cannot become success
+ok 114 - web: a valid result with a different receipt ID cannot become success
+  ---
+  duration_ms: 122.154558
+  type: 'test'
+  ...
+# Subtest: web: a non-final 202 cannot confirm an otherwise well-formed receipt
+ok 115 - web: a non-final 202 cannot confirm an otherwise well-formed receipt
+  ---
+  duration_ms: 75.476344
+  type: 'test'
+  ...
+# Subtest: web: storage failure prevents POST and leaves the form available for a safe retry
+ok 116 - web: storage failure prevents POST and leaves the form available for a safe retry
+  ---
+  duration_ms: 133.602248
+  type: 'test'
+  ...
+# Subtest: web: a corrupt local intent requires explicit reset instead of silently creating a new request
+ok 117 - web: a corrupt local intent requires explicit reset instead of silently creating a new request
+  ---
+  duration_ms: 107.10896
+  type: 'test'
+  ...
+# Subtest: native: same intent survives remount and replays the exact receipt without another provider call
+ok 118 - native: same intent survives remount and replays the exact receipt without another provider call
+  ---
+  duration_ms: 204.90398
+  type: 'test'
+  ...
+# Subtest: native: lost acknowledgement is recovered after remount with the same key and content
+ok 119 - native: lost acknowledgement is recovered after remount with the same key and content
+  ---
+  duration_ms: 128.917912
+  type: 'test'
+  ...
+# Subtest: native: processing409 keeps the key, then retrieves the completed original request
+ok 120 - native: processing409 keeps the key, then retrieves the completed original request
+  ---
+  duration_ms: 123.102855
+  type: 'test'
+  ...
+# Subtest: native: failed409 is terminal until an explicitly new intention
+ok 121 - native: failed409 is terminal until an explicitly new intention
+  ---
+  duration_ms: 119.837327
+  type: 'test'
+  ...
+# Subtest: native: changed content is a new explicit input intent, never a key conflict
+ok 122 - native: changed content is a new explicit input intent, never a key conflict
+  ---
+  duration_ms: 103.76771
+  type: 'test'
+  ...
+# Subtest: native: a valid result with a different receipt ID cannot become success
+ok 123 - native: a valid result with a different receipt ID cannot become success
+  ---
+  duration_ms: 113.33529
+  type: 'test'
+  ...
+# Subtest: native: a non-final 202 cannot confirm an otherwise well-formed receipt
+ok 124 - native: a non-final 202 cannot confirm an otherwise well-formed receipt
+  ---
+  duration_ms: 105.047422
+  type: 'test'
+  ...
+# Subtest: native: storage failure prevents POST and leaves the form available for a safe retry
+ok 125 - native: storage failure prevents POST and leaves the form available for a safe retry
+  ---
+  duration_ms: 132.461673
+  type: 'test'
+  ...
+# Subtest: native: a corrupt local intent requires explicit reset instead of silently creating a new request
+ok 126 - native: a corrupt local intent requires explicit reset instead of silently creating a new request
+  ---
+  duration_ms: 135.900843
+  type: 'test'
+  ...
+# Subtest: native: unavailable UUID generator never falls back to an unsafe identifier or calls the server
+ok 127 - native: unavailable UUID generator never falls back to an unsafe identifier or calls the server
+  ---
+  duration_ms: 82.549668
+  type: 'test'
+  ...
+# Subtest: web: user changes before profile fetch completes, so old form and late success disappear immediately
+ok 128 - web: user changes before profile fetch completes, so old form and late success disappear immediately
+  ---
+  duration_ms: 81.009498
+  type: 'test'
+  ...
+# Subtest: native: reset and submit are blocked until the stored intention has finished loading
+ok 129 - native: reset and submit are blocked until the stored intention has finished loading
+  ---
+  duration_ms: 122.096935
+  type: 'test'
+  ...
+# Subtest: native: double reset cannot leave a late deletion that erases a freshly saved intention
+ok 130 - native: double reset cannot leave a late deletion that erases a freshly saved intention
+  ---
+  duration_ms: 129.934082
+  type: 'test'
+  ...
+# Subtest: native: an old write cannot overwrite the durable request after remount and a lost receipt
+ok 131 - native: an old write cannot overwrite the durable request after remount and a lost receipt
+  ---
+  duration_ms: 119.989475
+  type: 'test'
+  ...
+# Subtest: mixed periods are summed in cents; annual and one-time candidates do not inflate the monthly total
+ok 132 - mixed periods are summed in cents; annual and one-time candidates do not inflate the monthly total
+  ---
+  duration_ms: 223.951817
+  type: 'test'
+  ...
+# Subtest: decimal half cents use decimal rounding, including 10.075
+ok 133 - decimal half cents use decimal rounding, including 10.075
+  ---
+  duration_ms: 59.909397
+  type: 'test'
+  ...
+# Subtest: binary representation does not inflate 0.1 plus 0.2
+ok 134 - binary representation does not inflate 0.1 plus 0.2
+  ---
+  duration_ms: 47.226562
+  type: 'test'
+  ...
+# Subtest: the tolerance is at most one cent for each declared total
+ok 135 - the tolerance is at most one cent for each declared total
+  ---
+  duration_ms: 46.587055
+  type: 'test'
+  ...
+# Subtest: incoherent model aggregates cannot finalize a reserved result: {"total_recoverable":2400}
+ok 136 - incoherent model aggregates cannot finalize a reserved result: {"total_recoverable":2400}
+  ---
+  duration_ms: 35.058123
+  type: 'test'
+  ...
+# Subtest: incoherent model aggregates cannot finalize a reserved result: {"total_recoverable_monthly":1200}
+ok 137 - incoherent model aggregates cannot finalize a reserved result: {"total_recoverable_monthly":1200}
+  ---
+  duration_ms: 42.349425
+  type: 'test'
+  ...
+# Subtest: incoherent model aggregates cannot finalize a reserved result: {"total_recoverable":1200.02}
+ok 138 - incoherent model aggregates cannot finalize a reserved result: {"total_recoverable":1200.02}
+  ---
+  duration_ms: 42.016682
+  type: 'test'
+  ...
+# Subtest: incoherent model aggregates cannot finalize a reserved result: {"total_recoverable_monthly":99.98}
+ok 139 - incoherent model aggregates cannot finalize a reserved result: {"total_recoverable_monthly":99.98}
+  ---
+  duration_ms: 34.23831
+  type: 'test'
+  ...
+# Subtest: incoherent model aggregates cannot finalize a reserved result: {"results":[],"total_recoverable":1200,"total_recoverable_monthly":100}
+ok 140 - incoherent model aggregates cannot finalize a reserved result: {"results":[],"total_recoverable":1200,"total_recoverable_monthly":100}
+  ---
+  duration_ms: 50.992489
+  type: 'test'
+  ...
+# Subtest: a receipt with correct ownership but inflated aggregates remains unconfirmed
+ok 141 - a receipt with correct ownership but inflated aggregates remains unconfirmed
+  ---
+  duration_ms: 25.799582
+  type: 'test'
+  ...
+# Subtest: an empty set of candidates with zero estimates is a valid saved result
+ok 142 - an empty set of candidates with zero estimates is a valid saved result
+  ---
+  duration_ms: 23.998657
+  type: 'test'
+  ...
+# Subtest: two concurrent handlers cannot both spend the final free slot before calling the provider
+ok 143 - two concurrent handlers cannot both spend the final free slot before calling the provider
+  ---
+  duration_ms: 217.436162
+  type: 'test'
+  ...
+# Subtest: one request identity invokes the provider once across concurrent and completed retries
+ok 144 - one request identity invokes the provider once across concurrent and completed retries
+  ---
+  duration_ms: 54.286763
+  type: 'test'
+  ...
+# Subtest: structurally identical JSON with reordered keys replays without another admission
+ok 145 - structurally identical JSON with reordered keys replays without another admission
+  ---
+  duration_ms: 43.596987
+  type: 'test'
+  ...
+# Subtest: a request identity cannot be reassigned to another input or scan type: financial
+ok 146 - a request identity cannot be reassigned to another input or scan type: financial
+  ---
+  duration_ms: 46.846443
+  type: 'test'
+  ...
+# Subtest: a request identity cannot be reassigned to another input or scan type: fiscal
+ok 147 - a request identity cannot be reassigned to another input or scan type: fiscal
+  ---
+  duration_ms: 40.01371
+  type: 'test'
+  ...
+# Subtest: a UUID belonging to another owner cannot disclose or overwrite that scan
+ok 148 - a UUID belonging to another owner cannot disclose or overwrite that scan
+  ---
+  duration_ms: 92.929816
+  type: 'test'
+  ...
+# Subtest: a lost completion response replays the saved result without a second provider call
+ok 149 - a lost completion response replays the saved result without a second provider call
+  ---
+  duration_ms: 30.474196
+  type: 'test'
+  ...
+# Subtest: a lost reservation never authorizes retrying the provider, even after lease expiration
+ok 150 - a lost reservation never authorizes retrying the provider, even after lease expiration
+  ---
+  duration_ms: 48.221936
+  type: 'test'
+  ...
+# Subtest: provider failure stays counted and cannot automatically restart with the same identity
+ok 151 - provider failure stays counted and cannot automatically restart with the same identity
+  ---
+  duration_ms: 37.457861
+  type: 'test'
+  ...
+# Subtest: a late provider result cannot finalize an expired reservation or award XP
+ok 152 - a late provider result cannot finalize an expired reservation or award XP
+  ---
+  duration_ms: 22.999935
+  type: 'test'
+  ...
+# Subtest: the 100-second deadline aborts the SDK signal and prevents a late result from mutating storage
+ok 153 - the 100-second deadline aborts the SDK signal and prevents a late result from mutating storage
+  ---
+  duration_ms: 24.733749
+  type: 'test'
+  ...
+# Subtest: client cancellation closes the reserved attempt without automatic provider retry
+ok 154 - client cancellation closes the reserved attempt without automatic provider retry
+  ---
+  duration_ms: 28.686598
+  type: 'test'
+  ...
+# Subtest: a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.id = ids.other; }
+ok 155 - a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.id = ids.other; }
+  ---
+  duration_ms: 25.618767
+  type: 'test'
+  ...
+# Subtest: a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.user_id = ids.other; }
+ok 156 - a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.user_id = ids.other; }
+  ---
+  duration_ms: 24.135684
+  type: 'test'
+  ...
+# Subtest: a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.input_data = { revenus_mensuels_nets: 0 }; }
+ok 157 - a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.input_data = { revenus_mensuels_nets: 0 }; }
+  ---
+  duration_ms: 26.969675
+  type: 'test'
+  ...
+# Subtest: a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.processing_expires_at = new Date(0).toISOString(); }
+ok 158 - a nonconforming reservation cannot authorize paid work: (r) => { r.data.scan.processing_expires_at = new Date(0).toISOString(); }
+  ---
+  duration_ms: 38.996747
+  type: 'test'
+  ...
+# Subtest: a nonconforming reservation cannot authorize paid work: (r) => { delete r.data.plan; }
+ok 159 - a nonconforming reservation cannot authorize paid work: (r) => { delete r.data.plan; }
+  ---
+  duration_ms: 29.01575
+  type: 'test'
+  ...
+# Subtest: a nonconforming reservation cannot authorize paid work: (r) => { r.error = { message: 'uncertain reservation' }; }
+ok 160 - a nonconforming reservation cannot authorize paid work: (r) => { r.error = { message: 'uncertain reservation' }; }
+  ---
+  duration_ms: 25.943487
+  type: 'test'
+  ...
+# Subtest: a completed receipt for different input cannot be presented as this request
+ok 161 - a completed receipt for different input cannot be presented as this request
+  ---
+  duration_ms: 26.673587
+  type: 'test'
+  ...
+# Subtest: scan completion preserves higher XP and the existing initial floor: 0
+ok 162 - scan completion preserves higher XP and the existing initial floor: 0
+  ---
+  duration_ms: 247.266977
+  type: 'test'
+  ...
+# Subtest: scan completion preserves higher XP and the existing initial floor: 450
+ok 163 - scan completion preserves higher XP and the existing initial floor: 450
+  ---
+  duration_ms: 28.133645
+  type: 'test'
+  ...
+# Subtest: invalid request identity is refused before reservation and paid work
+ok 164 - invalid request identity is refused before reservation and paid work
+  ---
+  duration_ms: 20.631414
+  type: 'test'
+  ...
+# Subtest: a legacy caller receives the server-generated reservation identity
+ok 165 - a legacy caller receives the server-generated reservation identity
+  ---
+  duration_ms: 22.271048
+  type: 'test'
+  ...
+# Subtest: an estimate is saved as a scan without rewriting historical money or crediting a wallet
+ok 166 - an estimate is saved as a scan without rewriting historical money or crediting a wallet
+  ---
+  duration_ms: 200.431616
+  type: 'test'
+  ...
+# Subtest: success is derived from the persisted scan receipt, including stored decimal rounding
+ok 167 - success is derived from the persisted scan receipt, including stored decimal rounding
+  ---
+  duration_ms: 52.960261
+  type: 'test'
+  ...
+# Subtest: cookie authentication verifies the user without an explicit token
+ok 168 - cookie authentication verifies the user without an explicit token
+  ---
+  duration_ms: 44.870927
+  type: 'test'
+  ...
+# Subtest: native Bearer authentication verifies exactly the supplied token
+ok 169 - native Bearer authentication verifies exactly the supplied token
+  ---
+  duration_ms: 38.662122
+  type: 'test'
+  ...
+# Subtest: malformed authorization is rejected without using a cookie session: Basic synthetic
+ok 170 - malformed authorization is rejected without using a cookie session: Basic synthetic
+  ---
+  duration_ms: 29.416952
+  type: 'test'
+  ...
+# Subtest: malformed authorization is rejected without using a cookie session: Bearer
+ok 171 - malformed authorization is rejected without using a cookie session: Bearer
+  ---
+  duration_ms: 28.587115
+  type: 'test'
+  ...
+# Subtest: malformed authorization is rejected without using a cookie session: Bearer one two
+ok 172 - malformed authorization is rejected without using a cookie session: Bearer one two
+  ---
+  duration_ms: 38.704995
+  type: 'test'
+  ...
+# Subtest: malformed authorization is rejected without using a cookie session: Bearer token, Bearer other
+ok 173 - malformed authorization is rejected without using a cookie session: Bearer token, Bearer other
+  ---
+  duration_ms: 38.957067
+  type: 'test'
+  ...
+# Subtest: auth error wins over a returned user (cookie)
+ok 174 - auth error wins over a returned user (cookie)
+  ---
+  duration_ms: 43.434157
+  type: 'test'
+  ...
+# Subtest: auth error wins over a returned user (Bearer)
+ok 175 - auth error wins over a returned user (Bearer)
+  ---
+  duration_ms: 30.969919
+  type: 'test'
+  ...
+# Subtest: no session is rejected without invoking the provider
+ok 176 - no session is rejected without invoking the provider
+  ---
+  duration_ms: 32.026531
+  type: 'test'
+  ...
+# Subtest: an unavailable auth verifier fails closed without exposing its error
+ok 177 - an unavailable auth verifier fails closed without exposing its error
+  ---
+  duration_ms: 29.207362
+  type: 'test'
+  ...
+# Subtest: invalid request is refused before profile lookup and paid work
+ok 178 - invalid request is refused before profile lookup and paid work
+  ---
+  duration_ms: 21.979807
+  type: 'test'
+  ...
+# Subtest: a failed profile read is unavailable even when stale data accompanies the error
+ok 179 - a failed profile read is unavailable even when stale data accompanies the error
+  ---
+  duration_ms: 27.844979
+  type: 'test'
+  ...
+# Subtest: a missing profile has a distinct not-found response
+ok 180 - a missing profile has a distinct not-found response
+  ---
+  duration_ms: 24.246428
+  type: 'test'
+  ...
+# Subtest: invalid profile cannot obtain premium admission: {"subscription_plan":"unknown"}
+ok 181 - invalid profile cannot obtain premium admission: {"subscription_plan":"unknown"}
+  ---
+  duration_ms: 25.314847
+  type: 'test'
+  ...
+# Subtest: invalid profile cannot obtain premium admission: {"subscription_plan":null}
+ok 182 - invalid profile cannot obtain premium admission: {"subscription_plan":null}
+  ---
+  duration_ms: 46.263931
+  type: 'test'
+  ...
+# Subtest: invalid profile cannot obtain premium admission: {"role":"administrator"}
+ok 183 - invalid profile cannot obtain premium admission: {"role":"administrator"}
+  ---
+  duration_ms: 49.702675
+  type: 'test'
+  ...
+# Subtest: invalid profile cannot obtain premium admission: {"id":"not-a-profile-id"}
+ok 184 - invalid profile cannot obtain premium admission: {"id":"not-a-profile-id"}
+  ---
+  duration_ms: 33.574915
+  type: 'test'
+  ...
+# Subtest: invalid profile cannot obtain premium admission: {"auth_user_id":"40000000-0000-4000-8000-000000000004"}
+ok 185 - invalid profile cannot obtain premium admission: {"auth_user_id":"40000000-0000-4000-8000-000000000004"}
+  ---
+  duration_ms: 28.001055
+  type: 'test'
+  ...
+# Subtest: an unreadable quota is never treated as zero: {"count":0,"error":{"message":"unavailable"}}
+ok 186 - an unreadable quota is never treated as zero: {"count":0,"error":{"message":"unavailable"}}
+  ---
+  duration_ms: 45.698976
+  type: 'test'
+  ...
+# Subtest: an unreadable quota is never treated as zero: {"count":null,"error":null}
+ok 187 - an unreadable quota is never treated as zero: {"count":null,"error":null}
+  ---
+  duration_ms: 26.734036
+  type: 'test'
+  ...
+# Subtest: an unreadable quota is never treated as zero: {"count":-1,"error":null}
+ok 188 - an unreadable quota is never treated as zero: {"count":-1,"error":null}
+  ---
+  duration_ms: 25.679848
+  type: 'test'
+  ...
+# Subtest: an unreadable quota is never treated as zero: {"count":0.5,"error":null}
+ok 189 - an unreadable quota is never treated as zero: {"count":0.5,"error":null}
+  ---
+  duration_ms: 21.497584
+  type: 'test'
+  ...
+# Subtest: an unreadable quota is never treated as zero: {"count":"0","error":null}
+ok 190 - an unreadable quota is never treated as zero: {"count":"0","error":null}
+  ---
+  duration_ms: 23.250606
+  type: 'test'
+  ...
+# Subtest: quota exactly at the existing limit refuses paid work
+ok 191 - quota exactly at the existing limit refuses paid work
+  ---
+  duration_ms: 22.574746
+  type: 'test'
+  ...
+# Subtest: the last admitted free scan finalizes the reserved owner and identity
+ok 192 - the last admitted free scan finalizes the reserved owner and identity
+  ---
+  duration_ms: 32.724532
+  type: 'test'
+  ...
+# Subtest: existing premium entitlement is preserved: {"subscription_plan":"premium"}
+ok 193 - existing premium entitlement is preserved: {"subscription_plan":"premium"}
+  ---
+  duration_ms: 22.195987
+  type: 'test'
+  ...
+# Subtest: existing premium entitlement is preserved: {"role":"super_admin"}
+ok 194 - existing premium entitlement is preserved: {"role":"super_admin"}
+  ---
+  duration_ms: 23.083979
+  type: 'test'
+  ...
+# Subtest: provider diagnostics never reach the client
+ok 195 - provider diagnostics never reach the client
+  ---
+  duration_ms: 23.404544
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: null
+ok 196 - malformed model output cannot finalize its reserved scan: null
+  ---
+  duration_ms: 33.293053
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":-1,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 197 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":-1,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 26.880552
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":null,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 198 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":null,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 20.903516
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":10000000000,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 199 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":10000000000,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 20.929464
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":"100","summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 200 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":"100","summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 22.47552
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 201 - malformed model output cannot finalize its reserved scan: {"results":[{}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 21.949002
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":-1,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 202 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":-1,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 51.188501
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"jour","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 203 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"jour","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 24.64684
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"javascript:alert(1)","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+ok 204 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"javascript:alert(1)","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":"Estimation indicative, à vérifier auprès de l’organisme."}
+  ---
+  duration_ms: 23.022048
+  type: 'test'
+  ...
+# Subtest: malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":null}
+ok 205 - malformed model output cannot finalize its reserved scan: {"results":[{"aide":"Aide de démonstration","category":"logement","montant_estime":100,"unite":"mois","eligibilite":"À vérifier auprès de l’organisme","conditions":["Condition de démonstration"],"demarche":"Vérifier les conditions","difficulte":"facile","organisme":"Organisme de démonstration","lien_officiel":"https://example.invalid/aide","delai_jours":30}],"total_recoverable":1200,"total_recoverable_monthly":100,"summary":null}
+  ---
+  duration_ms: 20.809407
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"id":""}
+ok 206 - a nonconforming persisted receipt cannot produce success: {"id":""}
+  ---
+  duration_ms: 21.864446
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"id":"not-a-scan-id"}
+ok 207 - a nonconforming persisted receipt cannot produce success: {"id":"not-a-scan-id"}
+  ---
+  duration_ms: 25.085058
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"user_id":"40000000-0000-4000-8000-000000000004"}
+ok 208 - a nonconforming persisted receipt cannot produce success: {"user_id":"40000000-0000-4000-8000-000000000004"}
+  ---
+  duration_ms: 24.846475
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"type":"fiscal"}
+ok 209 - a nonconforming persisted receipt cannot produce success: {"type":"fiscal"}
+  ---
+  duration_ms: 28.532555
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"status":"processing"}
+ok 210 - a nonconforming persisted receipt cannot produce success: {"status":"processing"}
+  ---
+  duration_ms: 18.900354
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"total_recoverable":-1}
+ok 211 - a nonconforming persisted receipt cannot produce success: {"total_recoverable":-1}
+  ---
+  duration_ms: 19.38448
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"total_recoverable_monthly":null}
+ok 212 - a nonconforming persisted receipt cannot produce success: {"total_recoverable_monthly":null}
+  ---
+  duration_ms: 23.468588
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"results":[{}]}
+ok 213 - a nonconforming persisted receipt cannot produce success: {"results":[{}]}
+  ---
+  duration_ms: 115.77993
+  type: 'test'
+  ...
+# Subtest: a nonconforming persisted receipt cannot produce success: {"ai_summary":null}
+ok 214 - a nonconforming persisted receipt cannot produce success: {"ai_summary":null}
+  ---
+  duration_ms: 20.039849
+  type: 'test'
+  ...
+# Subtest: a database error accompanying a receipt remains unconfirmed
+ok 215 - a database error accompanying a receipt remains unconfirmed
+  ---
+  duration_ms: 20.274085
+  type: 'test'
+  ...
+# Subtest: a lost reservation response performs no paid call or bookkeeping side effects
+ok 216 - a lost reservation response performs no paid call or bookkeeping side effects
+  ---
+  duration_ms: 19.124165
+  type: 'test'
+  ...
+# Subtest: a confirmed scan stays available when profile or notification bookkeeping fails
+ok 217 - a confirmed scan stays available when profile or notification bookkeeping fails
+  ---
+  duration_ms: 22.507097
+  type: 'test'
+  ...
+# Subtest: a thrown ancillary request does not turn a saved scan into an invitation to rerun it
+ok 218 - a thrown ancillary request does not turn a saved scan into an invitation to rerun it
+  ---
+  duration_ms: 21.528259
+  type: 'test'
+  ...
+# Subtest: weekly cron rejects no configured secret before acquiring a database client
+ok 219 - weekly cron rejects no configured secret before acquiring a database client
+  ---
+  duration_ms: 56.302763
+  type: 'test'
+  ...
+# Subtest: weekly cron rejects only x-vercel-cron before acquiring a database client
+ok 220 - weekly cron rejects only x-vercel-cron before acquiring a database client
+  ---
+  duration_ms: 2.381131
+  type: 'test'
+  ...
+# Subtest: weekly cron rejects wrong bearer and claimed scheduler before acquiring a database client
+ok 221 - weekly cron rejects wrong bearer and claimed scheduler before acquiring a database client
+  ---
+  duration_ms: 3.940456
+  type: 'test'
+  ...
+# Subtest: weekly cron rejects missing bearer before acquiring a database client
+ok 222 - weekly cron rejects missing bearer before acquiring a database client
+  ---
+  duration_ms: 1.371438
+  type: 'test'
+  ...
+# Subtest: weekly cron rejects partial bearer before acquiring a database client
+ok 223 - weekly cron rejects partial bearer before acquiring a database client
+  ---
+  duration_ms: 1.832089
+  type: 'test'
+  ...
+# Subtest: the exact configured bearer authorizes the existing POST and GET entrypoints
+ok 224 - the exact configured bearer authorizes the existing POST and GET entrypoints
+  ---
+  duration_ms: 4.973944
+  type: 'test'
+  ...
+# Subtest: pending and failed reservations cannot increase the weekly scan score
+ok 225 - pending and failed reservations cannot increase the weekly scan score
+  ---
+  duration_ms: 5.527202
+  type: 'test'
+  ...
+# Subtest: actual checkout code puts the authenticated profile in both metadata objects
+ok 226 - actual checkout code puts the authenticated profile in both metadata objects
+  ---
+  duration_ms: 153.553127
+  type: 'test'
+  ...
+# Subtest: yearly price and existing customer are preserved
+ok 227 - yearly price and existing customer are preserved
+  ---
+  duration_ms: 35.090621
+  type: 'test'
+  ...
+# Subtest: auth error takes precedence over a simultaneously returned user
+ok 228 - auth error takes precedence over a simultaneously returned user
+  ---
+  duration_ms: 19.583954
+  type: 'test'
+  ...
+# Subtest: missing user cannot create a checkout
+ok 229 - missing user cannot create a checkout
+  ---
+  duration_ms: 16.892255
+  type: 'test'
+  ...
+# Subtest: failed profile lookup is unavailable and never mistaken for missing account
+ok 230 - failed profile lookup is unavailable and never mistaken for missing account
+  ---
+  duration_ms: 24.147091
+  type: 'test'
+  ...
+# Subtest: missing profile, invalid plan and existing administrative entitlement cause no provider write
+ok 231 - missing profile, invalid plan and existing administrative entitlement cause no provider write
+  ---
+  duration_ms: 54.052706
+  type: 'test'
+  ...
+# Subtest: provider exceptions never expose their private details
+ok 232 - provider exceptions never expose their private details
+  ---
+  duration_ms: 11.422759
+  type: 'test'
+  ...
+# Subtest: missing or unsafe redirect URL is not a successful checkout
+ok 233 - missing or unsafe redirect URL is not a successful checkout
+  ---
+  duration_ms: 73.177833
+  type: 'test'
+  ...
+# Subtest: public: authentic signed event reaches one transactional RPC and checked receipt
+ok 234 - public: authentic signed event reaches one transactional RPC and checked receipt
+  ---
+  duration_ms: 172.206981
+  type: 'test'
+  ...
+# Subtest: public: altered signature never reaches provider or persistence
+ok 235 - public: altered signature never reaches provider or persistence
+  ---
+  duration_ms: 35.118543
+  type: 'test'
+  ...
+# Subtest: public: database errors are retryable and redacted
+ok 236 - public: database errors are retryable and redacted
+  ---
+  duration_ms: 32.40454
+  type: 'test'
+  ...
+# Subtest: public: ambiguous transport error is never a successful acknowledgement
+ok 237 - public: ambiguous transport error is never a successful acknowledgement
+  ---
+  duration_ms: 28.13016
+  type: 'test'
+  ...
+# Subtest: public: confirmed duplicate is acknowledged without claiming a new effect
+ok 238 - public: confirmed duplicate is acknowledged without claiming a new effect
+  ---
+  duration_ms: 22.277331
+  type: 'test'
+  ...
+# Subtest: internal: authentic signed event reaches one transactional RPC and checked receipt
+ok 239 - internal: authentic signed event reaches one transactional RPC and checked receipt
+  ---
+  duration_ms: 29.687903
+  type: 'test'
+  ...
+# Subtest: internal: altered signature never reaches provider or persistence
+ok 240 - internal: altered signature never reaches provider or persistence
+  ---
+  duration_ms: 19.94583
+  type: 'test'
+  ...
+# Subtest: internal: database errors are retryable and redacted
+ok 241 - internal: database errors are retryable and redacted
+  ---
+  duration_ms: 29.358837
+  type: 'test'
+  ...
+# Subtest: internal: ambiguous transport error is never a successful acknowledgement
+ok 242 - internal: ambiguous transport error is never a successful acknowledgement
+  ---
+  duration_ms: 18.303752
+  type: 'test'
+  ...
+# Subtest: internal: confirmed duplicate is acknowledged without claiming a new effect
+ok 243 - internal: confirmed duplicate is acknowledged without claiming a new effect
+  ---
+  duration_ms: 21.581288
+  type: 'test'
+  ...
+# Subtest: public and dispatcher transports use identical event, session and payload keys
+ok 244 - public and dispatcher transports use identical event, session and payload keys
+  ---
+  duration_ms: 19.793635
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt ()=>null returns 500
+ok 245 - missing/mismatched receipt ()=>null returns 500
+  ---
+  duration_ms: 26.862777
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,event_id:'evt_wrong'}) returns 500
+ok 246 - missing/mismatched receipt r=>({...r,event_id:'evt_wrong'}) returns 500
+  ---
+  duration_ms: 23.906024
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,event_type:'wrong'}) returns 500
+ok 247 - missing/mismatched receipt r=>({...r,event_type:'wrong'}) returns 500
+  ---
+  duration_ms: 18.26843
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,object_id:'cs_wrong'}) returns 500
+ok 248 - missing/mismatched receipt r=>({...r,object_id:'cs_wrong'}) returns 500
+  ---
+  duration_ms: 12.689782
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,payload_hash:'0'.repeat(64)}) returns 500
+ok 249 - missing/mismatched receipt r=>({...r,payload_hash:'0'.repeat(64)}) returns 500
+  ---
+  duration_ms: 12.84404
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,profile_id:null}) returns 500
+ok 250 - missing/mismatched receipt r=>({...r,profile_id:null}) returns 500
+  ---
+  duration_ms: 13.724021
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,payment_id:null}) returns 500
+ok 251 - missing/mismatched receipt r=>({...r,payment_id:null}) returns 500
+  ---
+  duration_ms: 14.179363
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,profile_id:'invalid'}) returns 500
+ok 252 - missing/mismatched receipt r=>({...r,profile_id:'invalid'}) returns 500
+  ---
+  duration_ms: 33.583252
+  type: 'test'
+  ...
+# Subtest: missing/mismatched receipt r=>({...r,status:'deferred',profile_id:null,payment_id:null,wallet_transaction_id:null}) returns 500
+ok 253 - missing/mismatched receipt r=>({...r,status:'deferred',profile_id:null,payment_id:null,wallet_transaction_id:null}) returns 500
+  ---
+  duration_ms: 27.713855
+  type: 'test'
+  ...
+# Subtest: internal auth fails closed when the configured secret is missing or empty
+ok 254 - internal auth fails closed when the configured secret is missing or empty
+  ---
+  duration_ms: 25.290552
+  type: 'test'
+  ...
+# Subtest: wrong internal secret is rejected before parsing a signed event
+ok 255 - wrong internal secret is rejected before parsing a signed event
+  ---
+  duration_ms: 26.708388
+  type: 'test'
+  ...
+# Subtest: foreign application and unmarked events cause no mutation or provider call
+ok 256 - foreign application and unmarked events cause no mutation or provider call
+  ---
+  duration_ms: 47.078134
+  type: 'test'
+  ...
+# Subtest: unhandled signed event is acknowledged without calling the database
+ok 257 - unhandled signed event is acknowledged without calling the database
+  ---
+  duration_ms: 26.036405
+  type: 'test'
+  ...
+# Subtest: unpaid completed checkout is deferred without fetching a subscription
+ok 258 - unpaid completed checkout is deferred without fetching a subscription
+  ---
+  duration_ms: 26.771572
+  type: 'test'
+  ...
+# Subtest: later asynchronous payment retains the checkout id and requires paid status
+ok 259 - later asynchronous payment retains the checkout id and requires paid status
+  ---
+  duration_ms: 25.315839
+  type: 'test'
+  ...
+# Subtest: a trial is represented without a fabricated payment receipt
+ok 260 - a trial is represented without a fabricated payment receipt
+  ---
+  duration_ms: 23.11864
+  type: 'test'
+  ...
+# Subtest: subscription update retrieves current state and does not invent a payment from a list price
+ok 261 - subscription update retrieves current state and does not invent a payment from a list price
+  ---
+  duration_ms: 22.508429
+  type: 'test'
+  ...
+# Subtest: provider failure and mismatched checkout/subscription/customer abort before writes
+ok 262 - provider failure and mismatched checkout/subscription/customer abort before writes
+  ---
+  duration_ms: 132.237031
+  type: 'test'
+  ...
+# Subtest: invalid money, missing customer and unknown billing interval are rejected before writes
+ok 263 - invalid money, missing customer and unknown billing interval are rejected before writes
+  ---
+  duration_ms: 126.588585
+  type: 'test'
+  ...
+# Subtest: profile revision is read before provider data and passed unchanged to the transaction
+ok 264 - profile revision is read before provider data and passed unchanged to the transaction
+  ---
+  duration_ms: 11.622543
+  type: 'test'
+  ...
+# Subtest: unavailable, foreign or unbound legacy target cannot reach provider or writes
+ok 265 - unavailable, foreign or unbound legacy target cannot reach provider or writes
+  ---
+  duration_ms: 59.674478
+  type: 'test'
+  ...
+# Subtest: a historical subscription can resolve its already verified customer binding
+ok 266 - a historical subscription can resolve its already verified customer binding
+  ---
+  duration_ms: 20.768647
+  type: 'test'
+  ...
+# Subtest: replacement of a prior subscription requires a current terminal-state retrieval
+ok 267 - replacement of a prior subscription requires a current terminal-state retrieval
+  ---
+  duration_ms: 14.838298
+  type: 'test'
+  ...
+# Subtest: receipt belonging to a different valid profile is rejected
+ok 268 - receipt belonging to a different valid profile is rejected
+  ---
+  duration_ms: 10.051682
+  type: 'test'
+  ...
+# Subtest: a superseded subscription is acknowledged only with an explicit ignored receipt
+ok 269 - a superseded subscription is acknowledged only with an explicit ignored receipt
+  ---
+  duration_ms: 9.654444
+  type: 'test'
+  ...
+1..269
+# tests 269
+# suites 0
+# pass 269
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19559.101225

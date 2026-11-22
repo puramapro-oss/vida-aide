@@ -3,6 +3,10 @@
 -- must commit together. Existing contests and awards are not rewritten.
 BEGIN;
 ALTER TABLE vida_aide.contests ADD COLUMN IF NOT EXISTS payout_receipt jsonb;
+-- Add without a default first: every existing contest remains explicitly
+-- untracked. Only rows inserted after this migration receive a marker.
+ALTER TABLE vida_aide.contests ADD COLUMN IF NOT EXISTS payout_tracking_started_at timestamptz;
+ALTER TABLE vida_aide.contests ALTER COLUMN payout_tracking_started_at SET DEFAULT clock_timestamp();
 
 CREATE OR REPLACE FUNCTION vida_aide.settle_weekly_contest_v1(
   p_contest_id uuid, p_expected_pool integer, p_expected_end timestamptz,
@@ -28,6 +32,9 @@ BEGIN
   SELECT * INTO STRICT v_contest FROM vida_aide.contests WHERE id=p_contest_id FOR UPDATE;
   IF v_contest.payout_receipt IS NOT NULL THEN
     RETURN v_contest.payout_receipt || jsonb_build_object('duplicate',true);
+  END IF;
+  IF v_contest.payout_tracking_started_at IS NULL THEN
+    RAISE EXCEPTION 'Legacy contest settlement requires reconciliation' USING ERRCODE='P0001';
   END IF;
   IF v_contest.type<>'weekly' OR v_contest.status<>'live' OR v_contest.end_date>clock_timestamp()
     OR v_contest.total_pool_cents<>p_expected_pool OR v_contest.end_date<>p_expected_end THEN

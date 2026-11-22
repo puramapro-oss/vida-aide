@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "script": "false | tee /dev/null",
+  "implicit_bash_e_exit": 0,
+  "explicit_bash_pipefail_exit": 1,
+  "configured_shell": "bash",
+  "workflow_sha256": "4a01445589418bb4b4ed1ddd67c35deba379ebba090348dcbb407403e1d0ea7c",
+  "documentation": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsshell",
+  "scope": "Exit propagation only; this is not a hosted CI execution",
+  "syntax_checks": [
+    "verification/local-postgres-fixture.cjs",
+    "verification/scan-quota/concurrency.cjs",
+    "verification/stripe-fulfillment/concurrency.cjs",
+    "verification/contest-payout/concurrency.cjs",
+    "verification/profiles-permissions/run-postgres.py",
+    "verification/stripe-fulfillment/run-postgres.py",
+    "verification/scan-quota/run-postgres.py",
+    "verification/contest-payout/run-postgres.py"
+  ]
+}

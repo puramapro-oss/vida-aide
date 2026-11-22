@@ -1,219 +1,121 @@
 import { NextResponse } from 'next/server'
+import { z } from 'zod'
 import { createServiceClient } from '@/lib/supabase'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
+// Existing distribution, including the undistributed remainder when fewer than
+// ten winners qualify. Calculate cents with integer thousandths, not floats.
 const PRIZE_DISTRIBUTION = [0.33, 0.17, 0.12, 0.08, 0.07, 0.05, 0.045, 0.045, 0.045, 0.045]
-
-interface ScoreRow {
-  user_id: string
-  score: number
-  full_name: string | null
-  email: string
-}
+const moneyCents = z.number().int().min(0).max(2_147_483_647)
+const ContestSchema = z.object({
+  id: z.uuid(), title: z.string(), type: z.literal('weekly'),
+  total_pool_cents: moneyCents, end_date: z.iso.datetime({ offset: true }), status: z.literal('live'),
+})
+const ProfileSchema = z.object({
+  id: z.uuid(), full_name: z.string().nullable(),
+  streak_days: z.number().int().nullable(), level: z.number().int().nullable(),
+})
+const WinnerSchema = z.object({
+  rank: z.number().int().min(1).max(10), user_id: z.uuid(), name: z.string().nullable(),
+  score: z.number().int().positive().safe(), amount_cents: moneyCents,
+})
+const ReceiptSchema = z.object({
+  version: z.literal(1), contest_id: z.uuid(), duplicate: z.boolean(),
+  winners_count: z.number().int().min(0).max(10), total_paid_cents: moneyCents,
+  awards: z.array(WinnerSchema).max(10),
+})
 
 function authorize(request: Request): boolean {
   const secret = process.env.CRON_SECRET
-  if (!secret) return false
-  const header = request.headers.get('authorization') ?? ''
-  return header === `Bearer ${secret}`
+  return !!secret && request.headers.get('authorization') === `Bearer ${secret}`
 }
 
 export async function POST(request: Request) {
   if (!authorize(request)) {
-    return NextResponse.json(
-      { error: "Accès refusé. Cette route est réservée au planificateur." },
-      { status: 401 }
-    )
+    return NextResponse.json({ error: 'Accès refusé. Cette route est réservée au planificateur.' }, { status: 401 })
   }
-
-  const supabase = createServiceClient()
-
+  const results: Array<{ contest_id: string; winners_count: number; total_paid_cents: number; duplicate: boolean }> = []
+  const failed: Array<{ contest_id: string; code: 'contest_settlement_unconfirmed' }> = []
   const nowIso = new Date().toISOString()
-  const { data: contests, error: contestsErr } = await supabase
-    .from('contests')
-    .select('id, title, type, total_pool_cents, end_date, status')
-    .eq('type', 'weekly')
-    .eq('status', 'live')
-    .lte('end_date', nowIso)
-
-  if (contestsErr) {
-    return NextResponse.json(
-      { error: 'Erreur lors de la lecture des concours.', details: contestsErr.message },
-      { status: 500 }
-    )
-  }
-
-  if (!contests || contests.length === 0) {
-    return NextResponse.json({ ok: true, processed: 0, message: 'Aucun concours hebdo à clôturer.' })
-  }
-
-  const results: Array<{ contest_id: string; winners_count: number; total_paid_cents: number }> = []
-
-  for (const contest of contests) {
-    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString()
-
-    const { data: profiles, error: profilesErr } = await supabase
-      .from('profiles')
-      .select('id, full_name, email, total_demarches_launched, streak_days, level')
-      .gte('updated_at', sevenDaysAgo)
-      .order('total_demarches_launched', { ascending: false })
-      .limit(500)
-
-    if (profilesErr || !profiles || profiles.length === 0) {
-      await supabase
-        .from('contests')
-        .update({ status: 'completed', winners: [] })
-        .eq('id', contest.id)
-      results.push({ contest_id: contest.id, winners_count: 0, total_paid_cents: 0 })
-      continue
-    }
-
-    const userIds = profiles.map((p) => p.id)
-
-    const [{ data: refs }, { data: missionsDone }, { data: scansDone }] = await Promise.all([
-      supabase
-        .from('referrals')
-        .select('referrer_id')
-        .in('referrer_id', userIds)
-        .gte('created_at', sevenDaysAgo),
-      supabase
-        .from('mission_completions')
-        .select('user_id')
-        .in('user_id', userIds)
-        .gte('created_at', sevenDaysAgo),
-      supabase
-        .from('scans')
-        .select('user_id')
-        .eq('status', 'completed')
-        .in('user_id', userIds)
-        .gte('created_at', sevenDaysAgo),
-    ])
-
-    const refCount = new Map<string, number>()
-    refs?.forEach((r: { referrer_id: string }) => {
-      refCount.set(r.referrer_id, (refCount.get(r.referrer_id) ?? 0) + 1)
-    })
-    const missionCount = new Map<string, number>()
-    missionsDone?.forEach((m: { user_id: string }) => {
-      missionCount.set(m.user_id, (missionCount.get(m.user_id) ?? 0) + 1)
-    })
-    const scanCount = new Map<string, number>()
-    scansDone?.forEach((s: { user_id: string }) => {
-      scanCount.set(s.user_id, (scanCount.get(s.user_id) ?? 0) + 1)
-    })
-
-    const scored: ScoreRow[] = profiles.map((p) => {
-      const r = refCount.get(p.id) ?? 0
-      const m = missionCount.get(p.id) ?? 0
-      const s = scanCount.get(p.id) ?? 0
-      const score = r * 10 + m * 3 + s * 2 + (p.streak_days ?? 0) + (p.level ?? 1)
-      return {
-        user_id: p.id,
-        score,
-        full_name: p.full_name,
-        email: p.email,
-      }
-    })
-
-    scored.sort((a, b) => b.score - a.score)
-    const winners = scored.slice(0, 10).filter((w) => w.score > 0)
-
-    if (winners.length === 0) {
-      await supabase
-        .from('contests')
-        .update({ status: 'completed', winners: [] })
-        .eq('id', contest.id)
-      results.push({ contest_id: contest.id, winners_count: 0, total_paid_cents: 0 })
-      continue
-    }
-
-    const totalPoolCents = contest.total_pool_cents ?? 0
-    const winnersPayload: Array<{
-      rank: number
-      user_id: string
-      name: string | null
-      score: number
-      amount_cents: number
-    }> = []
-
-    let totalPaidCents = 0
-
-    for (let i = 0; i < winners.length; i++) {
-      const winner = winners[i]
-      const ratio = PRIZE_DISTRIBUTION[i] ?? 0
-      const amountCents = Math.floor(totalPoolCents * ratio)
-      const amountEuros = amountCents / 100
-
-      winnersPayload.push({
-        rank: i + 1,
-        user_id: winner.user_id,
-        name: winner.full_name,
-        score: winner.score,
-        amount_cents: amountCents,
-      })
-      totalPaidCents += amountCents
-
-      if (amountEuros > 0) {
-        await supabase.from('wallet_transactions').insert({
-          user_id: winner.user_id,
-          amount: amountEuros,
-          type: 'contest_prize',
-          description: `Concours hebdo : ${contest.title} — rang ${i + 1}`,
-          status: 'completed',
-          source_id: contest.id,
-          metadata: { contest_id: contest.id, rank: i + 1, score: winner.score },
+  try {
+    const supabase = createServiceClient()
+    const { data: rawContests, error: contestsError } = await supabase.from('contests')
+      .select('id,title,type,total_pool_cents,end_date,status')
+      .eq('type', 'weekly').eq('status', 'live').lte('end_date', nowIso)
+    if (contestsError) throw new Error('Contest read failed')
+    const contests = z.array(ContestSchema).parse(rawContests)
+    for (const contest of contests) {
+      try {
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString()
+        const { data: rawProfiles, error: profilesError } = await supabase.from('profiles')
+          .select('id,full_name,total_demarches_launched,streak_days,level')
+          .gte('updated_at', sevenDaysAgo).order('total_demarches_launched', { ascending: false }).limit(500)
+        if (profilesError) throw new Error('Candidate read failed')
+        const profiles = z.array(ProfileSchema).max(500).parse(rawProfiles)
+        if (new Set(profiles.map((profile) => profile.id)).size !== profiles.length) throw new Error('Repeated candidate')
+        const userIds = profiles.map((profile) => profile.id)
+        const refCount = new Map<string, number>()
+        const missionCount = new Map<string, number>()
+        const scanCount = new Map<string, number>()
+        if (profiles.length) {
+          const [referrals, missions, scans] = await Promise.all([
+            supabase.from('referrals').select('referrer_id').in('referrer_id', userIds).gte('created_at', sevenDaysAgo),
+            supabase.from('mission_completions').select('user_id').in('user_id', userIds).gte('created_at', sevenDaysAgo),
+            supabase.from('scans').select('user_id').in('user_id', userIds).eq('status', 'completed').gte('created_at', sevenDaysAgo),
+          ])
+          if (referrals.error || missions.error || scans.error) throw new Error('Activity read failed')
+          for (const row of z.array(z.object({ referrer_id: z.uuid() })).parse(referrals.data)) {
+            if (!userIds.includes(row.referrer_id)) throw new Error('Foreign activity')
+            refCount.set(row.referrer_id, (refCount.get(row.referrer_id) ?? 0) + 1)
+          }
+          for (const [response, counts] of [[missions, missionCount], [scans, scanCount]] as const) {
+            for (const row of z.array(z.object({ user_id: z.uuid() })).parse(response.data)) {
+              if (!userIds.includes(row.user_id)) throw new Error('Foreign activity')
+              counts.set(row.user_id, (counts.get(row.user_id) ?? 0) + 1)
+            }
+          }
+        }
+        const scored = profiles.map((profile) => ({
+          user_id: profile.id, name: profile.full_name,
+          score: (refCount.get(profile.id) ?? 0) * 10 + (missionCount.get(profile.id) ?? 0) * 3
+            + (scanCount.get(profile.id) ?? 0) * 2 + (profile.streak_days ?? 0) + (profile.level ?? 1),
+        }))
+        scored.sort((a, b) => b.score - a.score)
+        const winners = z.array(WinnerSchema).parse(scored.slice(0, 10).filter((winner) => winner.score > 0)
+          .map((winner, index) => ({
+            ...winner, rank: index + 1,
+            amount_cents: Math.floor(contest.total_pool_cents * Math.round(PRIZE_DISTRIBUTION[index] * 1000) / 1000),
+          })))
+        // No balance/notification/closure is written outside this transaction.
+        const { data, error } = await supabase.rpc('settle_weekly_contest_v1', {
+          p_contest_id: contest.id, p_expected_pool: contest.total_pool_cents,
+          p_expected_end: contest.end_date, p_winners: winners,
         })
-
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('wallet_balance')
-          .eq('id', winner.user_id)
-          .single()
-
-        const currentBalance = Number(profile?.wallet_balance ?? 0)
-        await supabase
-          .from('profiles')
-          .update({ wallet_balance: currentBalance + amountEuros })
-          .eq('id', winner.user_id)
+        if (error) throw new Error('Contest settlement failed')
+        const receipt = ReceiptSchema.parse(data)
+        if (receipt.contest_id !== contest.id || receipt.winners_count !== receipt.awards.length
+          || new Set(receipt.awards.map((award) => award.user_id)).size !== receipt.awards.length
+          || receipt.awards.some((award, index) => award.rank !== index + 1)
+          || receipt.total_paid_cents !== receipt.awards.reduce((sum, award) => sum + award.amount_cents, 0)
+          || receipt.total_paid_cents > contest.total_pool_cents
+          || (!receipt.duplicate && JSON.stringify(receipt.awards) !== JSON.stringify(winners))) {
+          throw new Error('Contest receipt mismatch')
+        }
+        results.push({ contest_id: receipt.contest_id, winners_count: receipt.winners_count,
+          total_paid_cents: receipt.total_paid_cents, duplicate: receipt.duplicate })
+      } catch {
+        // One unresolved historical contest must not stop other independent ones.
+        failed.push({ contest_id: contest.id, code: 'contest_settlement_unconfirmed' })
       }
-
-      await supabase.from('notifications').insert({
-        user_id: winner.user_id,
-        type: 'contest_won',
-        title: `🏆 Top ${i + 1} du concours hebdo !`,
-        body:
-          amountEuros > 0
-            ? `Tu remportes ${amountEuros.toFixed(2)} € sur ${contest.title}. Crédité sur ton wallet.`
-            : `Tu termines au top ${i + 1} sur ${contest.title}. Bravo !`,
-        action_url: '/wallet',
-        icon: '🏆',
-      })
     }
-
-    await supabase
-      .from('contests')
-      .update({
-        status: 'completed',
-        winners: winnersPayload,
-      })
-      .eq('id', contest.id)
-
-    results.push({
-      contest_id: contest.id,
-      winners_count: winners.length,
-      total_paid_cents: totalPaidCents,
-    })
+    return NextResponse.json({ ok: failed.length === 0, processed: results.length, results,
+      ...(failed.length ? { failed } : {}), timestamp: nowIso }, { status: failed.length ? 500 : 200 })
+  } catch {
+    return NextResponse.json({ ok: false, error: 'La lecture ou le règlement des concours ne peut pas être confirmé.' }, { status: 500 })
   }
-
-  return NextResponse.json({
-    ok: true,
-    processed: results.length,
-    results,
-    timestamp: nowIso,
-  })
 }
 
 export async function GET(request: Request) {

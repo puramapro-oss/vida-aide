@@ -1,0 +1,340 @@
+TAP version 13
+# Subtest: native scan: real POST accepts financial type, verified Bearer and exact zero income
+ok 1 - native scan: real POST accepts financial type, verified Bearer and exact zero income
+  ---
+  duration_ms: 530.587467
+  type: 'test'
+  ...
+# Subtest: native scan: decimal comma is parsed, all existing units render without invented fields
+ok 2 - native scan: decimal comma is parsed, all existing units render without invented fields
+  ---
+  duration_ms: 249.766748
+  type: 'test'
+  ...
+# Subtest: native scan: invalid numbers do not trigger the provider or silently disappear
+ok 3 - native scan: invalid numbers do not trigger the provider or silently disappear
+  ---
+  duration_ms: 585.916966
+  type: 'test'
+  ...
+# Subtest: native scan: rejected session never submits old account inputs
+ok 4 - native scan: rejected session never submits old account inputs
+  ---
+  duration_ms: 359.918038
+  type: 'test'
+  ...
+# Subtest: native scan: HTTP success without exact response shape is not a completed scan
+ok 5 - native scan: HTTP success without exact response shape is not a completed scan
+  ---
+  duration_ms: 1008.280428
+  type: 'test'
+  ...
+# Subtest: native scan: persistence receipt failure retains draft and has no numerical success
+ok 6 - native scan: persistence receipt failure retains draft and has no numerical success
+  ---
+  duration_ms: 91.570361
+  type: 'test'
+  ...
+# Subtest: native scan: network loss keeps the draft without claiming a saved result or retrying
+ok 7 - native scan: network loss keeps the draft without claiming a saved result or retrying
+  ---
+  duration_ms: 94.331393
+  type: 'test'
+  ...
+# Subtest: native scan: saved scan survives secondary warning without duplicate provider call
+ok 8 - native scan: saved scan survives secondary warning without duplicate provider call
+  ---
+  duration_ms: 79.088029
+  type: 'test'
+  ...
+# Subtest: native scan: same tick double submit makes one request and permits explicit new scan
+ok 9 - native scan: same tick double submit makes one request and permits explicit new scan
+  ---
+  duration_ms: 92.398756
+  type: 'test'
+  ...
+# Subtest: native scan: late response after unmount or blur/refocus has no stale success
+ok 10 - native scan: late response after unmount or blur/refocus has no stale success
+  ---
+  duration_ms: 233.010275
+  type: 'test'
+  ...
+# Subtest: native scan: account switch clears the old form and rejects an outstanding result
+ok 11 - native scan: account switch clears the old form and rejects an outstanding result
+  ---
+  duration_ms: 82.756832
+  type: 'test'
+  ...
+# Subtest: native and server validation agree on cent rounding without rewriting estimates
+ok 12 - native and server validation agree on cent rounding without rewriting estimates
+  ---
+  duration_ms: 32.5506
+  type: 'test'
+  ...
+# Subtest: dashboard: current estimate and historical amount remain distinct
+ok 13 - dashboard: current estimate and historical amount remain distinct
+  ---
+  duration_ms: 224.852636
+  type: 'test'
+  ...
+# Subtest: dashboard: no scan never repurposes the historical field as an estimate
+ok 14 - dashboard: no scan never repurposes the historical field as an estimate
+  ---
+  duration_ms: 50.750606
+  type: 'test'
+  ...
+# Subtest: dashboard: failed read does not become an empty list or zero estimate
+ok 15 - dashboard: failed read does not become an empty list or zero estimate
+  ---
+  duration_ms: 42.643231
+  type: 'test'
+  ...
+# Subtest: dashboard: a completed zero estimate is shown, an invalid amount is unavailable
+ok 16 - dashboard: a completed zero estimate is shown, an invalid amount is unavailable
+  ---
+  duration_ms: 170.627734
+  type: 'test'
+  ...
+# Subtest: profile: original counter remains readable only as unverified history
+ok 17 - profile: original counter remains readable only as unverified history
+  ---
+  duration_ms: 24.052347
+  type: 'test'
+  ...
+# Subtest: profile: missing historical value does not become zero
+ok 18 - profile: missing historical value does not become zero
+  ---
+  duration_ms: 20.659791
+  type: 'test'
+  ...
+# Subtest: admin: sum is historical, never money verified as recovered
+ok 19 - admin: sum is historical, never money verified as recovered
+  ---
+  duration_ms: 22.830141
+  type: 'test'
+  ...
+# Subtest: admin: failed, incomplete or invalid reads never produce a fabricated aggregate
+ok 20 - admin: failed, incomplete or invalid reads never produce a fabricated aggregate
+  ---
+  duration_ms: 94.485851
+  type: 'test'
+  ...
+# Subtest: scan detail: estimated result and share text cannot imply a payment or guaranteed timing
+ok 21 - scan detail: estimated result and share text cannot imply a payment or guaranteed timing
+  ---
+  duration_ms: 72.320093
+  type: 'test'
+  ...
+# Subtest: scan detail: malformed or unfinished scan has no numerical success or share
+ok 22 - scan detail: malformed or unfinished scan has no numerical success or share
+  ---
+  duration_ms: 134.621505
+  type: 'test'
+  ...
+# Subtest: web wallet: sharing balance never turns it into recovered aid or a transfer receipt
+ok 23 - web wallet: sharing balance never turns it into recovered aid or a transfer receipt
+  ---
+  duration_ms: 21.408549
+  type: 'test'
+  ...
+# Subtest: web wallet: unknown balance is not shared as a fabricated zero
+ok 24 - web wallet: unknown balance is not shared as a fabricated zero
+  ---
+  duration_ms: 22.347868
+  type: 'test'
+  ...
+# Subtest: native dashboard: historical counter and actual wallet balance are separate
+ok 25 - native dashboard: historical counter and actual wallet balance are separate
+  ---
+  duration_ms: 27.077009
+  type: 'test'
+  ...
+# Subtest: native dashboard: missing profile and read errors show unknown, never zero money
+ok 26 - native dashboard: missing profile and read errors show unknown, never zero money
+  ---
+  duration_ms: 46.800396
+  type: 'test'
+  ...
+# Subtest: native wallet: balance and transaction values remain intact, history stays unverified
+ok 27 - native wallet: balance and transaction values remain intact, history stays unverified
+  ---
+  duration_ms: 29.961443
+  type: 'test'
+  ...
+# Subtest: native wallet: failed profile or transaction read does not mean zero or no transactions
+ok 28 - native wallet: failed profile or transaction read does not mean zero or no transactions
+  ---
+  duration_ms: 59.204854
+  type: 'test'
+  ...
+# Subtest: native profile reads cannot restore a previous account after account switch or sign-out
+ok 29 - native profile reads cannot restore a previous account after account switch or sign-out
+  ---
+  duration_ms: 44.851946
+  type: 'test'
+  ...
+# Subtest: real structured scan sends unverified-estimate rules and preserves existing models/schema
+ok 30 - real structured scan sends unverified-estimate rules and preserves existing models/schema
+  ---
+  duration_ms: 73.672297
+  type: 'test'
+  ...
+# Subtest: real scan passes the cancellation signal to the SDK and disables hidden HTTP retries
+ok 31 - real scan passes the cancellation signal to the SDK and disables hidden HTTP retries
+  ---
+  duration_ms: 15.567514
+  type: 'test'
+  ...
+# Subtest: real prompt preserves declared zero income, rent, dependents and negative disability declaration
+ok 32 - real prompt preserves declared zero income, rent, dependents and negative disability declaration
+  ---
+  duration_ms: 11.496646
+  type: 'test'
+  ...
+# Subtest: web: same intent survives remount and replays the exact receipt without another provider call
+ok 33 - web: same intent survives remount and replays the exact receipt without another provider call
+  ---
+  duration_ms: 413.572606
+  type: 'test'
+  ...
+# Subtest: web: lost acknowledgement is recovered after remount with the same key and content
+ok 34 - web: lost acknowledgement is recovered after remount with the same key and content
+  ---
+  duration_ms: 250.387725
+  type: 'test'
+  ...
+# Subtest: web: processing409 keeps the key, then retrieves the completed original request
+ok 35 - web: processing409 keeps the key, then retrieves the completed original request
+  ---
+  duration_ms: 158.068267
+  type: 'test'
+  ...
+# Subtest: web: failed409 is terminal until an explicitly new intention
+ok 36 - web: failed409 is terminal until an explicitly new intention
+  ---
+  duration_ms: 134.76675
+  type: 'test'
+  ...
+# Subtest: web: changed content is a new explicit input intent, never a key conflict
+ok 37 - web: changed content is a new explicit input intent, never a key conflict
+  ---
+  duration_ms: 101.951077
+  type: 'test'
+  ...
+# Subtest: web: a valid result with a different receipt ID cannot become success
+ok 38 - web: a valid result with a different receipt ID cannot become success
+  ---
+  duration_ms: 100.936052
+  type: 'test'
+  ...
+# Subtest: web: a non-final 202 cannot confirm an otherwise well-formed receipt
+ok 39 - web: a non-final 202 cannot confirm an otherwise well-formed receipt
+  ---
+  duration_ms: 83.751412
+  type: 'test'
+  ...
+# Subtest: web: storage failure prevents POST and leaves the form available for a safe retry
+ok 40 - web: storage failure prevents POST and leaves the form available for a safe retry
+  ---
+  duration_ms: 101.612407
+  type: 'test'
+  ...
+# Subtest: web: a corrupt local intent requires explicit reset instead of silently creating a new request
+ok 41 - web: a corrupt local intent requires explicit reset instead of silently creating a new request
+  ---
+  duration_ms: 109.376024
+  type: 'test'
+  ...
+# Subtest: native: same intent survives remount and replays the exact receipt without another provider call
+ok 42 - native: same intent survives remount and replays the exact receipt without another provider call
+  ---
+  duration_ms: 166.442497
+  type: 'test'
+  ...
+# Subtest: native: lost acknowledgement is recovered after remount with the same key and content
+ok 43 - native: lost acknowledgement is recovered after remount with the same key and content
+  ---
+  duration_ms: 139.798423
+  type: 'test'
+  ...
+# Subtest: native: processing409 keeps the key, then retrieves the completed original request
+ok 44 - native: processing409 keeps the key, then retrieves the completed original request
+  ---
+  duration_ms: 126.463865
+  type: 'test'
+  ...
+# Subtest: native: failed409 is terminal until an explicitly new intention
+ok 45 - native: failed409 is terminal until an explicitly new intention
+  ---
+  duration_ms: 114.08792
+  type: 'test'
+  ...
+# Subtest: native: changed content is a new explicit input intent, never a key conflict
+ok 46 - native: changed content is a new explicit input intent, never a key conflict
+  ---
+  duration_ms: 110.508027
+  type: 'test'
+  ...
+# Subtest: native: a valid result with a different receipt ID cannot become success
+ok 47 - native: a valid result with a different receipt ID cannot become success
+  ---
+  duration_ms: 115.672542
+  type: 'test'
+  ...
+# Subtest: native: a non-final 202 cannot confirm an otherwise well-formed receipt
+ok 48 - native: a non-final 202 cannot confirm an otherwise well-formed receipt
+  ---
+  duration_ms: 121.26844
+  type: 'test'
+  ...
+# Subtest: native: storage failure prevents POST and leaves the form available for a safe retry
+ok 49 - native: storage failure prevents POST and leaves the form available for a safe retry
+  ---
+  duration_ms: 115.947769
+  type: 'test'
+  ...
+# Subtest: native: a corrupt local intent requires explicit reset instead of silently creating a new request
+ok 50 - native: a corrupt local intent requires explicit reset instead of silently creating a new request
+  ---
+  duration_ms: 183.9102
+  type: 'test'
+  ...
+# Subtest: native: unavailable UUID generator never falls back to an unsafe identifier or calls the server
+ok 51 - native: unavailable UUID generator never falls back to an unsafe identifier or calls the server
+  ---
+  duration_ms: 91.94857
+  type: 'test'
+  ...
+# Subtest: web: user changes before profile fetch completes, so old form and late success disappear immediately
+ok 52 - web: user changes before profile fetch completes, so old form and late success disappear immediately
+  ---
+  duration_ms: 72.140367
+  type: 'test'
+  ...
+# Subtest: native: reset and submit are blocked until the stored intention has finished loading
+ok 53 - native: reset and submit are blocked until the stored intention has finished loading
+  ---
+  duration_ms: 140.953766
+  type: 'test'
+  ...
+# Subtest: native: double reset cannot leave a late deletion that erases a freshly saved intention
+ok 54 - native: double reset cannot leave a late deletion that erases a freshly saved intention
+  ---
+  duration_ms: 135.142304
+  type: 'test'
+  ...
+# Subtest: native: an old write cannot overwrite the durable request after remount and a lost receipt
+ok 55 - native: an old write cannot overwrite the durable request after remount and a lost receipt
+  ---
+  duration_ms: 118.210795
+  type: 'test'
+  ...
+1..55
+# tests 55
+# suites 0
+# pass 55
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10575.510998

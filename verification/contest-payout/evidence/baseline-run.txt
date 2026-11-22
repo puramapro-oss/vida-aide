@@ -1,0 +1,1 @@
+{"status":"DEFECT_REPRODUCED","receipt":"../vida-contest-review/original-final-write-failure/receipt.json"}

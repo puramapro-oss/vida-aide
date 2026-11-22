@@ -9,9 +9,13 @@ const source = fs.readFileSync(path.join(root, 'src/app/api/cron/contest-weekly/
 const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
 
 function harness(active = false) {
-  const queries = [], updates = [];
+  const queries = [], updates = [], rpcCalls = [];
   let clients = 0;
-  const profiles = ['completed-owner', 'pending-owner', 'failed-owner'].map((id) => ({ id, full_name: id, email: `${id}@example.invalid`, streak_days: 0, level: 0 }));
+  const contest = { id: '90000000-0000-4000-8000-000000000001', type: 'weekly', title: 'Fixture only',
+    total_pool_cents: 0, end_date: '2026-11-21T00:00:00.000Z', status: 'live' };
+  const profiles = ['completed-owner', 'pending-owner', 'failed-owner'].map((name, i) => ({
+    id: `80000000-0000-4000-8000-00000000000${i + 1}`, full_name: name, streak_days: 0, level: 0,
+  }));
   const scans = profiles.map((p, i) => ({ user_id: p.id, status: ['completed', 'processing', 'failed'][i] }));
   function from(table) {
     const q = { table, operations: [] }, builder = {};
@@ -22,7 +26,7 @@ function harness(active = false) {
       queries.push(q);
       const write = q.operations.find(([op]) => op === 'insert' || op === 'update');
       if (write) { updates.push({ table, operation: write[0], data: write[1] }); return { data: null, error: null }; }
-      if (table === 'contests') return { data: active ? [{ id: 'synthetic-contest', type: 'weekly', title: 'Fixture only', total_pool_cents: 0 }] : [], error: null };
+      if (table === 'contests') return { data: active ? [contest] : [], error: null };
       if (table === 'profiles') return { data: profiles, error: null };
       if (table === 'scans') {
         const status = q.operations.find(([op, column]) => op === 'eq' && column === 'status')?.[2];
@@ -33,13 +37,21 @@ function harness(active = false) {
     }).then(resolve, reject);
     return builder;
   }
+  async function rpc(name, args) {
+    rpcCalls.push({ name, args });
+    assert.equal(name, 'settle_weekly_contest_v1');
+    return { data: { version: 1, contest_id: args.p_contest_id, duplicate: false,
+      winners_count: args.p_winners.length,
+      total_paid_cents: args.p_winners.reduce((sum, winner) => sum + winner.amount_cents, 0),
+      awards: args.p_winners }, error: null };
+  }
   const mod = { exports: {} };
   new Function('require', 'module', 'exports', compiled)((name) => {
-    if (name === 'next/server') return requireTools(name);
-    if (name === '@/lib/supabase') return { createServiceClient: () => { clients++; return { from }; } };
+    if (name === 'next/server' || name === 'zod') return requireTools(name);
+    if (name === '@/lib/supabase') return { createServiceClient: () => { clients++; return { from, rpc }; } };
     throw new Error(`Unexpected module: ${name}`);
   }, mod, mod.exports);
-  return { ...mod.exports, queries, updates, get clients() { return clients; } };
+  return { ...mod.exports, queries, updates, rpcCalls, profiles, contest, get clients() { return clients; } };
 }
 
 async function withSecret(secret, work) {
@@ -87,8 +99,13 @@ test('pending and failed reservations cannot increase the weekly scan score', as
     assert.equal(response.status, 200);
     const result = await response.json();
     assert.equal(result.results[0].winners_count, 1);
-    const closure = h.updates.find((q) => q.table === 'contests' && q.operation === 'update');
-    assert.deepEqual(closure.data.winners.map((w) => [w.user_id, w.score]), [['completed-owner', 2]]);
-    assert.ok(h.updates.every((q) => !['profiles', 'wallet_transactions'].includes(q.table)), 'fixture makes no monetary write');
+    assert.equal(h.rpcCalls.length, 1);
+    const { args } = h.rpcCalls[0];
+    assert.equal(args.p_contest_id, h.contest.id);
+    assert.equal(args.p_expected_pool, 0);
+    assert.equal(args.p_expected_end, h.contest.end_date);
+    assert.deepEqual(args.p_winners.map((w) => [w.user_id, w.score]), [[h.profiles[0].id, 2]]);
+    assert.ok(args.p_winners.every((winner) => winner.amount_cents === 0), 'fixture has no monetary award');
+    assert.equal(h.updates.length, 0, 'closure and writes must be delegated to the single transaction');
   });
 });

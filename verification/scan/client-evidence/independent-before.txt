@@ -1,0 +1,32 @@
+✔ web: user B with delayed profile A unmounts old request before its response (721.619272ms)
+✔ native: initial async storage read blocks both reset and POST (220.5711ms)
+✖ native: an old pending store write cannot replace the newer key after remount and lost receipt (357.564224ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2713.227923
+
+✖ failing tests:
+
+test at ../vida-client-key-review/counter-review.test.cjs:64:1
+✖ native: an old pending store write cannot replace the newer key after remount and lost receipt (357.564224ms)
+  AssertionError [ERR_ASSERTION]: the durable key must still identify the request whose acknowledgement was lost
+  + actual - expected
+  
+  + '9eb2d1c1-c1c1-46e8-8b2a-8e760727b891'
+  - '4c10663e-6bb2-4c63-9318-877ed5a38a80'
+  
+      at TestContext.<anonymous> (/workspace/scratch/dcfb234e0a8f/vida-client-key-review/counter-review.test.cjs:91:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '9eb2d1c1-c1c1-46e8-8b2a-8e760727b891',
+    expected: '4c10663e-6bb2-4c63-9318-877ed5a38a80',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

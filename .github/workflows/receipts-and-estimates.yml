@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    shell: bash
+
 concurrency:
   group: estimates-and-receipts-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -43,6 +47,7 @@ jobs:
             verification/scan/*.test.cjs \
             verification/profiles-permissions/*.test.cjs \
             verification/stripe-fulfillment/*.test.cjs \
+            verification/contest-payout/*.test.cjs \
             2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/routes-and-components.tap"
 
       - name: Type-check the real backend sources
@@ -98,6 +103,20 @@ jobs:
             --pg-bin-dir /usr/lib/postgresql/16/bin \
             --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/scan-concurrency" \
             2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/scan-concurrency.log"
+
+      - name: Verify weekly settlement values and rollback
+        run: |
+          python3 verification/contest-payout/run-postgres.py \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/contest" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/contest-postgres.log"
+
+      - name: Verify weekly settlement across independent database sessions
+        run: |
+          node verification/contest-payout/concurrency.cjs \
+            --pg-bin-dir /usr/lib/postgresql/16/bin \
+            --evidence-dir "$RUNNER_TEMP/vida-aide-evidence/contest-concurrency" \
+            2>&1 | tee "$RUNNER_TEMP/vida-aide-evidence/contest-concurrency.log"
 
       - name: Verify the source did not change during the checks
         if: always()
