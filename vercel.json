@@ -15,5 +15,10 @@
       "path": "/api/cron/account-deletion",
       "schedule": "0 3 * * *"
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "feat/praticiens-aides-bien-etre": false
+    }
+  }
 }
